@@ -204,6 +204,11 @@ input[type="search"]::placeholder { color: var(--text-muted); }
   display: flex; gap: 6px; align-items: center;
 }
 .news-list .m .sep { opacity: 0.5; }
+.news-list .m .intl {
+  font-size: 10.5px; letter-spacing: 0.02em;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 0 4px; color: var(--text-secondary); flex: none;
+}
 .empty { padding: 22px 15px; font-size: 13px; color: var(--text-muted); text-align: center; }
 
 /* ── 안내 / 오류 ── */
@@ -476,7 +481,10 @@ footer {
           a.target = "_blank";
           a.rel = "noopener noreferrer";
           a.appendChild(el("div", "t", item.title));
+          // 해외 기사는 원문 제목이 영어다 — 마우스를 올리면 원문을 보여준다
+          if (item.intl && item.title_en) { a.title = item.title_en; }
           var meta = el("div", "m");
+          if (item.intl) { meta.appendChild(el("span", "intl", "해외·번역")); }
           if (item.source) { meta.appendChild(el("span", null, item.source)); }
           var rel = relTime(item.published);
           if (item.source && rel) { meta.appendChild(el("span", "sep", "·")); }

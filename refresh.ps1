@@ -9,8 +9,9 @@
 #>
 [CmdletBinding()]
 param(
-  [int] $NewsDays     = 30,   # 뉴스 수집 기간(일)
-  [int] $NewsPerClass = 12    # 자산군당 최대 기사 수
+  [int] $NewsDays         = 30,   # 뉴스 수집 기간(일)
+  [int] $NewsPerClass     = 12,   # 자산군당 국내 매체 기사 수
+  [int] $NewsIntlPerClass = 6     # 자산군당 해외 매체 기사 수 (한국어로 번역해 싣는다)
 )
 
 $ErrorActionPreference = "Stop"
@@ -246,7 +247,13 @@ $NEWS_CLASSES = @(
        '"바이아웃 펀드" OR "경영권 인수" OR "블라인드 펀드 결성"',
        '"MBK파트너스" OR "한앤컴퍼니" OR "IMM PE" OR "스틱인베스트먼트"'
      )
-     filter = @('사모|PEF|프라이빗|바이아웃|경영권|MBK|한앤|IMM|스틱') },
+     filter = @('사모|PEF|프라이빗|바이아웃|경영권|MBK|한앤|IMM|스틱')
+     queriesEn = @(
+       '"private equity" OR "buyout fund"',
+       '"Blackstone" OR "KKR" OR "Carlyle" OR "Apollo Global"',
+       '"PE firm acquires" OR "take-private deal" OR "GP stakes"'
+     )
+     filterEn = @('(?i)private equity|buyout|blackstone|kkr|carlyle|apollo|take-private|pe firm') },
 
   @{ key="pd";        slot=2; label="Private Debt";    sublabel="사모대출·프라이빗 크레딧"
      queries = @(
@@ -254,7 +261,13 @@ $NEWS_CLASSES = @(
        '"메자닌 투자" OR "인수금융" OR "사모사채"',
        '"대출채권 투자" OR "직접대출 펀드" OR "private debt"'
      )
-     filter = @('사모대출|프라이빗|크레딧|메자닌|인수금융|사모사채|대출채권|직접대출|private') },
+     filter = @('사모대출|프라이빗|크레딧|메자닌|인수금융|사모사채|대출채권|직접대출|private')
+     queriesEn = @(
+       '"private credit" OR "private debt"',
+       '"direct lending" OR "leveraged loan market" OR "BDC"',
+       '"credit fund" OR "mezzanine financing" OR "CLO market"'
+     )
+     filterEn = @('(?i)private credit|private debt|direct lending|leveraged loan|bdc|mezzanine|clo|credit fund') },
 
   @{ key="vc";        slot=3; label="Venture Capital"; sublabel="벤처투자·스타트업"
      queries = @(
@@ -262,7 +275,14 @@ $NEWS_CLASSES = @(
        '"시리즈A 투자유치" OR "시리즈B 투자유치" OR "시리즈C 투자유치"',
        '"벤처펀드 결성" OR "모태펀드" OR "신기술투자조합"'
      )
-     filter = @('벤처|스타트업|시리즈\s?[ABC]|모태펀드|투자조합|VC') },
+     filter = @('벤처|스타트업|시리즈\s?[ABC]|모태펀드|투자조합|VC')
+     queriesEn = @(
+       '"venture capital" OR "VC funding"',
+       '"Series A funding" OR "Series B funding" OR "seed round"',
+       # 그냥 "Sequoia"로 두면 세쿼이아 나무와 동명의 항암제 임상시험이 딸려온다
+       '"Sequoia Capital" OR "Andreessen Horowitz" OR "startup raises"'
+     )
+     filterEn = @('(?i)venture capital|vc fund|series [abc]|seed round|sequoia capital|andreessen|startup rais') },
 
   # 국내 기사와 섞이지 않도록 "부동산 낱말"과 "해외 낱말"을 둘 다 요구한다.
   @{ key="re_intl";   slot=4; label="해외 부동산";      sublabel="글로벌 상업용·오피스"
@@ -278,7 +298,13 @@ $NEWS_CLASSES = @(
      filter = @(
        '부동산|리츠|오피스|빌딩|물류센터|주택|호텔|상업용',
        '해외|글로벌|미국|美|유럽|일본|日|뉴욕|런던|도쿄|중국|호주|싱가포르|베트남|아시아'
-     ) },
+     )
+     queriesEn = @(
+       '"commercial real estate" OR "office market"',
+       '"real estate fund" OR "property investment" OR "REIT market"',
+       '"office vacancy" OR "logistics property" OR "data center real estate"'
+     )
+     filterEn = @('(?i)real estate|office|property|reit|logistics|vacancy|landlord') },
 
   # "인프라 펀드" 처럼 넓은 말은 국내 BTL 기사까지 끌어와 국내 인프라와 겹친다.
   @{ key="infra_intl";slot=5; label="해외 인프라";      sublabel="글로벌 인프라 자산"
@@ -292,7 +318,14 @@ $NEWS_CLASSES = @(
      filter = @(
        '인프라|발전|데이터센터|공항|항만|철도|도로|파이프라인|신재생|전력|ESS',
        '해외|글로벌|미국|美|유럽|일본|日|브룩필드|맥쿼리|블랙스톤|아시아|중동'
-     ) },
+     )
+     queriesEn = @(
+       # "infrastructure investment" 은 미국 법률명(IIJA)에 걸려 엉뚱한 기사를 부른다
+       '"infrastructure fund" OR "infrastructure investor" OR "infrastructure deal"',
+       '"Brookfield" OR "Macquarie Asset Management" OR "toll road concession"',
+       '"data center investment" OR "renewable energy project finance" OR "airport privatisation"'
+     )
+     filterEn = @('(?i)infrastructure|data cent|renewable|power plant|grid|airport|port|toll road|pipeline|brookfield|macquarie') },
 
   # "리츠" 만 쓰면 미국 리츠 기사가 섞여 들어온다.
   @{ key="re_kr";     slot=6; label="국내 부동산";      sublabel="상업용·리츠·개발"
@@ -303,7 +336,13 @@ $NEWS_CLASSES = @(
        '"이지스자산운용" OR "코람코자산신탁" OR "마스턴투자운용" OR "캡스톤자산운용"',
        '"서울 오피스 공실률" OR "지식산업센터" OR "데이터센터 부지"'
      )
-     filter = @('부동산|리츠|오피스|빌딩|물류센터|PF|개발사업|상업용') },
+     filter = @('부동산|리츠|오피스|빌딩|물류센터|PF|개발사업|상업용')
+     # 국내 자산군이라 해외 매체는 한국 시장을 다룬 기사만 의미가 있다
+     queriesEn = @(
+       '"Korea real estate" OR "Seoul office market"',
+       '"Korean property market" OR "Korea REIT"'
+     )
+     filterEn = @('(?i)korea|korean|seoul', '(?i)real estate|office|property|reit|housing') },
 
   @{ key="infra_kr";  slot=7; label="국내 인프라";      sublabel="민자사업·SOC"
      queries = @(
@@ -313,7 +352,12 @@ $NEWS_CLASSES = @(
        '"국가철도망" OR "GTX 사업" OR "고속도로 민자"',
        '"신재생 프로젝트 파이낸싱" OR "국내 발전소 매각" OR "인프라 자산 인수"'
      )
-     filter = @('민자|BTL|BTO|사회기반시설|인프라|SOC|민투심|실시협약') }
+     filter = @('민자|BTL|BTO|사회기반시설|인프라|SOC|민투심|실시협약')
+     queriesEn = @(
+       '"Korea infrastructure project" OR "Korea PPP project"',
+       '"Korea data center" OR "Korea power plant project"'
+     )
+     filterEn = @('(?i)korea|korean|seoul', '(?i)infrastructure|ppp|power plant|data cent|rail|highway|port|grid') }
 )
 
 # 쿼리에 쓴 낱말은 그 자산군 기사 대부분에 나타나므로 중복 판정에서 제외한다.
@@ -363,6 +407,145 @@ function Test-TitleFilter([string]$title, $patterns) {
   if (-not $patterns) { return $true }
   foreach ($p in $patterns) { if ($title -notmatch $p) { return $false } }
   return $true
+}
+
+# 영어판 구글 뉴스에는 국내 언론의 영문판도 함께 잡힌다. 이걸 번역해 실으면
+# 한국어 → 영어 → 한국어 왕복이 되어 고유명사가 망가진다
+# (실제로 "한국부동산원"이 "한국부동산위원회"로 돌아왔다). 아예 제외한다.
+$KOREAN_OUTLETS = '(?i)chosun|korea herald|joongang|korea times|yonhap|pulse|maeil|헤럴드|매일경제|조선|중앙|한국경제|서울경제|아시아경제|asiae|seoul economic|ked global|businesskorea|business korea|aju|thelec|koreabizwire|kbs|mbc|sbs|newsis|hankyung|donga|edaily|mk\.co\.kr|korea economic'
+
+# 기계번역이 업계 용어를 어색하게 옮기는 것만 몇 개 바로잡는다.
+$GLOSSARY = @(
+  @{ from = '민간 신용';   to = '사모대출'     },
+  @{ from = '사모 신용';   to = '사모대출'     },
+  @{ from = '개인 신용';   to = '사모대출'     },
+  @{ from = '직접 대출';   to = '직접대출'     },
+  @{ from = '사모 펀드';   to = '사모펀드'     },
+  @{ from = '벤처 캐피탈'; to = '벤처캐피탈'   },
+  @{ from = '벤처 캐피털'; to = '벤처캐피탈'   },
+  @{ from = '비공개 거래'; to = '상장폐지 인수' },
+  @{ from = '데이터 센터'; to = '데이터센터'   }
+)
+
+# 해외 매체 기사는 원문이 영어라 제목을 한국어로 옮겨 싣는다.
+# 구글 번역의 비공식 엔드포인트라 키는 필요 없지만 언제든 막히거나 조여질 수 있다.
+# 번역에 실패한 기사는 아예 싣지 않는다 (영어 제목이 섞이면 안 되므로).
+function Convert-ToKorean([string]$text) {
+  $u = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=" +
+       [uri]::EscapeDataString($text)
+  try {
+    $json = (Get-Web $u $null 1) | ConvertFrom-Json
+  } catch {
+    return $null
+  }
+  $out = ""
+  foreach ($seg in $json[0]) { $out += [string]$seg[0] }
+  $out = $out.Trim()
+  if (-not $out) { return $null }
+  # 번역이 사실상 그대로면 (한글이 거의 없으면) 실패로 본다
+  if (($out -replace '[^가-힣]', '').Length -lt 2) { return $null }
+  foreach ($g in $GLOSSARY) { $out = $out.Replace($g.from, $g.to) }
+  return $out
+}
+
+# 해외 매체 기사 수집. 영어판 구글 뉴스에서 받아 거른 뒤 번역한다.
+function Get-IntlNews([hashtable]$cls, [datetime]$cutoff, $seenTitles, $accepted) {
+  if (-not $cls.queriesEn) { return @() }
+
+  $stopwords = Get-QueryStopwords $cls.queriesEn
+  $buckets   = @()
+  $seenEn    = @()
+
+  foreach ($query in $cls.queriesEn) {
+    $bucket = @()
+    $q   = [uri]::EscapeDataString($query + " when:" + $NewsDays + "d")
+    $url = "https://news.google.com/rss/search?q=$q&hl=en-US&gl=US&ceid=US:en"
+
+    $doc = New-Object System.Xml.XmlDocument
+    try { $doc.LoadXml((Get-Web $url)) } catch { continue }
+
+    foreach ($node in $doc.SelectNodes("/rss/channel/item")) {
+      $title = $node.SelectSingleNode("title").InnerText
+
+      $source = ""
+      $srcNode = $node.SelectSingleNode("source")
+      if ($srcNode) { $source = $srcNode.InnerText }
+      if ($source -and $title.EndsWith(" - " + $source)) {
+        $title = $title.Substring(0, $title.Length - ($source.Length + 3))
+      }
+      $title = $title.Trim()
+      if (-not $title) { continue }
+      if ($source -match $KOREAN_OUTLETS) { continue }   # 국내 언론 영문판은 제외
+      if (-not (Test-TitleFilter $title $cls.filterEn)) { continue }
+
+      # 번역은 비싸므로 영어 제목 단계에서 먼저 중복을 걸러낸다
+      $enShingles = Get-TitleShingles $title $stopwords
+      if (Test-NearDuplicate $enShingles $seenEn) { continue }
+      $seenEn += ,$enShingles
+
+      $published = ""
+      $pubNode = $node.SelectSingleNode("pubDate")
+      if ($pubNode) {
+        try {
+          $dt = [datetimeoffset]::Parse($pubNode.InnerText, [Globalization.CultureInfo]::InvariantCulture)
+          if ($dt.UtcDateTime -lt $cutoff) { continue }
+          $published = $dt.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ssZ")
+        } catch { }
+      }
+
+      $bucket += [ordered]@{
+        title_en  = $title
+        url       = $node.SelectSingleNode("link").InnerText
+        source    = $source
+        published = $published
+      }
+      if ($bucket.Count -ge $NewsIntlPerClass) { break }
+    }
+    $buckets += ,$bucket
+    Start-Sleep -Milliseconds 200
+  }
+
+  # 국내 기사와 같은 방식으로 쿼리를 번갈아 뽑는다
+  $picked = @()
+  $depth  = 0
+  while ($picked.Count -lt ($NewsIntlPerClass * 2)) {
+    $tookAny = $false
+    foreach ($b in $buckets) {
+      if ($depth -lt $b.Count) {
+        $picked += $b[$depth]
+        $tookAny = $true
+      }
+    }
+    if (-not $tookAny) { break }
+    $depth++
+  }
+
+  $items    = @()
+  $failed   = 0
+  foreach ($cand in $picked) {
+    if ($items.Count -ge $NewsIntlPerClass) { break }
+
+    $ko = Convert-ToKorean $cand.title_en
+    if (-not $ko) { $failed++; continue }
+    if (-not $seenTitles.Add($ko)) { continue }
+
+    # 번역된 제목이 국내 기사와 같은 사건이면 뺀다
+    $shingles = Get-TitleShingles $ko @()
+    if (Test-NearDuplicate $shingles $accepted) { continue }
+
+    $items += [ordered]@{
+      title     = $ko
+      title_en  = $cand.title_en
+      url       = $cand.url
+      source    = $cand.source
+      published = $cand.published
+      intl      = $true
+    }
+    Start-Sleep -Milliseconds 120
+  }
+
+  if ($failed -gt 0) { Fail ($cls.label + " 해외 기사 " + $failed + "건 번역 실패") }
+  return $items
 }
 
 function Get-News([hashtable]$cls, [datetime]$cutoff, $seenTitles) {
@@ -533,7 +716,23 @@ foreach ($cls in $NEWS_CLASSES) {
     $p = Get-PrevNews $prev $cls.key
     if ($p) { $items = @($p.items); $stale = $true }
   }
-  Log ("    " + $cls.label + " " + $items.Count + "건")
+
+  # 해외 매체 기사를 덧붙인다. 국내 수집이 실패해 이전 값을 쓰는 중이면 건드리지 않는다.
+  $intlCount = 0
+  if (-not $stale) {
+    $accepted = @()
+    foreach ($it in $items) { $accepted += ,(Get-TitleShingles $it.title @()) }
+    try {
+      $intl = @(Get-IntlNews $cls $cutoff $seenTitles $accepted)
+      $intlCount = $intl.Count
+      if ($intlCount -gt 0) {
+        $items = @(@($items) + @($intl) |
+                   Sort-Object -Property @{ Expression = { $_.published }; Descending = $true })
+      }
+    } catch { Fail ($cls.label + " 해외 뉴스 수집 실패") }
+  }
+
+  Log ("    " + $cls.label + " " + $items.Count + "건 (해외 " + $intlCount + "건)")
   $news += [ordered]@{
     key      = $cls.key
     slot     = $cls.slot
