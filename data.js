@@ -1,7 +1,7 @@
 /* 이 파일은 refresh.ps1 이 자동으로 만듭니다. 직접 고치지 마세요. */
 window.DASHBOARD_DATA = {
-    "generated_at":  "2026-07-31T01:08:24Z",
-    "generated_at_display":  "2026년 7월 31일 01:08",
+    "generated_at":  "2026-07-31T01:10:21Z",
+    "generated_at_display":  "2026년 7월 31일 01:10",
     "news_window_days":  30,
     "market":  [
                    {
@@ -11,25 +11,25 @@ window.DASHBOARD_DATA = {
                        "items":  [
                                      {
                                          "name":  "코스피",
-                                         "value":  "6,531.71",
+                                         "value":  "6,528.56",
                                          "unit":  "",
-                                         "change":  "938.15",
+                                         "change":  "935.00",
                                          "change_unit":  "",
-                                         "ratio":  16.77,
+                                         "ratio":  16.72,
                                          "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.07.31 10:08"
+                                         "asof":  "2026.07.31 10:10"
                                      },
                                      {
                                          "name":  "코스닥",
-                                         "value":  "707.33",
+                                         "value":  "706.45",
                                          "unit":  "",
-                                         "change":  "62.55",
+                                         "change":  "61.67",
                                          "change_unit":  "",
-                                         "ratio":  9.7,
+                                         "ratio":  9.56,
                                          "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.07.31 10:08"
+                                         "asof":  "2026.07.31 10:10"
                                      },
                                      {
                                          "name":  "다우존스",
@@ -77,14 +77,14 @@ window.DASHBOARD_DATA = {
                                      },
                                      {
                                          "name":  "니케이 225",
-                                         "value":  "65,000.51",
+                                         "value":  "65,013.30",
                                          "unit":  "",
-                                         "change":  "3,133.08",
+                                         "change":  "3,145.87",
                                          "change_unit":  "",
-                                         "ratio":  5.06,
+                                         "ratio":  5.08,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.07.31 09:53"
+                                         "asof":  "2026.07.31 09:55"
                                      },
                                      {
                                          "name":  "항셍",
@@ -95,7 +95,7 @@ window.DASHBOARD_DATA = {
                                          "ratio":  0,
                                          "dir":  "flat",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.07.31 08:53"
+                                         "asof":  "2026.07.31 08:55"
                                      }
                                  ]
                    },
@@ -106,47 +106,47 @@ window.DASHBOARD_DATA = {
                        "items":  [
                                      {
                                          "name":  "미국 USD",
-                                         "value":  "1,434.00",
+                                         "value":  "1,434.70",
                                          "unit":  "원",
-                                         "change":  "7.80",
+                                         "change":  "8.50",
                                          "change_unit":  "",
-                                         "ratio":  0.55,
+                                         "ratio":  0.6,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.07.31 10:06"
+                                         "asof":  "2026.07.31 10:08"
                                      },
                                      {
                                          "name":  "일본 JPY(100엔)",
-                                         "value":  "893.01",
+                                         "value":  "893.53",
                                          "unit":  "원",
-                                         "change":  "0.07",
+                                         "change":  "0.45",
                                          "change_unit":  "",
-                                         "ratio":  -0.01,
-                                         "dir":  "down",
+                                         "ratio":  0.05,
+                                         "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.07.31 10:06"
+                                         "asof":  "2026.07.31 10:08"
                                      },
                                      {
                                          "name":  "유럽연합 EUR",
-                                         "value":  "1,651.61",
+                                         "value":  "1,652.49",
                                          "unit":  "원",
-                                         "change":  "7.27",
+                                         "change":  "8.15",
                                          "change_unit":  "",
-                                         "ratio":  0.44,
+                                         "ratio":  0.5,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.07.31 10:06"
+                                         "asof":  "2026.07.31 10:08"
                                      },
                                      {
                                          "name":  "중국 CNY",
-                                         "value":  "212.51",
+                                         "value":  "212.61",
                                          "unit":  "원",
-                                         "change":  "1.11",
+                                         "change":  "1.21",
                                          "change_unit":  "",
-                                         "ratio":  0.53,
+                                         "ratio":  0.57,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.07.31 10:06"
+                                         "asof":  "2026.07.31 10:08"
                                      }
                                  ]
                    },
@@ -263,14 +263,14 @@ window.DASHBOARD_DATA = {
                                      },
                                      {
                                          "name":  "국내 금",
-                                         "value":  "188914.9",
+                                         "value":  "189135.39",
                                          "unit":  "원",
-                                         "change":  "653.57",
+                                         "change":  "874.06",
                                          "change_unit":  "",
-                                         "ratio":  0.35,
+                                         "ratio":  0.46,
                                          "dir":  "up",
                                          "note":  "신한은행 기준",
-                                         "asof":  "2026.07.31 10:04"
+                                         "asof":  "2026.07.31 10:09"
                                      }
                                  ]
                    },
@@ -335,28 +335,28 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "환시 개장 중 발표된 \u0027깜짝\u0027 GDP…환율 반응 덤덤했던 까닭은",
-                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE9PUjlTbF9ZZS1abzllOVZjNTRxdkY2aXQxSExIQzU4SFh3Ti1CWGVnWGVhQmxXLTV5OWg0Y2ZLZnVwQjUyNkJGV2tHLVFudDdqSmhtMy1hTjQ5NlZfeFRlV2F4Y0ZOTjBfNGFZZzdtbUs?oc=5",
-                                       "source":  "연합인포맥스",
-                                       "published":  "2026-07-24T01:22:57Z"
-                                   },
-                                   {
                                        "title":  "[프리즘] 원·달러 환율 1,600원 육박…’고환율 뉴노멀’ 시대 오나",
                                        "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5yYjB5U290aXhKcl9WWnFmdWQ2SHIxRFl2OFVfNVF3Mm9DRE1mdnBSY3pOSzZWVERKX1RRMnpzZUpqNE1YZVZSOUZaM1pVRnh6VjFZcTdYNDNHSmRtbWxDc3lramtFQXM?oc=5",
                                        "source":  "연합뉴스TV",
                                        "published":  "2026-07-12T07:00:00Z"
                                    },
                                    {
-                                       "title":  "[환율 전망] 원만해선 원화를 막을 수 없다",
-                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBMTkREX0RoSFFxUVNZb0JUYlo1VFhmSFV0NFE4aDhtc2J6SkFBYUh6WW9SWHU5SlpPUnFPOGhteUNGeFlzakNMZ0M0TjVzZ1BzSTJRVWNHMTc3NDFVOFA4eg?oc=5",
-                                       "source":  "KB Think",
-                                       "published":  "2026-07-27T01:40:28Z"
+                                       "title":  "환시 개장 중 발표된 \u0027깜짝\u0027 GDP…환율 반응 덤덤했던 까닭은",
+                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE9PUjlTbF9ZZS1abzllOVZjNTRxdkY2aXQxSExIQzU4SFh3Ti1CWGVnWGVhQmxXLTV5OWg0Y2ZLZnVwQjUyNkJGV2tHLVFudDdqSmhtMy1hTjQ5NlZfeFRlV2F4Y0ZOTjBfNGFZZzdtbUs?oc=5",
+                                       "source":  "연합인포맥스",
+                                       "published":  "2026-07-24T01:22:57Z"
                                    },
                                    {
                                        "title":  "1450원대까지 떨어진 원·달러 환율, 변수는 ‘중동 전쟁’",
                                        "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5EUzJSNzliOW5seTdHQnJZSElRMExKLTliU2RoazBDTW9EVWhZUXdLY2MteTljZHRlcXlXZ09waTRhZjZYWEd3YTdmYklJX3EzRFZTQm1Qd1NOQdIBX0FVX3lxTFBHVERSTU91bkthWmM1QXBKR1pWT013bEFucldJbThXdTJCeGREYk94bHhfMG1KSlpPOC12Ymp2bC04amMyMmY5QXp0OVBSaC1Ra0RiWktXYURvT0pfOXl3?oc=5",
                                        "source":  "경향신문",
                                        "published":  "2026-07-26T07:07:00Z"
+                                   },
+                                   {
+                                       "title":  "[환율 전망] 원만해선 원화를 막을 수 없다",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBMTkREX0RoSFFxUVNZb0JUYlo1VFhmSFV0NFE4aDhtc2J6SkFBYUh6WW9SWHU5SlpPUnFPOGhteUNGeFlzakNMZ0M0TjVzZ1BzSTJRVWNHMTc3NDFVOFA4eg?oc=5",
+                                       "source":  "KB Think",
+                                       "published":  "2026-07-27T01:40:28Z"
                                    },
                                    {
                                        "title":  "SK하이닉스 ADR 환전 랠리에도 원·달러 환율 회귀는 어렵다?",
@@ -371,22 +371,16 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-21T07:00:00Z"
                                    },
                                    {
+                                       "title":  "환율 15.8원 내린 1,440원대‥중동 전쟁 이후 최저",
+                                       "url":  "https://news.google.com/rss/articles/CBMieEFVX3lxTFBvTmRSTjNGWWctY1AzSWxuQTdPT19SbFM4eUFvTzRrNXpPU2pzQ0dFOXFwS3BkMjhSS2haM0pseWJtZUNnWXd0ZFRxNjVxS0w5cldWR19GQnBtZDVYclNFR2t0S1VvcFR5QkJuTHpNUng1UXBwSEU4Nw?oc=5",
+                                       "source":  "imnews.imbc.com",
+                                       "published":  "2026-07-29T10:50:56Z"
+                                   },
+                                   {
                                        "title":  "베트남 달러 환율, 은행권 오르는데 암시장은 내려…고점 대비 7% 빠져",
                                        "url":  "https://news.google.com/rss/articles/CBMibEFVX3lxTE5YeW9jNzNWTlFVcEJNZG5aRlBQTDRLaFRWNTd6dTlrWTZHeElkV3JOc1lGQ2dYYmVzbGw3ZFJ4TUlVbnk3X1o2cjhPQ1FhV1Q0bXhEZk5tZFAyT2szeFlUTDYyVzVmVzd6RF9mYg?oc=5",
                                        "source":  "인사이드비나",
                                        "published":  "2026-07-22T02:00:00Z"
-                                   },
-                                   {
-                                       "title":  "환율 15.8원 내린 1,440원대‥중동 전쟁 이후 최저",
-                                       "url":  "https://news.google.com/rss/articles/CBMieEFVX3lxTFBvTmRSTjNGWWctY1AzSWxuQTdPT19SbFM4eUFvTzRrNXpPU2pzQ0dFOXFwS3BkMjhSS2haM0pseWJtZUNnWXd0ZFRxNjVxS0w5cldWR19GQnBtZDVYclNFR2t0S1VvcFR5QkJuTHpNUng1UXBwSEU4Nw?oc=5",
-                                       "source":  "MBC 뉴스",
-                                       "published":  "2026-07-29T10:50:56Z"
-                                   },
-                                   {
-                                       "title":  "\"한국만 난리인 줄 알았는데 일본 더 심각\" 엔·달러 환율 40년만에 최저…엔화에 무슨 일이",
-                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE40N0ozQ0FadWsxVUNSU0lxR3BZQ2pCQS1uTnQ4UjltN0VzdDJKcllPcG9MQ2tibmxaaVFDWmdzOUV6RkY3RWRuNVNVeHo1WkdWMGtON2VheW4wNkxSanFudQ?oc=5",
-                                       "source":  "아시아경제",
-                                       "published":  "2026-07-22T22:30:00Z"
                                    },
                                    {
                                        "title":  "원화 가치 17년 만에 최저…“운 좋게 내린 환율, 대응체계 만들어야”",
@@ -395,16 +389,22 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-25T20:01:00Z"
                                    },
                                    {
-                                       "title":  "원-달러 환율 1400원 후반대로 하락…정부 “하반기는 더 개선될 것”",
-                                       "url":  "https://news.google.com/rss/articles/CBMickFVX3lxTE8yN2U0UWZOSEZTZHNkTS1Gb29MaS1pUU55X3gyLVV0VXpkdHNiUHVVY3MwTG5CaEhhWVdMM1lnS1NTRG9EWnMtMDFlbFVmal9OcFpDQzhRUmhJa0F6bGZuaDM4MEhwRUdRZUFkRXd0WVFlZw?oc=5",
-                                       "source":  "한겨레",
-                                       "published":  "2026-07-22T07:00:00Z"
+                                       "title":  "[경제 포커스] 주가·환율 함께 떨어지는 이유는… “기업 달러 매도 본격화” - 조선비즈",
+                                       "url":  "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMFYzUVVCVmVkSGhnX1lDUUZMY3NWS2NYcFVRRWNWRVVkWUw1VHRNZFpzeG5VdU9ub2xGTW84VzI3NVZCV1ppMkRXQ2JZTTgtZi1VWmpkWU1PTlBIRjZCbFVtQ2ZqMndkMW9zbktXN0xkZ3Q1QjN6UDNNOGxKb24xemxPXzBJUdIBmgFBVV95cUxQU05hWUwxVFRDcm5lUkQ1MDJaWTdjMEdEMkJjMmVFZ0xMRFh4cFFic2N5eEl0ZmplNlF4V1RfVEtNMDljc3g4bHdYdTZLZENSUTh4V3pTMVN2VTVQRlowNXZQNWpLdzh5V2c2NDJIWlVZWDVfdVFJY0NuVWp6cWEweDVaWi1wZkNTNGljS09fNFVGNVJ2Nk9lOVVR?oc=5",
+                                       "source":  "Chosunbiz",
+                                       "published":  "2026-07-30T02:47:00Z"
                                    },
                                    {
-                                       "title":  "중동 소강 국면에도…환율 1.9원 오른 1,468.5원",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1jU3NaUEZleFFqOVFyb0d6V0MxLWpwTkZNWmFfcTdMeGFMVDBHd05yaXE3U2dEcmxJQWE3WjBUVEMwS3BuRTNsRWNOREs1VUJNaTliVjgtZC1ycDDSAWBBVV95cUxNYUJYQ2d5YmtEanB2QXdWZHBBNHhnN3VnZGJqRkxsVVVDa3dvXzFkSG1UajNTTzNWeG0ycmN6amxtSWt1bEtteEZPZGJfbGljU3NkaTlqUTJNbExwbTFFdVQ?oc=5",
+                                       "title":  "\"한국만 난리인 줄 알았는데 일본 더 심각\" 엔·달러 환율 40년만에 최저…엔화에 무슨 일이",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE40N0ozQ0FadWsxVUNSU0lxR3BZQ2pCQS1uTnQ4UjltN0VzdDJKcllPcG9MQ2tibmxaaVFDWmdzOUV6RkY3RWRuNVNVeHo1WkdWMGtON2VheW4wNkxSanFudQ?oc=5",
+                                       "source":  "아시아경제",
+                                       "published":  "2026-07-22T22:30:00Z"
+                                   },
+                                   {
+                                       "title":  "24시간 열리는 외환시장…환율 효과는 \u0027미지수\u0027",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5OZlk3cDBKbDVaQjZ2ODc5eFBhVmY1QnNGSURVa0QzelhrMzJlYmF1eEk1S29qRGdfX2w3Q0l5LUR5S0NIQ3hFdmJaYWphLWxzZ19feHl4LWYtWWPSAWBBVV95cUxOdVg4STQ5akk4SGhCY1VuT0U0UThFekh6c3lfYUphemJkaE9oaERmNmpZV1pmOEI4ek1CZHM5SklYc09qV1FRU3M4WEhHcldmYWFqZ2tBa3lpNHVWRi1KVWo?oc=5",
                                        "source":  "연합뉴스",
-                                       "published":  "2026-07-27T07:21:07Z"
+                                       "published":  "2026-07-06T07:00:00Z"
                                    }
                                ]
                  },
@@ -430,7 +430,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "“290만→132만 원”…지금 코스피가 바닥인지 확인하는 3가지 신호 [잇슈 머니]",
                                        "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5TR1NFbUUweEY0ZVdfSWQ1bkFWZWc1UjVBdWlxRUszSGJXdTNlMzBudFNCTDA5Q3RRMzA1NlFyZFRCZUZ2US1xb1FDOUg2cTdzdjZaMXFSckxycGc?oc=5",
-                                       "source":  "KBS 뉴스",
+                                       "source":  "news.kbs.co.kr",
                                        "published":  "2026-07-30T21:58:00Z"
                                    },
                                    {
@@ -442,7 +442,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "코스피·코스닥 급락에 매도 사이드카‥이번 주에만 두 번째",
                                        "url":  "https://news.google.com/rss/articles/CBMidEFVX3lxTE1wQnJRNW1famhJS2pPY0taYVFRTXNSSk5tV3paazlGRG1pbVZsYlQ4Uk9WRlFKSTJrcjI1eUhDR1ZVd1VGakhDOEh6bkNwVS15M19mTTVweGdIdkNPNEVPdWpZZy1QUGIzX2dzZmw4a3dqa01R0gF0QVVfeXFMTzVMT0xRTFczeXU4YTNyR1NJdjZwOEQ1MUI5Z25oSFZkcFhTVVlMODZ4QnJnUkFHYl9CYWd3bk9LanFBWHlpcWQzSWUydllKSkxkZUJuVlNSenhOallKTDRwLXZrOEptWDU4WkRzRVhvQW50X3A?oc=5",
-                                       "source":  "MBC 뉴스",
+                                       "source":  "imnews.imbc.com",
                                        "published":  "2026-07-29T02:13:10Z"
                                    },
                                    {
@@ -464,12 +464,6 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-29T02:47:00Z"
                                    },
                                    {
-                                       "title":  "11월부터 ‘3년 연속 저PBR’ 기업 공개...코스피 하위 25%, 코스닥 하위 10% 대상",
-                                       "url":  "https://news.google.com/rss/articles/CBMijgFBVV95cUxPRXQ4MWhVREgySnJwYWI1bmdabHZwRS10Q29Tei03OGFrc25kT2ZUQXRpWTYyQkFqZDRRQkFOUnNCSWxaUWFMcWRucDd0b2FVcXhGSGUxcjhDWW1iVVFxX1k4VGZ2R2NZUUpWUGM5ZXk4U05jY0tvM3A4SEVEYmx4S1ZPdVFXYTlnYVd1SEFR?oc=5",
-                                       "source":  "조선일보",
-                                       "published":  "2026-07-28T05:30:17Z"
-                                   },
-                                   {
                                        "title":  "코스피·코스닥 8%대 ‘급락’…이틀 연속 동반 서킷브레이커",
                                        "url":  "https://news.google.com/rss/articles/CBMickFVX3lxTFBNZm9xTXh2LThUSG1EaUV4cEdUNVUzNzJwQmhzYzFqX2g1NGdobVZMYnlWVkh6MW9XUXp6dkxoM2FQa1RMWHVvMEdZV1lBOUdidGF0S243REdtQ1lpRzMyVWRqWDZyX2htSkI3NjNtNWFIZw?oc=5",
                                        "source":  "한겨레",
@@ -486,6 +480,12 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9uZkE1dmJjNHNtcmhrWGNmOG5MblZ4SkltQTdCX1l5cW1DcHpOOVd3cE9kZXJ2cW0ta1pCMFZHM1ZsWUozS3lRakhmZ1ExSTZlZ0RHaHdn?oc=5",
                                        "source":  "중앙일보",
                                        "published":  "2026-07-29T07:29:49Z"
+                                   },
+                                   {
+                                       "title":  "30% 가까이 떨어진 코스피 “V자 회복 어렵다”…‘L자형 박스피’ 갇히나",
+                                       "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9oZ1oybkY4SHF3Z1gxeFBfNHg0TG5XLUYzWlBFVHY3X0I5S1pJYnkxTXJpNWJDRHJ1TUUwWWNpM3ZYQWVzcDZ1amRqZDJFLTlJdVlCWFIyVkZhUdIBX0FVX3lxTE41TlhTYUdQLTdnRFlaRUdkdGIySVVHeGwza2k5SHE1MjN5R21UbjB2ZTZ1eTZmOEIzSDI4UHJHZDFGU3lxSVowektpNzM0dlI5RmxMc1dyR3ZOZmZidU5n?oc=5",
+                                       "source":  "경향신문",
+                                       "published":  "2026-07-27T21:00:00Z"
                                    }
                                ]
                  },
@@ -497,15 +497,9 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "미국 주식, 지금 다 던져라? 위험 신호 감지한 전문가들의 경고 [지금이뉴스]",
-                                       "url":  "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5GejY3N2JjTXU2TG5XdkNuQ2lPNFVNenVhYzdfdUYxcWlKRzRhM2dZNXVabjQ5cmR6U1h6QkFLV3NDenBZTUpmTEstVER4WDQtTHNGYklfRGVuaEIxRlE?oc=5",
-                                       "source":  "YTN",
-                                       "published":  "2026-07-15T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "SK하이닉스 10일 나스닥 ADR 상장…43조원 공모 HBM 투자 확대",
                                        "url":  "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1SS1VkV3o1VWRkUlpGSVdsd0JaaGN6QXdZMDF4V2JpaG56RXRuZkZnc3RsTHpuQTdVX3dsci1STEhQM0VhMjZhLXNmZFZ1dw?oc=5",
-                                       "source":  "전자신문",
+                                       "source":  "etnews.com",
                                        "published":  "2026-07-09T07:00:00Z"
                                    },
                                    {
@@ -513,6 +507,12 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE1mY3VXbUZmS0xmczBCWGliQmFWX2l6eS1mTlRYN3VVU1JZcVlubWZlMEZOM3lvNjNMcVJCQWpYVDRBWVB1UlFNaXM4Zzh4aF9IVWlwWXljQ05rWm92d1R4OXdFblR6bE95UzFQOE1tREg?oc=5",
                                        "source":  "연합인포맥스",
                                        "published":  "2026-07-22T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "미국 주식, 지금 다 던져라? 위험 신호 감지한 전문가들의 경고 [지금이뉴스]",
+                                       "url":  "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5GejY3N2JjTXU2TG5XdkNuQ2lPNFVNenVhYzdfdUYxcWlKRzRhM2dZNXVabjQ5cmR6U1h6QkFLV3NDenBZTUpmTEstVER4WDQtTHNGYklfRGVuaEIxRlE?oc=5",
+                                       "source":  "YTN",
+                                       "published":  "2026-07-15T07:00:00Z"
                                    },
                                    {
                                        "title":  "중동 긴장·고유가에 뉴욕증시 일제히 하락…나스닥 2.2%↓",
@@ -523,7 +523,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "\"성장주 먼저 담고 S\u0026P500 적립식 투자 병행해야\"",
                                        "url":  "https://news.google.com/rss/articles/CBMigAFBVV95cUxPdTIwT2FRcnI0djdPdGc0cFc2YVA0bU03UDdxY0FsdVdYRlJMdVZjTjYwenFEdGRJNEpxckFSQUJROVRhSmI2clU1UW5LWDBXMklyeHVUR1NvbnpCUzR6Y1FZVTl1UFMyeEtSVFRiRGtOZHJLMlRCbF83ZmUzYzVhOQ?oc=5",
-                                       "source":  "조선일보",
+                                       "source":  "chosun.com",
                                        "published":  "2026-07-26T15:43:04Z"
                                    },
                                    {
@@ -596,10 +596,10 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-29T02:50:26Z"
                                    },
                                    {
-                                       "title":  "영국 기준금리 3.75% 유지…중동 확전시 대응 시사(종합2보)",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9xVzhVQmVBaVFFdlpPcW5tckpwZ3NqTFRlS1B4eTBYa0p0V1ZQYmR4dGx3eU5KaHk4em5yb2E2UzFEMU5NMWxWdV9nZzNjbTdKZmZXc2J1TEtnNlnSAWBBVV95cUxNZlJ6NHQzU3VxamZxalo1cmlsQnVSYUpMcE00cU1EdVphWTdhQmh2eWEyTEpNLVJCRUFWZ0FiemlJMHpBZmxpRlN2M29SLUVfX3Nma2I3S3RxdWlGOFJFOG8?oc=5",
+                                       "title":  "증시 급락에 국고채 이틀째 강세…3년물 금리 3.800%(종합)",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB0TGdLM01pZkNTNnZvX0lNdXBla1AyY3RtYkh0WlkzOW5vSGhCZWlrOHRfNk1ILWlTMXF3RzVMQkZsWjM2eHdUWG5IZTlydGd3MkdDVzNGTVp2Rnc?oc=5",
                                        "source":  "연합뉴스",
-                                       "published":  "2026-07-30T15:19:20Z"
+                                       "published":  "2026-07-29T08:09:18Z"
                                    },
                                    {
                                        "title":  "녹색채권 시장 커졌지만…발행 비용 부담은 여전",
@@ -644,10 +644,10 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-30T01:28:04Z"
                                    },
                                    {
-                                       "title":  "美 연준 매파적 동결…한은, 기준금리 인상 속도 내나",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9DdFZxNDB3YnYzREpRQmFtZVg1dFQ4bnpncFZOOXhsX0VGNEdCWlBSX1JLNndQR2swM1ZhQXhFZHlRVEMwWGRBRFBZQmRRa0hTLXB6el9iWFJyQVXSAWBBVV95cUxOVnp4Tnc4bzZsUTFBdXc2VS1HbTM3ZDM1Y0FlOXdwV2VqVWtQc1pyU09jSzZQNGYydkNMMXByZFNOVlVyaDh1NTVtRUZ1ZlJQVnNqclNoU050M09wUVE0Qm0?oc=5",
+                                       "title":  "영국 기준금리 3.75% 유지…중동 확전시 대응 시사(종합2보)",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9xVzhVQmVBaVFFdlpPcW5tckpwZ3NqTFRlS1B4eTBYa0p0V1ZQYmR4dGx3eU5KaHk4em5yb2E2UzFEMU5NMWxWdV9nZzNjbTdKZmZXc2J1TEtnNlnSAWBBVV95cUxNZlJ6NHQzU3VxamZxalo1cmlsQnVSYUpMcE00cU1EdVphWTdhQmh2eWEyTEpNLVJCRUFWZ0FiemlJMHpBZmxpRlN2M29SLUVfX3Nma2I3S3RxdWlGOFJFOG8?oc=5",
                                        "source":  "연합뉴스",
-                                       "published":  "2026-07-29T22:33:28Z"
+                                       "published":  "2026-07-30T15:19:20Z"
                                    }
                                ]
                  },
@@ -695,10 +695,10 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-26T07:15:00Z"
                                    },
                                    {
-                                       "title":  "국제유가, 미·이란 대화 낙관론에 사흘째 급락…WTI 79달러로",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBIc0V6cGVqZko0UERhazlURnJBR2dvbFFIZTV6bGxac0syQzFWdW1aVVE2ZXVyQzBsVGh2STZvZGxLeE9penBwbS1VLUtDNU1pVU82WFdFckZhY3PSAWBBVV95cUxOM3NONmE1UmtMcDJNVTRmM1lTZ1l3YTY5b19JYW42b0RDNVBWdDZwRnVISWJCdTB1VlZDb1RqekxtOXpnY1drNDdNZXdLdW9QMDJ1Wm11dmFUQUt6LWozUkc?oc=5",
+                                       "title":  "국제유가, 미·이란 충돌 중단에 급락…브렌트유 90달러 하회",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJenVQRnpjcE9JUl8wRkdfUGJ5OEM5S3JnM0pwOVBwTG1QX29MYmduMmZFMDNiX1pYdVJFQWlVY0JSakQ4c3M2b3RZTjJvTkU5STN5clJGZlU0UF9JV3RNN9IBYEFVX3lxTFBJenVQRnpjcE9JUl8wRkdfUGJ5OEM5S3JnM0pwOVBwTG1QX29MYmduMmZFMDNiX1pYdVJFQWlVY0JSakQ4c3M2b3RZTjJvTkU5STN5clJGZlU0UF9JV3RNNw?oc=5",
                                        "source":  "연합뉴스",
-                                       "published":  "2026-07-28T19:46:18Z"
+                                       "published":  "2026-07-28T21:11:14Z"
                                    },
                                    {
                                        "title":  "미국·이란, 공습 중단 ‘사흘째’…국제유가 하락·세계 증시 상승",
@@ -707,10 +707,16 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-27T15:44:42Z"
                                    },
                                    {
-                                       "title":  "국제 유가, 중동 충돌 재개에 8% 가까이 급등",
-                                       "url":  "https://news.google.com/rss/articles/CBMiXkFVX3lxTE95dUZNUk1zZUJRSHBVM2N3c1haLUhIc0pWbXZCc2JqWGJDdUFpWkZiVmE1cVd0T1dZbmFkUEx6ODVaWEJSdnlNQ1FxTHBlNkwxX240NmRxR2JybFU2eXc?oc=5",
-                                       "source":  "YTN",
-                                       "published":  "2026-07-29T19:57:00Z"
+                                       "title":  "국제금값, 美연준 금리동결에 ’안도’…결정 후 1%↑",
+                                       "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1waGtWam45emt1WUxvWGpUUjlWNS03TFZYZDlFc1lhdDFWemIwem04M1lCOHYzaTdLOVM0THhrZzU5c1lMejM2dW45QjFFdk9KaVdCMjJZT0ZUb3ZvRVF5NFJYbmR3NEE?oc=5",
+                                       "source":  "연합뉴스TV",
+                                       "published":  "2026-07-29T21:27:00Z"
+                                   },
+                                   {
+                                       "title":  "미·이란 공격 중단에 국제유가 5%↓",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9UaTIySnpZX0xhc1BCYk90RTF6Z1pFU3BKLUtvZWliNGVsTzRzeFNiTEd5MEVLR1lUdEQ4a3dWenFaVldxZHVtRWprd3FqVXU4RksteFR0RnhsTXZmVjVBQdIBYEFVX3lxTE9UaTIySnpZX0xhc1BCYk90RTF6Z1pFU3BKLUtvZWliNGVsTzRzeFNiTEd5MEVLR1lUdEQ4a3dWenFaVldxZHVtRWprd3FqVXU4RksteFR0RnhsTXZmVjVBQQ?oc=5",
+                                       "source":  "연합뉴스",
+                                       "published":  "2026-07-27T01:13:58Z"
                                    },
                                    {
                                        "title":  "국제유가 불안 다시 고조…’물가·환율·금리’ 경고등",
@@ -719,16 +725,10 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-26T09:41:00Z"
                                    },
                                    {
-                                       "title":  "미 증시 약세·국제유가 상승...코스피 등락 오가",
-                                       "url":  "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5DbXpJc1YxbVNVSmZQWDlYRHlxZW01SDhXVm9CQV9iZjdtTnN1SUx1ZFJUWEY0eVhwUkd4WURyUElPUnhvT21TQTd4ME1rUHJoWGZ3aWtGdXhSOUJRYlE?oc=5",
-                                       "source":  "YTN",
-                                       "published":  "2026-07-30T01:00:00Z"
-                                   },
-                                   {
-                                       "title":  "국제금값, 美연준 금리동결에 ’안도’…결정 후 1%↑",
-                                       "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1waGtWam45emt1WUxvWGpUUjlWNS03TFZYZDlFc1lhdDFWemIwem04M1lCOHYzaTdLOVM0THhrZzU5c1lMejM2dW45QjFFdk9KaVdCMjJZT0ZUb3ZvRVF5NFJYbmR3NEE?oc=5",
-                                       "source":  "연합뉴스TV",
-                                       "published":  "2026-07-29T21:27:00Z"
+                                       "title":  "국제유가, 미·이란 대화 낙관론에 사흘째 급락…WTI 79달러로",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBIc0V6cGVqZko0UERhazlURnJBR2dvbFFIZTV6bGxac0syQzFWdW1aVVE2ZXVyQzBsVGh2STZvZGxLeE9penBwbS1VLUtDNU1pVU82WFdFckZhY3PSAWBBVV95cUxOM3NONmE1UmtMcDJNVTRmM1lTZ1l3YTY5b19JYW42b0RDNVBWdDZwRnVISWJCdTB1VlZDb1RqekxtOXpnY1drNDdNZXdLdW9QMDJ1Wm11dmFUQUt6LWozUkc?oc=5",
+                                       "source":  "연합뉴스",
+                                       "published":  "2026-07-28T19:46:18Z"
                                    }
                                ]
                  },
@@ -742,7 +742,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "“똘똘한 한 채”…주택시장 양극화 심각",
                                        "url":  "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1FNG5wNUZrRFNYX1hmV25kcUxiTTNRZlJ5TnhLUVR0VkQ3UFpUWkVpOThlU1FiREZrcTBOS0JNeVM0T0hwcUxzWm96RmNoVWVqOTE2T3lNc3BtMTU4Z1JyUEthbjlldw?oc=5",
-                                       "source":  "KBS 뉴스",
+                                       "source":  "news.kbs.co.kr",
                                        "published":  "2026-07-29T00:28:00Z"
                                    },
                                    {
@@ -776,9 +776,15 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-27T02:18:00Z"
                                    },
                                    {
+                                       "title":  "“1억 내려도 거래 안돼”… 세제개편안 앞두고 숨죽인 부동산 시장",
+                                       "url":  "https://news.google.com/rss/articles/CBMibEFVX3lxTE9Yc2c5cDlDaU5Ibmx3TFJiNFJRLXdoOTdkTmY3eG5aTTRqT0hRQUg1aUQzaW1vTGY5ZEhqWXN2UlZKNVFOTEpqTXNpNDRiVmdwNDVuUGNEYXl3ZFhlZ2szemQtVGwwOXVleERkbtIBbEFVX3lxTE9Yc2c5cDlDaU5Ibmx3TFJiNFJRLXdoOTdkTmY3eG5aTTRqT0hRQUg1aUQzaW1vTGY5ZEhqWXN2UlZKNVFOTEpqTXNpNDRiVmdwNDVuUGNEYXl3ZFhlZ2szemQtVGwwOXVleERkbg?oc=5",
+                                       "source":  "국민일보",
+                                       "published":  "2026-07-29T15:14:00Z"
+                                   },
+                                   {
                                        "title":  "하반기 주택 시장, 매매·전세·월세 ‘트리플 강세’ 전망 우세",
                                        "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1odVpkRmFZNFNEZHFmWk51T1lzMV82YXlLaTA3UDY5X25Ob3BmT3E4QmpaOWp1MVlPSzZnMHE0a3hYdmcyT2ZNaUQ2SFpWVVpKRHJqVHBuTmI1dw?oc=5",
-                                       "source":  "viva100.com",
+                                       "source":  "브릿지경제",
                                        "published":  "2026-07-29T03:23:00Z"
                                    },
                                    {
@@ -786,6 +792,12 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA5R2pQVEtwRVBDR3U5SXVxNm9WNnRTdGotM0poVkxsRGdTVDZvcUlJMzR3Yy11M0lHdXFiSnlpVTB5aFJDZXk2ME4tR2tOMXg4YTNzbjF1Qks5SUnSAWBBVV95cUxPa0ZIY3dNNUV3WW9zVUpUSl9zZVlpZnVyQWh6UHNDWW93VW42SlBTcXVzZHg2bDZWZWV2NTdRMlp4aFJGY1d3Vi1VdFdvSGxyNEtYQjlKalctMFRKYzQ3Z1M?oc=5",
                                        "source":  "연합뉴스",
                                        "published":  "2026-07-26T05:57:43Z"
+                                   },
+                                   {
+                                       "title":  "이번 주 광주 아파트가격 0.12%↑...4년여 만에 최고",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5qMFdaRlI0MUN0Y20xdlFEQVlmNUtPcGNqMnExWXRnRC14RXBQeHoxdXJacS1YWHhJc2ZrM1lJV09lSTlpRDQ3TEtPNUJ5UXB0Mzlwd01xMzF6dzdWZzZabg?oc=5",
+                                       "source":  "KBC광주방송",
+                                       "published":  "2026-07-30T23:55:42Z"
                                    },
                                    {
                                        "title":  "‘평당 1억원?!’ 中 AI 붐에 부동산 시장도 양극화...핵심 기술 도시와 지방 간 격차 심각",
@@ -798,18 +810,6 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE1EWkpla25nakRqXzV5U3RGZk9tNDJTZHF2RGR2Tm0zMjFFbmphSFZxS0NKSm1HajNnT0pVeVd4NGdOQmhRR1V6YkFlWW9jY05DZjRoUTM3TkU0UElPbXFoMHlBLWFJd1BObTF2Z1oxTzQ?oc=5",
                                        "source":  "코리아리포트",
                                        "published":  "2026-07-30T05:41:40Z"
-                                   },
-                                   {
-                                       "title":  "세제 개편 발표 앞두고 서울 아파트값 상승세 2주 연속 소폭 둔화",
-                                       "url":  "https://news.google.com/rss/articles/CBMidEFVX3lxTE01SUdTc29peXdJNk56ZE1iNzlTSDBqdzdER3h0ZDVYMVdOTElpUjAtLUZnM2szVzBXczBsUTFOdF92Vmx3M3B2YkNpSDJzdW5acFdvb05sZHotMHVNb2VWZEs4blA0TVBVY0FjNUlmaVpvYi140gF0QVVfeXFMTU5TYlY1b1RzNVo1akhKSXo0VFllamM3UGgxU2pVcmEwdURFbmYzeWJpenBBM01SOElsZ1gydUZvVFNCV2NLMUhZQkd0WG5UUmtILXVJSG5UVFZtTEZnbklhQzlMdGFhQkJiTzY2eGhjckpYZlY?oc=5",
-                                       "source":  "MBC 뉴스",
-                                       "published":  "2026-07-30T06:13:47Z"
-                                   },
-                                   {
-                                       "title":  "[기고] 아파트 가격은 왜 낡아도 오르는가",
-                                       "url":  "https://news.google.com/rss/articles/CBMiakFVX3lxTE9XOHJFbWNwblVSU0hVekRHS0tabHQtb3phbzIycjlOczZ5cG1VUmNPTmJDeGtnZHRKTFhuaEpTQnZObHZfZkhCakVxMjNFWklmQzJOZm43bV92bWtQZm1KWEVuZmgyX1BSRHc?oc=5",
-                                       "source":  "천지일보",
-                                       "published":  "2026-07-31T00:49:43Z"
                                    }
                                ]
                  },
@@ -847,7 +847,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "\u0027부자아빠\u0027 기요사키 \"달러는 위험하다\"…\"비트코인 75만달러 간다\"",
                                        "url":  "https://news.google.com/rss/articles/CBMiakFVX3lxTE0xQzdSVUJIMHZsaVRHVkhadGFBbk9XSDRUNlJJSmJOMDB1NjRodGpZOHVxY2s1LWxSSkI0bWtjUXRpU3J6RFN5RmlGd2xnZXlxVXpzZ3N2Snl4VUVuY291aWV4UW1maFhFQnc?oc=5",
-                                       "source":  "주간조선",
+                                       "source":  "weekly.chosun.com",
                                        "published":  "2026-07-27T12:00:00Z"
                                    },
                                    {
@@ -875,22 +875,22 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-28T02:23:00Z"
                                    },
                                    {
-                                       "title":  "법원 “가상자산 환전 서비스, VASP 신고해야”…다윈KS 패소",
-                                       "url":  "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1pV05QcVVkY09MUHYtanJyU01hTk8zallaMUhjTjl4ZTQ2a3BSbndRUmNmWFg4SnYtcVJxWlVqZ0xZVmNxSUZSRTNpMm1zZw?oc=5",
-                                       "source":  "전자신문",
-                                       "published":  "2026-07-24T05:13:57Z"
-                                   },
-                                   {
                                        "title":  "\"비트코인, 양자컴퓨터에 대응 어려워...카르다노가 대안\"",
                                        "url":  "https://news.google.com/rss/articles/CBMibEFVX3lxTE9qaWlqYVNVclM5eU1ORE5ndS1rRVMxaFNEOVdqNF9sdEI2TVVRU0lEWi1Tbmd4NWh1TWdGQU1JdFdIdnktTXU3N0l2QTlBZF9GbktUUUVXMml6aU1NWF90TTZSUzNfYlhkQklpMA?oc=5",
                                        "source":  "TradingView",
                                        "published":  "2026-07-24T23:04:48Z"
                                    },
                                    {
-                                       "title":  "[코인시세] 비트코인, 위험회피 완화에 6만5천달러 회복",
-                                       "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBCR25rM2ZMUUhkZmdTcEhPbUlycWRSemd3cm9HdUNPOWdsNTZ1UTl1QkNWSS1EcEpDNzY5azJsNTBheTNUdlg1OVlNemlxQm9Kbi1NanBuTXdKYm5CVGFrbWhaYmwwaUE?oc=5",
-                                       "source":  "연합뉴스TV",
-                                       "published":  "2026-07-27T00:28:00Z"
+                                       "title":  "법원 “가상자산 환전 서비스, VASP 신고해야”…다윈KS 패소",
+                                       "url":  "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1pV05QcVVkY09MUHYtanJyU01hTk8zallaMUhjTjl4ZTQ2a3BSbndRUmNmWFg4SnYtcVJxWlVqZ0xZVmNxSUZSRTNpMm1zZw?oc=5",
+                                       "source":  "전자신문",
+                                       "published":  "2026-07-24T05:13:57Z"
+                                   },
+                                   {
+                                       "title":  "디지털자산 주도권 경쟁…은행·카드·빅테크 셈법 갈려",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0yN21aM2J2WHRiendZc0lhX3o1b0JKSC0xay1XWFdSNEpLVGVyanB5RHZLb0dBazc5cXprYTgxUWxkRjl4aG5SSnNGLXlvZ1JpeXdhWm1XbFVoRkNNZUNJVw?oc=5",
+                                       "source":  "뉴스토마토",
+                                       "published":  "2026-07-24T06:41:13Z"
                                    }
                                ]
                  }
