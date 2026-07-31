@@ -11,11 +11,7 @@
 param(
   [int] $NewsDays         = 30,   # 뉴스 수집 기간(일)
   [int] $NewsPerClass     = 12,   # 자산군당 국내 매체 기사 수
-  [int] $NewsIntlPerClass = 6,    # 자산군당 해외 매체 기사 수 (한국어로 번역해 싣는다)
-
-  # 한국은행 ECOS OpenAPI 키. 있으면 국고채 5년·10년과 회사채 BBB- 를 추가로 받는다.
-  # 네이버 시장지표에는 3년물밖에 없다. 키는 ecos.bok.or.kr 에서 무료로 발급받는다.
-  [string] $EcosKey = $env:ECOS_API_KEY
+  [int] $NewsIntlPerClass = 6     # 자산군당 해외 매체 기사 수 (한국어로 번역해 싣는다)
 )
 
 $ErrorActionPreference = "Stop"
@@ -198,70 +194,48 @@ function Get-MarketIndex {
 # 1-2. 한국은행 ECOS — 네이버에 없는 만기·등급
 # ────────────────────────────────────────────────────────────────
 
-# 통계표 817Y002 = 시장금리(일별).
-# 항목 코드를 박아두면 한은이 개편할 때 조용히 깨지므로 이름으로 찾는다.
-$ECOS_STAT = "817Y002"
-$ECOS_WANTED = @(
-  @{ any = @("국고채", "5년");         label = "국고채 5년";        note = "" },
-  @{ any = @("국고채", "10년");        label = "국고채 10년";       note = "" },
-  @{ any = @("회사채", "3년", "BBB-"); label = "회사채 BBB- (3년)"; note = "무보증 3년 · BBB- 등급" }
+# 네이버 시장지표 표에는 국고채 3년밖에 없다. 장기물은 모바일 채권 화면이 쓰는
+# API 에서 받는다. 코드는 로이터 형식이다 (KR5YT=RR).
+# 1·2·20·30년도 같은 방식으로 받을 수 있다.
+$BOND_TENORS = @(
+  @{ code = "KR3YT=RR";  label = "국고채 3년"  },
+  @{ code = "KR5YT=RR";  label = "국고채 5년"  },
+  @{ code = "KR10YT=RR"; label = "국고채 10년" }
 )
 
-function Get-EcosRates([string]$key) {
+function Get-BondYields {
   $rows = @()
-  if (-not $key) { return $rows }
+  Log "· 국고채 수익률 …"
 
-  Log "· 한국은행 ECOS (국고채 5년·10년) …"
+  $h = @{ "Referer" = "https://m.stock.naver.com/"; "Accept" = "application/json" }
+  foreach ($t in $BOND_TENORS) {
+    try {
+      $j = (Get-Web ("https://api.stock.naver.com/marketindex/bond/" + $t.code) $h) | ConvertFrom-Json
 
-  $list = (Get-Web ("https://ecos.bok.or.kr/api/StatisticItemList/$key/json/kr/1/200/" + $ECOS_STAT)) |
-          ConvertFrom-Json
-  if ($list.RESULT) { throw ("ECOS: " + $list.RESULT.MESSAGE) }
-  $items = @($list.StatisticItemList.row)
-  if (-not $items.Count) { throw "ECOS 항목 목록이 비어 있습니다" }
+      $dir = "flat"
+      if ($j.fluctuationsType.text -eq "상승") { $dir = "up" }
+      elseif ($j.fluctuationsType.text -eq "하락") { $dir = "down" }
 
-  $kstNow = (Get-Date).ToUniversalTime().AddHours(9)
-  $from   = $kstNow.AddDays(-30).ToString("yyyyMMdd")
-  $to     = $kstNow.ToString("yyyyMMdd")
+      $val = To-Number $j.closePrice
+      $chg = To-Number $j.fluctuations
+      if ($null -eq $val) { Fail ($t.label + " 값을 읽지 못했습니다"); continue }
 
-  foreach ($w in $ECOS_WANTED) {
-    $hit = $null
-    foreach ($it in $items) {
-      $ok = $true
-      foreach ($needle in $w.any) { if ($it.ITEM_NAME -notlike ("*" + $needle + "*")) { $ok = $false; break } }
-      if ($ok) { $hit = $it; break }
-    }
-    if (-not $hit) { Fail ("ECOS 에서 " + $w.label + " 항목을 찾지 못했습니다"); continue }
+      $valTxt = $val.ToString("0.000")
+      $chgTxt = "0.000"
+      if ($null -ne $chg) { $chgTxt = [Math]::Abs($chg).ToString("0.000") }
 
-    $url = "https://ecos.bok.or.kr/api/StatisticSearch/$key/json/kr/1/100/" +
-           $ECOS_STAT + "/D/$from/$to/" + $hit.ITEM_CODE
-    $res = (Get-Web $url) | ConvertFrom-Json
-    if ($res.RESULT) { Fail ("ECOS " + $w.label + ": " + $res.RESULT.MESSAGE); continue }
-
-    $series = @($res.StatisticSearch.row)
-    if (-not $series.Count) { Fail ("ECOS " + $w.label + " 값이 비어 있습니다"); continue }
-
-    $last = $series[$series.Count - 1]
-    $val  = To-Number $last.DATA_VALUE
-    if ($null -eq $val) { Fail ("ECOS " + $w.label + " 값을 읽지 못했습니다"); continue }
-
-    $dir = "flat"; $changeTxt = "0.00"
-    if ($series.Count -ge 2) {
-      $prev = To-Number $series[$series.Count - 2].DATA_VALUE
-      if ($null -ne $prev) {
-        $diff = [Math]::Round($val - $prev, 2)
-        if ($diff -gt 0) { $dir = "up" } elseif ($diff -lt 0) { $dir = "down" }
-        $changeTxt = [Math]::Abs($diff).ToString("0.00")
+      $asof = ""
+      if ($j.localTradedAt) {
+        try { $asof = ([datetimeoffset]$j.localTradedAt).ToString("yyyy.MM.dd HH:mm") } catch { }
       }
-    }
 
-    $asof = $last.TIME
-    if ($asof -and $asof.Length -eq 8) {
-      $asof = $asof.Substring(0,4) + "." + $asof.Substring(4,2) + "." + $asof.Substring(6,2)
+      # 시장지표 표의 국고채는 최종호가수익률이고 이쪽은 체결 기준이라 값이 조금 다르다
+      $rows += (New-Metric -Name $t.label -Value $valTxt -Unit "%" `
+                           -Change $chgTxt -ChangeUnit "%p" -Ratio $null `
+                           -Dir $dir -Note "체결 기준" -AsOf $asof)
+    } catch {
+      Fail ($t.label + " 수집 실패")
     }
-
-    $rows += (New-Metric -Name $w.label -Value $val.ToString("0.00") -Unit "%" `
-                         -Change $changeTxt -ChangeUnit "%p" -Ratio $null `
-                         -Dir $dir -Note $w.note -AsOf $asof)
   }
   return $rows
 }
@@ -270,7 +244,7 @@ function Get-EcosRates([string]$key) {
 $RATE_ORDER = @(
   "CD금리(91일)", "콜 금리",
   "국고채 3년", "국고채 5년", "국고채 10년",
-  "회사채 AA- (3년)", "회사채 BBB- (3년)",
+  "회사채 AA- (3년)",
   "COFIX 잔액", "COFIX 신규취급액"
 )
 
@@ -788,13 +762,15 @@ if ($indices.Count -gt 0) {
 $mi = $null
 try { $mi = Get-MarketIndex } catch { Fail "네이버 금융 시장지표 수집 실패" }
 
-# 네이버에 없는 만기·등급을 한국은행에서 채운다 (키가 있을 때만)
+# 네이버 시장지표 표에 없는 만기를 채권 API 로 채운다.
+# 표의 국고채(3년)는 빼고 3·5·10년을 같은 기준(체결)으로 통일한다 — 기준이 다른
+# 3년물이 둘 나란히 있으면 값이 어긋나 보인다.
 if ($mi -and $mi.rates.Count) {
-  if ($EcosKey) {
-    try {
-      $extra = @(Get-EcosRates $EcosKey)
-      if ($extra.Count) { $mi.rates = @(@($mi.rates) + $extra) }
-    } catch { Fail ("한국은행 ECOS 수집 실패: " + $_.Exception.Message) }
+  $bonds = @()
+  try { $bonds = @(Get-BondYields) } catch { Fail "국고채 수익률 수집 실패" }
+
+  if ($bonds.Count) {
+    $mi.rates = @(@($mi.rates | Where-Object { $_.name -ne "국고채 3년" }) + $bonds)
   }
   $mi.rates = Sort-Rates $mi.rates
 }

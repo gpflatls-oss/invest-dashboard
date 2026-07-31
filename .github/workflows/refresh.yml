@@ -27,10 +27,6 @@ jobs:
 
       - name: 데이터 수집
         shell: powershell
-        env:
-          # 없으면 국고채 5년·10년만 빠지고 나머지는 그대로 수집된다.
-          # 저장소 Settings > Secrets and variables > Actions 에 등록한다.
-          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: .\refresh.ps1
 
       - name: data.js 커밋
