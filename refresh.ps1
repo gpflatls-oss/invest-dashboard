@@ -11,7 +11,11 @@
 param(
   [int] $NewsDays         = 30,   # 뉴스 수집 기간(일)
   [int] $NewsPerClass     = 12,   # 자산군당 국내 매체 기사 수
-  [int] $NewsIntlPerClass = 6     # 자산군당 해외 매체 기사 수 (한국어로 번역해 싣는다)
+  [int] $NewsIntlPerClass = 6,    # 자산군당 해외 매체 기사 수 (한국어로 번역해 싣는다)
+
+  # 한국은행 ECOS OpenAPI 키. 있으면 국고채 5년·10년과 회사채 BBB- 를 추가로 받는다.
+  # 네이버 시장지표에는 3년물밖에 없다. 키는 ecos.bok.or.kr 에서 무료로 발급받는다.
+  [string] $EcosKey = $env:ECOS_API_KEY
 )
 
 $ErrorActionPreference = "Stop"
@@ -127,6 +131,15 @@ function Parse-Cards([string]$section) {
   return $rows
 }
 
+# 네이버는 회사채 등급을 표기하지 않는다. 국내시장금리의 회사채(3년)는
+# 금융투자협회가 고시하는 무보증 3년 AA- 최종호가수익률이다.
+# 실제 값으로도 확인된다 — 국고채 3년 대비 스프레드가 70bp 안팎으로,
+# BBB- 였다면 수백 bp 벌어져 있어야 한다.
+$RATE_LABELS = @{
+  "회사채 (3년)" = @{ name = "회사채 AA- (3년)"; note = "무보증 3년 · AA- 등급" }
+  "국고채 (3년)" = @{ name = "국고채 3년";       note = "" }
+}
+
 function Parse-Rates([string]$html) {
   $rows = @()
   $tbody = Get-Group $html '<h3 class="h_interest"><span>국내시장금리</span></h3>.*?<tbody>(.*?)</tbody>'
@@ -152,9 +165,15 @@ function Parse-Rates([string]$html) {
     $changeTxt = ($chgCell -replace '<[^>]+>', '').Trim()
     $ratio = $null   # 금리는 %p 변화가 의미 있으므로 비율은 표시하지 않는다
 
+    $note = ""
+    if ($RATE_LABELS.ContainsKey($name)) {
+      $note = $RATE_LABELS[$name].note
+      $name = $RATE_LABELS[$name].name
+    }
+
     $rows += (New-Metric -Name $name -Value $valueTxt -Unit "%" `
                          -Change $changeTxt -ChangeUnit "%p" -Ratio $ratio `
-                         -Dir $dir -Note "" -AsOf "")
+                         -Dir $dir -Note $note -AsOf "")
   }
   return $rows
 }
@@ -173,6 +192,93 @@ function Get-MarketIndex {
     oil    = Parse-Cards $oilSec
     rates  = Parse-Rates $html
   }
+}
+
+# ────────────────────────────────────────────────────────────────
+# 1-2. 한국은행 ECOS — 네이버에 없는 만기·등급
+# ────────────────────────────────────────────────────────────────
+
+# 통계표 817Y002 = 시장금리(일별).
+# 항목 코드를 박아두면 한은이 개편할 때 조용히 깨지므로 이름으로 찾는다.
+$ECOS_STAT = "817Y002"
+$ECOS_WANTED = @(
+  @{ any = @("국고채", "5년");         label = "국고채 5년";        note = "" },
+  @{ any = @("국고채", "10년");        label = "국고채 10년";       note = "" },
+  @{ any = @("회사채", "3년", "BBB-"); label = "회사채 BBB- (3년)"; note = "무보증 3년 · BBB- 등급" }
+)
+
+function Get-EcosRates([string]$key) {
+  $rows = @()
+  if (-not $key) { return $rows }
+
+  Log "· 한국은행 ECOS (국고채 5년·10년) …"
+
+  $list = (Get-Web ("https://ecos.bok.or.kr/api/StatisticItemList/$key/json/kr/1/200/" + $ECOS_STAT)) |
+          ConvertFrom-Json
+  if ($list.RESULT) { throw ("ECOS: " + $list.RESULT.MESSAGE) }
+  $items = @($list.StatisticItemList.row)
+  if (-not $items.Count) { throw "ECOS 항목 목록이 비어 있습니다" }
+
+  $kstNow = (Get-Date).ToUniversalTime().AddHours(9)
+  $from   = $kstNow.AddDays(-30).ToString("yyyyMMdd")
+  $to     = $kstNow.ToString("yyyyMMdd")
+
+  foreach ($w in $ECOS_WANTED) {
+    $hit = $null
+    foreach ($it in $items) {
+      $ok = $true
+      foreach ($needle in $w.any) { if ($it.ITEM_NAME -notlike ("*" + $needle + "*")) { $ok = $false; break } }
+      if ($ok) { $hit = $it; break }
+    }
+    if (-not $hit) { Fail ("ECOS 에서 " + $w.label + " 항목을 찾지 못했습니다"); continue }
+
+    $url = "https://ecos.bok.or.kr/api/StatisticSearch/$key/json/kr/1/100/" +
+           $ECOS_STAT + "/D/$from/$to/" + $hit.ITEM_CODE
+    $res = (Get-Web $url) | ConvertFrom-Json
+    if ($res.RESULT) { Fail ("ECOS " + $w.label + ": " + $res.RESULT.MESSAGE); continue }
+
+    $series = @($res.StatisticSearch.row)
+    if (-not $series.Count) { Fail ("ECOS " + $w.label + " 값이 비어 있습니다"); continue }
+
+    $last = $series[$series.Count - 1]
+    $val  = To-Number $last.DATA_VALUE
+    if ($null -eq $val) { Fail ("ECOS " + $w.label + " 값을 읽지 못했습니다"); continue }
+
+    $dir = "flat"; $changeTxt = "0.00"
+    if ($series.Count -ge 2) {
+      $prev = To-Number $series[$series.Count - 2].DATA_VALUE
+      if ($null -ne $prev) {
+        $diff = [Math]::Round($val - $prev, 2)
+        if ($diff -gt 0) { $dir = "up" } elseif ($diff -lt 0) { $dir = "down" }
+        $changeTxt = [Math]::Abs($diff).ToString("0.00")
+      }
+    }
+
+    $asof = $last.TIME
+    if ($asof -and $asof.Length -eq 8) {
+      $asof = $asof.Substring(0,4) + "." + $asof.Substring(4,2) + "." + $asof.Substring(6,2)
+    }
+
+    $rows += (New-Metric -Name $w.label -Value $val.ToString("0.00") -Unit "%" `
+                         -Change $changeTxt -ChangeUnit "%p" -Ratio $null `
+                         -Dir $dir -Note $w.note -AsOf $asof)
+  }
+  return $rows
+}
+
+# 만기가 뒤섞이면 읽기 나쁘다. 짧은 것부터 긴 것 순으로 세운다.
+$RATE_ORDER = @(
+  "CD금리(91일)", "콜 금리",
+  "국고채 3년", "국고채 5년", "국고채 10년",
+  "회사채 AA- (3년)", "회사채 BBB- (3년)",
+  "COFIX 잔액", "COFIX 신규취급액"
+)
+
+function Sort-Rates($rates) {
+  return @($rates | Sort-Object -Property @{ Expression = {
+    $i = $RATE_ORDER.IndexOf($_.name)
+    if ($i -lt 0) { 99 } else { $i }
+  } })
 }
 
 # ────────────────────────────────────────────────────────────────
@@ -682,9 +788,20 @@ if ($indices.Count -gt 0) {
 $mi = $null
 try { $mi = Get-MarketIndex } catch { Fail "네이버 금융 시장지표 수집 실패" }
 
+# 네이버에 없는 만기·등급을 한국은행에서 채운다 (키가 있을 때만)
+if ($mi -and $mi.rates.Count) {
+  if ($EcosKey) {
+    try {
+      $extra = @(Get-EcosRates $EcosKey)
+      if ($extra.Count) { $mi.rates = @(@($mi.rates) + $extra) }
+    } catch { Fail ("한국은행 ECOS 수집 실패: " + $_.Exception.Message) }
+  }
+  $mi.rates = Sort-Rates $mi.rates
+}
+
 $miGroups = @(
   @{ label="환율";           note="하나은행 고시 기준";       key="fx"    },
-  @{ label="국내시장금리";   note="최종 고시치";              key="rates" },
+  @{ label="국내시장금리";   note="최종 고시치 · 등락은 %p";  key="rates" },
   @{ label="유가·금 시세";   note="국제·국내 시세";           key="oil"   },
   @{ label="국제 시장 환율"; note="주요 통화쌍";              key="world" }
 )
