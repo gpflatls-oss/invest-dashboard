@@ -392,10 +392,12 @@ foreach ($cls in $NEWS_CLASSES) {
 }
 
 # 결과 기록
-$now = Get-Date
+# GitHub Actions 러너는 UTC 로 돌기 때문에 표시용 시각은 KST 로 직접 환산한다.
+$nowUtc = (Get-Date).ToUniversalTime()
+$nowKst = $nowUtc.AddHours(9)
 $data = [ordered]@{
-  generated_at         = $now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
-  generated_at_display = $now.ToString("yyyy년 M월 d일 HH:mm")
+  generated_at         = $nowUtc.ToString("yyyy-MM-ddTHH:mm:ssZ")
+  generated_at_display = $nowKst.ToString("yyyy년 M월 d일 HH:mm") + " KST"
   news_window_days     = $NewsDays
   market               = @($market)
   news                 = @($news)
