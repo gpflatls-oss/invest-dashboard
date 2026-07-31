@@ -23,7 +23,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: 데이터 수집
         shell: powershell
@@ -37,9 +37,11 @@ jobs:
           git add data.js
           $changed = git diff --cached --name-only
           if (-not $changed) {
-            Write-Host "변경 없음 - 커밋을 건너뜁니다."
+            Write-Host "no change - skipping commit"
             exit 0
           }
+          # 러너의 Windows PowerShell 은 인자를 ANSI 로 넘겨 한글이 깨지므로
+          # 커밋 메시지는 ASCII 로만 적는다.
           $stamp = (Get-Date).ToUniversalTime().AddHours(9).ToString("yyyy-MM-dd HH:mm")
-          git commit -m "data: $stamp KST 기준 갱신"
+          git commit -m "data: refreshed at $stamp KST"
           git push
