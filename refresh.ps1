@@ -237,62 +237,215 @@ function Get-Indices {
 # 3. 자산군별 뉴스 (구글 뉴스 RSS)
 # ────────────────────────────────────────────────────────────────
 
+# 자산군마다 쿼리를 여러 개 던진다. 하나만 쓰면 그날 큰 기사 하나에 목록이
+# 통째로 잠식되거나(예: 잠실 MICE), 반대로 너무 좁아 몇 건밖에 안 잡힌다.
 $NEWS_CLASSES = @(
-  @{ key="fx";       slot=1; label="환율·외환";   sublabel="원/달러, 외환시장";     query="환율 OR 원달러 OR 외환시장" },
-  @{ key="kr";       slot=2; label="국내주식";     sublabel="코스피·코스닥";         query="코스피 OR 코스닥 OR 국내증시" },
-  @{ key="us";       slot=3; label="해외주식";     sublabel="미국·글로벌 증시";      query='미국증시 OR 나스닥 OR "S&P500"' },
-  @{ key="rate";     slot=4; label="금리·채권";    sublabel="기준금리, 국고채";      query="기준금리 OR 국고채 OR 채권시장" },
-  @{ key="cmdt";     slot=5; label="원자재·금";    sublabel="유가, 금 시세";         query="국제유가 OR 금값 OR 원자재" },
-  @{ key="realty";   slot=6; label="부동산";       sublabel="주택·상업용";           query="부동산시장 OR 아파트값 OR 주택시장" },
-  @{ key="crypto";   slot=7; label="가상자산";     sublabel="비트코인 등";           query="비트코인 OR 가상자산 OR 이더리움" }
+  @{ key="pe";        slot=1; label="Private Equity";  sublabel="사모펀드·바이아웃"
+     queries = @(
+       '"사모펀드" OR "PEF" OR "프라이빗에쿼티"',
+       '"바이아웃 펀드" OR "경영권 인수" OR "블라인드 펀드 결성"',
+       '"MBK파트너스" OR "한앤컴퍼니" OR "IMM PE" OR "스틱인베스트먼트"'
+     )
+     filter = @('사모|PEF|프라이빗|바이아웃|경영권|MBK|한앤|IMM|스틱') },
+
+  @{ key="pd";        slot=2; label="Private Debt";    sublabel="사모대출·프라이빗 크레딧"
+     queries = @(
+       '"사모대출" OR "프라이빗 크레딧" OR "private credit"',
+       '"메자닌 투자" OR "인수금융" OR "사모사채"',
+       '"대출채권 투자" OR "직접대출 펀드" OR "private debt"'
+     )
+     filter = @('사모대출|프라이빗|크레딧|메자닌|인수금융|사모사채|대출채권|직접대출|private') },
+
+  @{ key="vc";        slot=3; label="Venture Capital"; sublabel="벤처투자·스타트업"
+     queries = @(
+       '"벤처캐피탈" OR "벤처캐피털"',
+       '"시리즈A 투자유치" OR "시리즈B 투자유치" OR "시리즈C 투자유치"',
+       '"벤처펀드 결성" OR "모태펀드" OR "신기술투자조합"'
+     )
+     filter = @('벤처|스타트업|시리즈\s?[ABC]|모태펀드|투자조합|VC') },
+
+  # 국내 기사와 섞이지 않도록 "부동산 낱말"과 "해외 낱말"을 둘 다 요구한다.
+  @{ key="re_intl";   slot=4; label="해외 부동산";      sublabel="글로벌 상업용·오피스"
+     queries = @(
+       '"해외 부동산 투자" OR "해외부동산 펀드"',
+       '"글로벌 상업용 부동산" OR "해외 오피스 빌딩" OR "미국 상업용 부동산"',
+       '"유럽 부동산 시장" OR "일본 부동산 투자" OR "해외 물류센터 투자"',
+       '"미국 리츠" OR "일본 리츠"',   # "글로벌 리츠"는 국내 상장사 이름에 걸린다
+       '"뉴욕 오피스" OR "런던 오피스" OR "도쿄 부동산" OR "해외 오피스 공실률"',
+       '"글로벌 부동산 시장" OR "해외 부동산 펀드 손실" OR "해외 대체투자"',
+       '"싱가포르 부동산" OR "베트남 부동산" OR "호주 부동산 투자"'
+     )
+     filter = @(
+       '부동산|리츠|오피스|빌딩|물류센터|주택|호텔|상업용',
+       '해외|글로벌|미국|美|유럽|일본|日|뉴욕|런던|도쿄|중국|호주|싱가포르|베트남|아시아'
+     ) },
+
+  # "인프라 펀드" 처럼 넓은 말은 국내 BTL 기사까지 끌어와 국내 인프라와 겹친다.
+  @{ key="infra_intl";slot=5; label="해외 인프라";      sublabel="글로벌 인프라 자산"
+     queries = @(
+       '"해외 인프라 투자" OR "글로벌 인프라 펀드"',
+       '"브룩필드" OR "해외 발전소 인수" OR "글로벌 인프라 자산"',
+       '"해외 신재생 발전 투자" OR "해외 데이터센터 투자" OR "해외 공항 민영화"',
+       '"해외 도로 사업" OR "해외 항만 투자" OR "글로벌 에너지 인프라"',
+       '"해외 전력망 투자" OR "글로벌 인프라 M&A" OR "해외 수처리 사업"'
+     )
+     filter = @(
+       '인프라|발전|데이터센터|공항|항만|철도|도로|파이프라인|신재생|전력|ESS',
+       '해외|글로벌|미국|美|유럽|일본|日|브룩필드|맥쿼리|블랙스톤|아시아|중동'
+     ) },
+
+  # "리츠" 만 쓰면 미국 리츠 기사가 섞여 들어온다.
+  @{ key="re_kr";     slot=6; label="국내 부동산";      sublabel="상업용·리츠·개발"
+     queries = @(
+       '"국내 상업용 부동산" OR "오피스 빌딩 매각"',
+       '"상장리츠" OR "리츠 배당"',
+       '"부동산 PF" OR "물류센터 거래" OR "부동산 개발사업"',
+       '"이지스자산운용" OR "코람코자산신탁" OR "마스턴투자운용" OR "캡스톤자산운용"',
+       '"서울 오피스 공실률" OR "지식산업센터" OR "데이터센터 부지"'
+     )
+     filter = @('부동산|리츠|오피스|빌딩|물류센터|PF|개발사업|상업용') },
+
+  @{ key="infra_kr";  slot=7; label="국내 인프라";      sublabel="민자사업·SOC"
+     queries = @(
+       '"민자사업" OR "BTL 사업" OR "BTO 사업"',
+       '"사회기반시설 투자" OR "국내 인프라 펀드"',
+       '"도로 민자" OR "철도 민자사업" OR "환경기초시설 민자"',
+       '"국가철도망" OR "GTX 사업" OR "고속도로 민자"',
+       '"신재생 프로젝트 파이낸싱" OR "국내 발전소 매각" OR "인프라 자산 인수"'
+     )
+     filter = @('민자|BTL|BTO|사회기반시설|인프라|SOC|민투심|실시협약') }
 )
 
-function Get-News([hashtable]$cls, [datetime]$cutoff) {
-  $q   = [uri]::EscapeDataString($cls.query + " when:" + $NewsDays + "d")
-  $url = "https://news.google.com/rss/search?q=$q&hl=ko&gl=KR&ceid=KR:ko"
-
-  $xmlText = Get-Web $url
-  $doc = New-Object System.Xml.XmlDocument
-  $doc.LoadXml($xmlText)
-
-  $items = @()
-  $seen  = New-Object 'System.Collections.Generic.HashSet[string]'
-
-  foreach ($node in $doc.SelectNodes("/rss/channel/item")) {
-    $title = $node.SelectSingleNode("title").InnerText
-    $link  = $node.SelectSingleNode("link").InnerText
-
-    $source = ""
-    $srcNode = $node.SelectSingleNode("source")
-    if ($srcNode) { $source = $srcNode.InnerText }
-
-    # 구글은 제목 끝에 " - 매체명"을 붙인다
-    if ($source -and $title.EndsWith(" - " + $source)) {
-      $title = $title.Substring(0, $title.Length - ($source.Length + 3))
+# 쿼리에 쓴 낱말은 그 자산군 기사 대부분에 나타나므로 중복 판정에서 제외한다.
+# (예: 국내 인프라에서 "민자사업"은 변별력이 없다)
+function Get-QueryStopwords([string[]]$queries) {
+  $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  foreach ($q in $queries) {
+    foreach ($w in (($q -replace '"', ' ') -split '\s+')) {
+      $w = $w.Trim().ToLower()
+      if ($w.Length -ge 2 -and $w -ne "or") { $set.Add($w) | Out-Null }
     }
-    $title = $title.Trim()
-    if (-not $title) { continue }
-    if (-not $seen.Add($title)) { continue }
-
-    $published = ""
-    $pubNode = $node.SelectSingleNode("pubDate")
-    if ($pubNode) {
-      try {
-        $dt = [datetimeoffset]::Parse($pubNode.InnerText, [Globalization.CultureInfo]::InvariantCulture)
-        if ($dt.UtcDateTime -lt $cutoff) { continue }
-        $published = $dt.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ssZ")
-      } catch { }
-    }
-
-    $items += [ordered]@{
-      title     = $title
-      url       = $link
-      source    = $source
-      published = $published
-    }
-    if ($items.Count -ge $NewsPerClass) { break }
   }
-  return $items
+  return ,(@($set))
+}
+
+# 한국어는 조사가 붙어 "네이버"와 "네이버는"이 다른 낱말이 된다.
+# 그래서 낱말이 아니라 두 글자 단위로 쪼개 비교한다.
+function Get-TitleShingles([string]$title, $stopwords) {
+  $t = $title.ToLower()
+  foreach ($w in $stopwords) { $t = $t.Replace($w, " ") }   # 쿼리 낱말은 변별력이 없다
+  $t = $t -replace '[^0-9a-z가-힣]', ''
+
+  $set = New-Object 'System.Collections.Generic.HashSet[string]'
+  for ($i = 0; $i -lt $t.Length - 1; $i++) { $set.Add($t.Substring($i, 2)) | Out-Null }
+  # 쉼표를 붙이지 않으면 PowerShell 이 반환하면서 원소를 낱개로 펼쳐 버린다
+  return ,(@($set))
+}
+
+# 같은 사건을 다룬 기사가 제목만 바꿔 여러 건 올라온다.
+# 실측해 보면 같은 사건 기사끼리 겹침이 0.4 안팎이라 0.35 를 경계로 잡았다.
+# (예: "잠실 스포츠·MICE 민자사업 민투심 통과" 와 "잠실 MICE·청주 … 민투심 통과")
+function Test-NearDuplicate($shingles, $accepted) {
+  if ($shingles.Count -lt 4) { return $false }
+  foreach ($prev in $accepted) {
+    if ($prev.Count -lt 4) { continue }
+    $inter = 0
+    foreach ($s in $shingles) { if ($prev -contains $s) { $inter++ } }
+    $minLen = [Math]::Min($shingles.Count, $prev.Count)
+    if ((([double]$inter) / $minLen) -ge 0.35) { return $true }
+  }
+  return $false
+}
+
+# 구글 뉴스는 결과가 모자라면 관련성이 뚝 떨어지는 기사까지 채워 넣는다.
+# 자산군마다 반드시 걸려야 할 낱말을 정해 걸러낸다 (여러 개면 모두 만족해야 함).
+function Test-TitleFilter([string]$title, $patterns) {
+  if (-not $patterns) { return $true }
+  foreach ($p in $patterns) { if ($title -notmatch $p) { return $false } }
+  return $true
+}
+
+function Get-News([hashtable]$cls, [datetime]$cutoff, $seenTitles) {
+  $stopwords = Get-QueryStopwords $cls.queries
+  $accepted  = @()
+  $buckets   = @()   # 쿼리마다 후보를 따로 담는다
+
+  foreach ($query in $cls.queries) {
+    $bucket = @()
+
+    $q   = [uri]::EscapeDataString($query + " when:" + $NewsDays + "d")
+    $url = "https://news.google.com/rss/search?q=$q&hl=ko&gl=KR&ceid=KR:ko"
+
+    $doc = New-Object System.Xml.XmlDocument
+    try {
+      $doc.LoadXml((Get-Web $url))
+    } catch {
+      Fail ($cls.label + " 뉴스 쿼리 하나를 받지 못했습니다: " + $query)
+      continue
+    }
+
+    foreach ($node in $doc.SelectNodes("/rss/channel/item")) {
+      $title = $node.SelectSingleNode("title").InnerText
+      $link  = $node.SelectSingleNode("link").InnerText
+
+      $source = ""
+      $srcNode = $node.SelectSingleNode("source")
+      if ($srcNode) { $source = $srcNode.InnerText }
+
+      # 구글은 제목 끝에 " - 매체명"을 붙인다
+      if ($source -and $title.EndsWith(" - " + $source)) {
+        $title = $title.Substring(0, $title.Length - ($source.Length + 3))
+      }
+      $title = $title.Trim()
+      if (-not $title) { continue }
+      if (-not (Test-TitleFilter $title $cls.filter)) { continue }
+      if (-not $seenTitles.Add($title)) { continue }   # 다른 자산군에 이미 실린 기사
+
+      $shingles = Get-TitleShingles $title $stopwords
+      if (Test-NearDuplicate $shingles $accepted) { continue }
+
+      $published = ""
+      $pubNode = $node.SelectSingleNode("pubDate")
+      if ($pubNode) {
+        try {
+          $dt = [datetimeoffset]::Parse($pubNode.InnerText, [Globalization.CultureInfo]::InvariantCulture)
+          if ($dt.UtcDateTime -lt $cutoff) { continue }
+          $published = $dt.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ssZ")
+        } catch { }
+      }
+
+      $bucket   += [ordered]@{
+        title     = $title
+        url       = $link
+        source    = $source
+        published = $published
+      }
+      $accepted += ,$shingles
+      if ($bucket.Count -ge $NewsPerClass) { break }
+    }
+
+    $buckets += ,$bucket
+    Start-Sleep -Milliseconds 200
+  }
+
+  # 쿼리 하나가 목록을 독식하지 않도록 버킷을 돌아가며 한 건씩 뽑는다.
+  # (예: "글로벌 리츠" 하나가 특정 종목 기사로 12칸을 다 채우는 상황을 막는다)
+  $items = @()
+  $depth = 0
+  while ($items.Count -lt $NewsPerClass) {
+    $tookAny = $false
+    foreach ($b in $buckets) {
+      if ($depth -lt $b.Count) {
+        $items += $b[$depth]
+        $tookAny = $true
+        if ($items.Count -ge $NewsPerClass) { break }
+      }
+    }
+    if (-not $tookAny) { break }
+    $depth++
+  }
+
+  return @($items | Sort-Object -Property @{ Expression = { $_.published }; Descending = $true })
 }
 
 # ────────────────────────────────────────────────────────────────
@@ -368,12 +521,13 @@ foreach ($g in $miGroups) {
 # 뉴스
 Log "· 자산군별 뉴스 …"
 $cutoff = (Get-Date).ToUniversalTime().AddDays(-$NewsDays)
+$seenTitles = New-Object 'System.Collections.Generic.HashSet[string]'
 $news = @()
 foreach ($cls in $NEWS_CLASSES) {
   $items = @()
   $stale = $false
   try {
-    $items = @(Get-News $cls $cutoff)
+    $items = @(Get-News $cls $cutoff $seenTitles)
   } catch {
     Fail ($cls.label + " 뉴스 수집 실패")
     $p = Get-PrevNews $prev $cls.key
