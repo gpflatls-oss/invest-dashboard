@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>투자관리 대시보드</title>
+<style>
+:root {
+  color-scheme: light;
+  --page:           #f9f9f7;
+  --surface:        #fcfcfb;
+  --text-primary:   #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted:     #898781;
+  --hairline:       #e1e0d9;
+  --border:         rgba(11,11,11,0.10);
+  --wash:           rgba(11,11,11,0.04);
+  --up:             #d03b3b;
+  --down:           #256abf;
+  --slot-1: #2a78d6;
+  --slot-2: #eb6834;
+  --slot-3: #1baf7a;
+  --slot-4: #eda100;
+  --slot-5: #e87ba4;
+  --slot-6: #008300;
+  --slot-7: #4a3aa7;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page:           #0d0d0d;
+    --surface:        #1a1a19;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --hairline:       #2c2c2a;
+    --border:         rgba(255,255,255,0.10);
+    --wash:           rgba(255,255,255,0.06);
+    --up:             #e66767;
+    --down:           #3987e5;
+    --slot-1: #3987e5;
+    --slot-2: #d95926;
+    --slot-3: #199e70;
+    --slot-4: #c98500;
+    --slot-5: #d55181;
+    --slot-6: #008300;
+    --slot-7: #9085e9;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:           #0d0d0d;
+  --surface:        #1a1a19;
+  --text-primary:   #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted:     #898781;
+  --hairline:       #2c2c2a;
+  --border:         rgba(255,255,255,0.10);
+  --wash:           rgba(255,255,255,0.06);
+  --up:             #e66767;
+  --down:           #3987e5;
+  --slot-1: #3987e5;
+  --slot-2: #d95926;
+  --slot-3: #199e70;
+  --slot-4: #c98500;
+  --slot-5: #d55181;
+  --slot-6: #008300;
+  --slot-7: #9085e9;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 24px 64px; }
+
+/* ── 헤더 ── */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--page);   /* color-mix 미지원 브라우저용 기본값 */
+  background: color-mix(in srgb, var(--page) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+.head-inner {
+  max-width: 1360px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+}
+h1 { font-size: 19px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
+.stamp { font-size: 13px; color: var(--text-secondary); }
+.stamp b { font-weight: 600; color: var(--text-primary); }
+.head-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+button.ghost {
+  font: inherit; font-size: 13px; color: var(--text-secondary);
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; padding: 5px 11px; cursor: pointer;
+}
+button.ghost:hover { background: var(--wash); color: var(--text-primary); }
+
+/* ── 섹션 ── */
+section { margin-top: 36px; }
+.sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+h2 { font-size: 15px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
+.sec-note { font-size: 12.5px; color: var(--text-muted); }
+.badge-stale {
+  font-size: 11px; color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 999px; padding: 1px 7px;
+}
+
+/* ── 지표 타일 ── */
+.tiles {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+}
+.tile {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 15px 13px;
+}
+.tile .label {
+  font-size: 12.5px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 7px;
+}
+.tile .value {
+  font-size: 25px; font-weight: 620; letter-spacing: -0.02em; line-height: 1.15;
+}
+.tile .value .unit {
+  font-size: 12.5px; font-weight: 500; color: var(--text-muted);
+  margin-left: 4px; letter-spacing: 0;
+}
+.tile .delta {
+  font-size: 12.5px; font-variant-numeric: tabular-nums;
+  margin-top: 5px; display: flex; align-items: center; gap: 5px;
+}
+.tile .delta.up   { color: var(--up); }
+.tile .delta.down { color: var(--down); }
+.tile .delta.flat { color: var(--text-muted); }
+.tile .note { font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
+
+/* ── 필터 줄 ── */
+.filters {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 16px;
+}
+.chip {
+  font: inherit; font-size: 13px; cursor: pointer;
+  background: var(--surface); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 5px 12px; display: inline-flex; align-items: center; gap: 7px;
+}
+.chip:hover { background: var(--wash); }
+.chip[aria-pressed="true"] {
+  color: var(--text-primary); font-weight: 600;
+  border-color: currentColor;
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.chip .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.chip .n { font-size: 11.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+input[type="search"] {
+  font: inherit; font-size: 13px; color: var(--text-primary);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 11px; min-width: 210px; margin-left: auto;
+}
+input[type="search"]::placeholder { color: var(--text-muted); }
+
+/* ── 뉴스 카드 ── */
+.cards {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  align-items: start;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.card-head {
+  display: flex; align-items: center; gap: 9px;
+  padding: 13px 15px 11px; border-bottom: 1px solid var(--hairline);
+}
+.card-head .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.card-head .title { font-size: 14px; font-weight: 650; letter-spacing: -0.01em; }
+.card-head .sub { font-size: 11.5px; color: var(--text-muted); }
+.card-head .count {
+  margin-left: auto; font-size: 11.5px; color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.news-list { list-style: none; margin: 0; padding: 4px 0; max-height: 520px; overflow-y: auto; }
+.news-list li { border-bottom: 1px solid var(--hairline); }
+.news-list li:last-child { border-bottom: 0; }
+.news-list a { display: block; padding: 10px 15px; }
+.news-list a:hover { background: var(--wash); }
+.news-list .t {
+  font-size: 13.5px; line-height: 1.45; color: var(--text-primary);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.news-list .m {
+  font-size: 11.5px; color: var(--text-muted); margin-top: 3px;
+  display: flex; gap: 6px; align-items: center;
+}
+.news-list .m .sep { opacity: 0.5; }
+.empty { padding: 22px 15px; font-size: 13px; color: var(--text-muted); text-align: center; }
+
+/* ── 안내 / 오류 ── */
+.setup {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 26px; margin-top: 36px;
+}
+.setup h2 { margin-bottom: 8px; }
+.setup p { color: var(--text-secondary); font-size: 14px; margin: 6px 0; }
+pre {
+  background: var(--wash); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 14px; overflow-x: auto; font-size: 13px; margin: 12px 0 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.warn {
+  font-size: 12.5px; color: var(--text-secondary);
+  background: var(--wash); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 12px; margin-top: 12px;
+}
+footer {
+  margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--hairline);
+  font-size: 12px; color: var(--text-muted); line-height: 1.7;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <h1>투자관리 대시보드</h1>
+    <div class="stamp" id="stamp"></div>
+    <div class="head-actions">
+      <button class="ghost" id="theme-btn" type="button">테마</button>
+      <button class="ghost" id="reload-btn" type="button">새로고침</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="root"></div>
+  <footer>
+    데이터 출처 · 환율·금리·원자재: 네이버 금융 시장지표(하나은행·신한은행·NYMEX·COMEX·모닝스타·ICE 고시 기준) /
+    주가지수: 네이버 금융 지수 시세(한국거래소 및 각 해외 거래소) / 뉴스: Google 뉴스 검색(한국어).<br>
+    표시된 수치는 고시·체결 시점 기준의 참고용 정보이며 실시간 호가나 투자 판단의 근거로 사용하기에는
+    지연·오차가 있을 수 있습니다. 값을 다시 받아오려면 <code>갱신.bat</code>을 실행하세요.
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var root = document.getElementById("root");
+  var DATA = window.DASHBOARD_DATA || null;
+
+  /* ── 테마 토글 ── */
+  var saved = null;
+  try { saved = localStorage.getItem("dash-theme"); } catch (e) {}
+  if (saved) { document.documentElement.setAttribute("data-theme", saved); }
+  document.getElementById("theme-btn").addEventListener("click", function () {
+    var cur = document.documentElement.getAttribute("data-theme");
+    var isDark = cur ? cur === "dark"
+                     : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("dash-theme", next); } catch (e) {}
+  });
+  document.getElementById("reload-btn").addEventListener("click", function () {
+    location.reload();
+  });
+
+  /* ── 유틸 ── */
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text !== undefined && text !== null) { n.textContent = text; }
+    return n;
+  }
+
+  var ARROW = { up: "▲", down: "▼", flat: "—" };
+  var DIRWORD = { up: "상승", down: "하락", flat: "보합" };
+
+  function relTime(iso) {
+    if (!iso) { return ""; }
+    var t = Date.parse(iso);
+    if (isNaN(t)) { return ""; }
+    var mins = Math.round((Date.now() - t) / 60000);
+    if (mins < 1) { return "방금"; }
+    if (mins < 60) { return mins + "분 전"; }
+    var hrs = Math.round(mins / 60);
+    if (hrs < 24) { return hrs + "시간 전"; }
+    var days = Math.round(hrs / 24);
+    if (days < 7) { return days + "일 전"; }
+    var d = new Date(t);
+    return (d.getMonth() + 1) + "월 " + d.getDate() + "일";
+  }
+
+  function slotColor(slot) { return "var(--slot-" + (((slot - 1) % 7) + 1) + ")"; }
+
+  /* ── 데이터 없을 때 안내 ── */
+  if (!DATA) {
+    var setup = el("div", "setup");
+    setup.appendChild(el("h2", null, "먼저 데이터를 받아오세요"));
+    setup.appendChild(el("p", null,
+      "화면에 표시할 data.js 파일이 아직 없습니다. 이 폴더의 갱신.bat 파일을 더블클릭하면 데이터를 받아옵니다."));
+    setup.appendChild(el("p", null,
+      "PowerShell 창에서 직접 실행하려면 아래 명령을 쓰세요."));
+    setup.appendChild(el("pre", null,
+      'cd "$HOME\\OneDrive\\Desktop\\클로드코드"\npowershell -ExecutionPolicy Bypass -File .\\refresh.ps1'));
+    setup.appendChild(el("p", null,
+      "실행이 끝나면 이 페이지에서 새로고침 버튼을 누르세요. 별도 설치 없이 Windows 기본 PowerShell로 동작합니다."));
+    root.appendChild(setup);
+    document.getElementById("stamp").textContent = "데이터 없음";
+    return;
+  }
+
+  /* ── 기준시각 ── */
+  var stamp = document.getElementById("stamp");
+  stamp.appendChild(el("span", null, "기준 "));
+  stamp.appendChild(el("b", null, DATA.generated_at_display || "-"));
+  var age = relTime(DATA.generated_at);
+  if (age) { stamp.appendChild(el("span", null, " · " + age + " 수집")); }
+
+  /* ── 시장 지표 ── */
+  (DATA.market || []).forEach(function (group) {
+    var sec = el("section");
+    var head = el("div", "sec-head");
+    head.appendChild(el("h2", null, group.label));
+    if (group.note) { head.appendChild(el("span", "sec-note", group.note)); }
+    if (group.stale) { head.appendChild(el("span", "badge-stale", "이전 수집값")); }
+    sec.appendChild(head);
+
+    if (!group.items || !group.items.length) {
+      sec.appendChild(el("div", "warn", group.label + " 데이터를 받아오지 못했습니다. refresh.py를 다시 실행해 보세요."));
+      root.appendChild(sec);
+      return;
+    }
+
+    var grid = el("div", "tiles");
+    group.items.forEach(function (m) {
+      var tile = el("div", "tile");
+      tile.appendChild(el("div", "label", m.name));
+
+      var value = el("div", "value", m.value === null ? "-" : m.value);
+      if (m.unit) { value.appendChild(el("span", "unit", m.unit)); }
+      tile.appendChild(value);
+
+      var dir = m.dir || "flat";
+      var hasChange = m.change !== null && m.change !== undefined;
+      if (hasChange) {
+        var delta = el("div", "delta " + dir);
+        delta.appendChild(el("span", null, ARROW[dir] || ARROW.flat));
+        var text = String(m.change).replace("-", "") + (m.change_unit || "");
+        if (m.ratio !== null && m.ratio !== undefined) {
+          text += " (" + (m.ratio >= 0 ? "+" : "-") +
+                  Math.abs(m.ratio).toFixed(2) + "%)";
+        }
+        delta.appendChild(el("span", null, text));
+        // 방향은 색만으로 전달하지 않는다 — 기호와 단어를 함께 표기
+        delta.appendChild(el("span", null, DIRWORD[dir] || ""));
+        tile.appendChild(delta);
+      } else {
+        tile.appendChild(el("div", "delta flat", "전일대비 정보 없음"));
+      }
+
+      var noteText = [m.note, m.asof].filter(Boolean).join(" · ");
+      if (noteText) { tile.appendChild(el("div", "note", noteText)); }
+      grid.appendChild(tile);
+    });
+    sec.appendChild(grid);
+    root.appendChild(sec);
+  });
+
+  /* ── 자산군별 뉴스 ── */
+  var classes = DATA.news || [];
+  var newsSec = el("section");
+  var nHead = el("div", "sec-head");
+  nHead.appendChild(el("h2", null, "자산군별 뉴스"));
+  var totalCount = classes.reduce(function (a, c) { return a + (c.items || []).length; }, 0);
+  nHead.appendChild(el("span", "sec-note",
+    "최근 " + (DATA.news_window_days || 30) + "일 · 총 " + totalCount + "건"));
+  newsSec.appendChild(nHead);
+
+  var filters = el("div", "filters");
+  var active = "all";
+  var query = "";
+
+  var chips = [];
+  function makeChip(key, label, color, count) {
+    var chip = el("button", "chip");
+    chip.type = "button";
+    chip.setAttribute("aria-pressed", key === "all" ? "true" : "false");
+    if (color) {
+      var dot = el("span", "dot");
+      dot.style.background = color;
+      chip.appendChild(dot);
+    }
+    chip.appendChild(el("span", null, label));
+    chip.appendChild(el("span", "n", String(count)));
+    chip.addEventListener("click", function () {
+      active = (active === key && key !== "all") ? "all" : key;
+      chips.forEach(function (c) {
+        c.el.setAttribute("aria-pressed", c.key === active ? "true" : "false");
+      });
+      render();
+    });
+    chips.push({ key: key, el: chip });
+    filters.appendChild(chip);
+    return chip;
+  }
+
+  makeChip("all", "전체", null, totalCount);
+  classes.forEach(function (c) {
+    makeChip(c.key, c.label, slotColor(c.slot), (c.items || []).length);
+  });
+
+  var search = document.createElement("input");
+  search.type = "search";
+  search.placeholder = "제목·매체 검색";
+  search.addEventListener("input", function () {
+    query = search.value.trim().toLowerCase();
+    render();
+  });
+  filters.appendChild(search);
+  newsSec.appendChild(filters);
+
+  var cards = el("div", "cards");
+  newsSec.appendChild(cards);
+  root.appendChild(newsSec);
+
+  function matches(item) {
+    if (!query) { return true; }
+    return (item.title + " " + (item.source || "")).toLowerCase().indexOf(query) >= 0;
+  }
+
+  function render() {
+    cards.textContent = "";
+    var shown = 0;
+
+    classes.forEach(function (c) {
+      if (active !== "all" && active !== c.key) { return; }
+      var items = (c.items || []).filter(matches);
+      if (query && !items.length) { return; }
+      shown++;
+
+      var card = el("div", "card");
+      var head = el("div", "card-head");
+      var dot = el("span", "dot");
+      dot.style.background = slotColor(c.slot);
+      head.appendChild(dot);
+      var titleBox = el("div");
+      titleBox.appendChild(el("div", "title", c.label));
+      if (c.sublabel) { titleBox.appendChild(el("div", "sub", c.sublabel)); }
+      head.appendChild(titleBox);
+      var count = el("span", "count", items.length + "건");
+      if (c.stale) { count.textContent = items.length + "건 · 이전 수집값"; }
+      head.appendChild(count);
+      card.appendChild(head);
+
+      if (!items.length) {
+        card.appendChild(el("div", "empty",
+          "최근 " + (DATA.news_window_days || 30) + "일 내 수집된 기사가 없습니다."));
+      } else {
+        var list = el("ul", "news-list");
+        items.forEach(function (item) {
+          var li = el("li");
+          var a = document.createElement("a");
+          a.href = item.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.appendChild(el("div", "t", item.title));
+          var meta = el("div", "m");
+          if (item.source) { meta.appendChild(el("span", null, item.source)); }
+          var rel = relTime(item.published);
+          if (item.source && rel) { meta.appendChild(el("span", "sep", "·")); }
+          if (rel) { meta.appendChild(el("span", null, rel)); }
+          a.appendChild(meta);
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        card.appendChild(list);
+      }
+      cards.appendChild(card);
+    });
+
+    if (!shown) {
+      cards.appendChild(el("div", "empty", "검색 결과가 없습니다."));
+    }
+  }
+
+  render();
+
+  /* ── 수집 경고 ── */
+  if (DATA.errors && DATA.errors.length) {
+    var warn = el("div", "warn",
+      "수집 경고 " + DATA.errors.length + "건: " + DATA.errors.join(" / "));
+    root.appendChild(warn);
+  }
+})();
+</script>
+</body>
+</html>

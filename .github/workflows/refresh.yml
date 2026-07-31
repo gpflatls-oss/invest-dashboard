@@ -1,0 +1,45 @@
+name: refresh dashboard data
+
+on:
+  schedule:
+    # GitHub Actions 의 cron 은 UTC 기준입니다 (KST = UTC + 9).
+    - cron: "5,35 0-9 * * 1-5"    # 평일 KST 09:05 ~ 18:35, 30분 간격
+    - cron: "5 13,21 * * 1-5"     # 평일 KST 22:05 / 익일 06:05 (미국장 중·마감 후)
+  workflow_dispatch:              # Actions 탭에서 수동 실행
+  push:
+    branches: [main]
+    paths: ["refresh.ps1", ".github/workflows/refresh.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    # Windows PowerShell 5.1 에서 검증한 스크립트라 같은 환경에서 실행합니다.
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 데이터 수집
+        shell: powershell
+        run: .\refresh.ps1
+
+      - name: data.js 커밋
+        shell: powershell
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.js
+          $changed = git diff --cached --name-only
+          if (-not $changed) {
+            Write-Host "변경 없음 - 커밋을 건너뜁니다."
+            exit 0
+          }
+          $stamp = (Get-Date).ToUniversalTime().AddHours(9).ToString("yyyy-MM-dd HH:mm")
+          git commit -m "data: $stamp KST 기준 갱신"
+          git push
