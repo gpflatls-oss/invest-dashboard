@@ -844,6 +844,26 @@ function Save-History($map) {
   [IO.File]::WriteAllText($HistFile, $sb.ToString(), (New-Object Text.UTF8Encoding($false)))
 }
 
+# 이름으로 긁어온 항목에 code 를 채워 넣는다.
+#
+# 이걸 빠뜨리면 data.js 의 code 가 빈 채로 나가고, 대시보드는 지표와
+# history.csv 를 code 로 잇기 때문에 차트가 붙지 않는다. 수집 루프에서
+# -Code 를 직접 넘긴 지수·국고채만 살아남는다.
+function Set-MetricCodes($market) {
+  foreach ($g in $market) {
+    foreach ($m in @($g.items)) {
+      $code = Resolve-MetricCode $m
+      if (-not $code) { continue }
+      if ($m -is [System.Collections.IDictionary]) {
+        $m.code = $code
+      } else {
+        # 이전 data.js 에서 되살린 항목은 PSCustomObject 라 속성을 붙여야 한다
+        $m | Add-Member -NotePropertyName code -NotePropertyValue $code -Force
+      }
+    }
+  }
+}
+
 function Update-History($market) {
   $map = Read-History
   if ($null -eq $map) { return }
@@ -942,6 +962,9 @@ foreach ($g in $miGroups) {
     if ($p) { $market += [ordered]@{ label=$p.label; note=$p.note; stale=$true; items=@($p.items) } }
   }
 }
+
+# data.js 로 나가는 지표에 code 를 채운다 (차트가 이력과 잇는 열쇠).
+try { Set-MetricCodes $market } catch { Fail "지표 코드 지정 실패" }
 
 # 지표 이력. 뉴스보다 먼저 쌓는다 — 뉴스 수집이 길고 실패도 잦은데,
 # 거기서 죽더라도 이번 회차 지표는 이력에 남아야 한다.

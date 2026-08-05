@@ -705,10 +705,12 @@ footer {
       w.appendChild(el("b", null, value));
       chartFoot.appendChild(w);
     }
-    stat("최근", fmtLoose(last) + (current.unit ? " " + current.unit : ""));
-    stat("구간 최저", fmtLoose(Math.min.apply(null, vals)));
-    stat("구간 최고", fmtLoose(Math.max.apply(null, vals)));
-    stat("구간 변화", (diff >= 0 ? "+" : "−") + fmtLoose(Math.abs(diff)) +
+    // 자릿수는 y축 눈금과 맞춘다. 요약만 다른 정밀도로 찍히면 같은 값이
+    // 두 군데서 달라 보인다. 원값은 툴팁과 표에 그대로 있다.
+    stat("최근", fmt(last, dec) + (current.unit ? " " + current.unit : ""));
+    stat("구간 최저", fmt(Math.min.apply(null, vals), dec));
+    stat("구간 최고", fmt(Math.max.apply(null, vals), dec));
+    stat("구간 변화", (diff >= 0 ? "+" : "−") + fmt(Math.abs(diff), dec) +
                       " (" + (pct >= 0 ? "+" : "−") + Math.abs(pct).toFixed(2) + "%)");
     stat("관측", n + "일");
   }
