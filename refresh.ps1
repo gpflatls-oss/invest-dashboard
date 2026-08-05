@@ -19,8 +19,9 @@ $ErrorActionPreference = "Stop"
   [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
 $UA      = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
-$OutFile  = Join-Path $PSScriptRoot "data.js"
-$HistFile = Join-Path $PSScriptRoot "history.csv"
+$OutFile    = Join-Path $PSScriptRoot "data.js"
+$HistFile   = Join-Path $PSScriptRoot "history.csv"
+$HistJsFile = Join-Path $PSScriptRoot "history.js"
 $errors   = New-Object System.Collections.Generic.List[string]
 
 function Log([string]$msg) { Write-Host $msg }
@@ -864,6 +865,47 @@ function Set-MetricCodes($market) {
   }
 }
 
+# history.csv 와 같은 내용을 script 태그로 읽을 수 있는 형태로도 쓴다.
+#
+# 브라우저는 file:// 에서 fetch 를 막는다. index.html 을 더블클릭해서 열면
+# history.csv 를 못 읽어 차트가 통째로 사라진다. data.js 처럼 script 로
+# 불러올 수 있는 파일이 하나 더 있으면 그 경우에도 그려진다.
+#
+# 커밋하지 않는다(.gitignore). 매 실행마다 전체가 다시 쓰이는 파일이라
+# 평일 24회 커밋하면 리포가 부푼다 — 그래서 원본은 CSV 로 두는 것이다.
+# GitHub Pages 에서는 fetch 가 되므로 이 파일이 없어도 된다.
+function Save-HistoryJs($map) {
+  $byCode = @{}
+  foreach ($k in $map.Keys) {
+    $i = $k.IndexOf("|")
+    $code = $k.Substring($i + 1)
+    if (-not $byCode.ContainsKey($code)) {
+      $byCode[$code] = New-Object 'System.Collections.Generic.List[string]'
+    }
+    $byCode[$code].Add($k.Substring(0, $i) + "|" + $map[$k])
+  }
+
+  $sb = New-Object Text.StringBuilder
+  [void]$sb.AppendLine("/* refresh.ps1 이 만듭니다. history.csv 와 같은 내용입니다.")
+  [void]$sb.AppendLine("   index.html 을 file:// 로 열었을 때 쓰려고 둡니다 — 커밋하지 않습니다. */")
+  [void]$sb.Append("window.DASHBOARD_HISTORY = {")
+  $firstCode = $true
+  foreach ($code in ($byCode.Keys | Sort-Object)) {
+    if (-not $firstCode) { [void]$sb.Append(",") }
+    $firstCode = $false
+    [void]$sb.Append("`n""$code"":[")
+    $sep = ""
+    foreach ($row in ($byCode[$code] | Sort-Object)) {
+      $j = $row.IndexOf("|")
+      [void]$sb.Append($sep + "[""" + $row.Substring(0, $j) + """," + $row.Substring($j + 1) + "]")
+      $sep = ","
+    }
+    [void]$sb.Append("]")
+  }
+  [void]$sb.AppendLine("`n};")
+  [IO.File]::WriteAllText($HistJsFile, $sb.ToString(), (New-Object Text.UTF8Encoding($false)))
+}
+
 function Update-History($market) {
   $map = Read-History
   if ($null -eq $map) { return }
@@ -898,6 +940,9 @@ function Update-History($market) {
     Fail "history.csv 를 쓰지 못했습니다"
     return
   }
+
+  # 이쪽이 실패해도 원본(csv)은 이미 저장됐다. 경고만 남기고 진행한다.
+  try { Save-HistoryJs $map } catch { Fail "history.js 를 쓰지 못했습니다" }
 
   Log ("· 지표 이력 · 신규 " + $added + " / 갱신 " + $changed + " / 누적 " + $map.Count + "행")
   if ($unknown.Count -gt 0) {

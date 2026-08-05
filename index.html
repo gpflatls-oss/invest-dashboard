@@ -831,11 +831,32 @@ footer {
     });
   }
 
-  if (window.fetch && TILES.length) {
-    fetch("history.csv", { cache: "no-cache" })
-      .then(function (r) { if (!r.ok) { throw new Error(r.status); } return r.text(); })
-      .then(function (text) { attachTrends(parseHistory(text)); })
-      .catch(function () { /* file:// 이거나 아직 이력이 없다 — 차트만 생략 */ });
+  /* 이력을 읽어 온다.
+     1) history.csv 를 fetch — 서버(GitHub Pages·로컬 서버)에서 쓰는 길.
+     2) 실패하면 history.js 를 script 로 끼워 넣는다 — index.html 을
+        더블클릭해서 열면(file://) 브라우저가 fetch 를 막기 때문이다.
+        script 태그는 file:// 에서도 되므로 data.js 와 같은 방식이다.
+     둘 다 없으면 조용히 접는다. 타일은 지금까지와 똑같이 보인다. */
+  function loadHistoryJs(done) {
+    if (window.DASHBOARD_HISTORY) { done(window.DASHBOARD_HISTORY); return; }
+    var s = document.createElement("script");
+    s.src = "history.js";
+    s.onload = function () {
+      if (window.DASHBOARD_HISTORY) { done(window.DASHBOARD_HISTORY); }
+    };
+    s.onerror = function () { /* 아직 한 번도 수집하지 않았다 */ };
+    document.head.appendChild(s);
+  }
+
+  if (TILES.length) {
+    if (window.fetch) {
+      fetch("history.csv", { cache: "no-cache" })
+        .then(function (r) { if (!r.ok) { throw new Error(r.status); } return r.text(); })
+        .then(function (text) { attachTrends(parseHistory(text)); })
+        .catch(function () { loadHistoryJs(attachTrends); });
+    } else {
+      loadHistoryJs(attachTrends);
+    }
   }
 
   /* ── 자산군별 뉴스 ── */
