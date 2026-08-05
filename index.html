@@ -520,6 +520,21 @@ footer {
   }
   function shortDate(d) { return d.slice(2).replace(/-/g, "."); }
 
+  /* 두 날짜 사이를 사람이 읽는 기간으로. 관측 건수(영업일)는 휴장일이
+     빠져 있어 "933일"처럼 실제 기간과 어긋나 보인다. 달 단위로 센다. */
+  function spanLabel(from, to) {
+    var p = from.split("-"), q = to.split("-");
+    var m = (q[0] - p[0]) * 12 + (q[1] - p[1]);
+    if (+q[2] < +p[2]) { m -= 1; }
+    if (m < 1) {
+      var days = Math.round((Date.parse(to) - Date.parse(from)) / 86400000);
+      return Math.max(days, 1) + "일";
+    }
+    if (m < 24) { return m + "개월"; }
+    var y = Math.floor(m / 12), r = m % 12;
+    return r ? y + "년 " + r + "개월" : y + "년";
+  }
+
   function parseHistory(text) {
     var out = {};
     var lines = text.split(/\r?\n/);
@@ -712,7 +727,7 @@ footer {
     stat("구간 최고", fmt(Math.max.apply(null, vals), dec));
     stat("구간 변화", (diff >= 0 ? "+" : "−") + fmt(Math.abs(diff), dec) +
                       " (" + (pct >= 0 ? "+" : "−") + Math.abs(pct).toFixed(2) + "%)");
-    stat("관측", n + "일");
+    stat("구간", spanLabel(points[0][0], points[n - 1][0]));
   }
 
   function buildTable(points) {
@@ -751,7 +766,8 @@ footer {
     lastFocus = document.activeElement;
     sheetTitle.textContent = rec.name;
     sheetSub.textContent = rec.points[0][0] + " ~ " + rec.points[rec.points.length - 1][0] +
-                           " · " + rec.points.length + "개 관측 · 코드 " + rec.code;
+                           " · " + spanLabel(rec.points[0][0], rec.points[rec.points.length - 1][0]) +
+                           " · 코드 " + rec.code;
     chartTable.hidden = true;
     if (tableBtn) { tableBtn.textContent = "표로 보기"; }
     sheet.hidden = false;
@@ -799,8 +815,8 @@ footer {
       else { rec.tile.appendChild(spark); }
 
       var range = el("div", "spark-range");
-      range.appendChild(el("span", null, shortDate(points[0][0])));
-      range.appendChild(el("span", null, points.length + "일"));
+      range.appendChild(el("span", null, shortDate(points[0][0]) + " ~"));
+      range.appendChild(el("span", null, spanLabel(points[0][0], points[points.length - 1][0])));
       if (rec.before) { rec.tile.insertBefore(range, rec.before); }
       else { rec.tile.appendChild(range); }
 
