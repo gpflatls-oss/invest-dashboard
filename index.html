@@ -209,11 +209,6 @@ input[type="search"]::placeholder { color: var(--text-muted); }
   display: flex; gap: 6px; align-items: center;
 }
 .news-list .m .sep { opacity: 0.5; }
-.news-list .m .intl {
-  font-size: 10.5px; letter-spacing: 0.02em;
-  border: 1px solid var(--border); border-radius: 4px;
-  padding: 0 4px; color: var(--text-secondary); flex: none;
-}
 .empty { padding: 22px 15px; font-size: 13px; color: var(--text-muted); text-align: center; }
 
 /* ── 안내 / 오류 ── */
@@ -347,10 +342,10 @@ footer {
 <div class="wrap">
   <div id="root"></div>
   <footer>
-    데이터 출처 · 환율·금리·원자재: 네이버 금융 시장지표(하나은행·신한은행·NYMEX·COMEX·모닝스타·ICE 고시 기준) /
-    주가지수: 네이버 금융 지수 시세(한국거래소 및 각 해외 거래소) / 뉴스: Google 뉴스 검색(한국어).<br>
+    데이터 출처 · 환율·금리·지수·원자재: 네이버 금융 시장지표(하나은행·ICE·Refinitiv 고시 기준) /
+    뉴스: Google 뉴스 검색(한국어).<br>
     표시된 수치는 고시·체결 시점 기준의 참고용 정보이며 실시간 호가나 투자 판단의 근거로 사용하기에는
-    지연·오차가 있을 수 있습니다. 값을 다시 받아오려면 <code>갱신.bat</code>을 실행하세요.
+    지연·오차가 있을 수 있습니다. 값을 다시 받아오려면 <code>refresh.py</code>를 실행하세요.
   </footer>
 </div>
 
@@ -411,13 +406,11 @@ footer {
     var setup = el("div", "setup");
     setup.appendChild(el("h2", null, "먼저 데이터를 받아오세요"));
     setup.appendChild(el("p", null,
-      "화면에 표시할 data.js 파일이 아직 없습니다. 이 폴더의 갱신.bat 파일을 더블클릭하면 데이터를 받아옵니다."));
-    setup.appendChild(el("p", null,
-      "PowerShell 창에서 직접 실행하려면 아래 명령을 쓰세요."));
+      "화면에 표시할 data.js 파일이 아직 없습니다. 터미널에서 이 폴더로 이동해 갱신 스크립트를 한 번 실행하면 됩니다."));
     setup.appendChild(el("pre", null,
-      'cd "$HOME\\OneDrive\\Desktop\\클로드코드"\npowershell -ExecutionPolicy Bypass -File .\\refresh.ps1'));
+      'cd "' + "~/Desktop/클로드코드" + '"\npython3 refresh.py'));
     setup.appendChild(el("p", null,
-      "실행이 끝나면 이 페이지에서 새로고침 버튼을 누르세요. 별도 설치 없이 Windows 기본 PowerShell로 동작합니다."));
+      "실행이 끝나면 이 페이지에서 새로고침 버튼을 누르세요. macOS에서는 갱신.command 파일을 더블클릭해도 됩니다."));
     root.appendChild(setup);
     document.getElementById("stamp").textContent = "데이터 없음";
     return;
@@ -936,10 +929,7 @@ footer {
           a.target = "_blank";
           a.rel = "noopener noreferrer";
           a.appendChild(el("div", "t", item.title));
-          // 해외 기사는 원문 제목이 영어다 — 마우스를 올리면 원문을 보여준다
-          if (item.intl && item.title_en) { a.title = item.title_en; }
           var meta = el("div", "m");
-          if (item.intl) { meta.appendChild(el("span", "intl", "해외·번역")); }
           if (item.source) { meta.appendChild(el("span", null, item.source)); }
           var rel = relTime(item.published);
           if (item.source && rel) { meta.appendChild(el("span", "sep", "·")); }
