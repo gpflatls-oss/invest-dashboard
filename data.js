@@ -1,7 +1,7 @@
 /* 이 파일은 refresh.ps1 이 자동으로 만듭니다. 직접 고치지 마세요. */
 window.DASHBOARD_DATA = {
-    "generated_at":  "2026-08-05T10:14:37Z",
-    "generated_at_display":  "2026년 8월 5일 19:14 KST",
+    "generated_at":  "2026-08-05T18:13:23Z",
+    "generated_at_display":  "2026년 8월 6일 03:13 KST",
     "news_window_days":  30,
     "market":  [
                    {
@@ -36,50 +36,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "다우존스",
                                          "code":  "DJI",
-                                         "value":  "54,085.88",
+                                         "value":  "54,561.60",
                                          "unit":  "",
-                                         "change":  "907.47",
+                                         "change":  "475.72",
                                          "change_unit":  "",
-                                         "ratio":  1.71,
+                                         "ratio":  0.88,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.08.04 16:42"
+                                         "asof":  "2026.08.05 14:12"
                                      },
                                      {
                                          "name":  "나스닥 종합",
                                          "code":  "IXIC",
-                                         "value":  "26,584.99",
+                                         "value":  "26,464.44",
                                          "unit":  "",
-                                         "change":  "671.10",
+                                         "change":  "-120.56",
                                          "change_unit":  "",
-                                         "ratio":  2.59,
-                                         "dir":  "up",
+                                         "ratio":  -0.45,
+                                         "dir":  "down",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.08.04 17:15"
+                                         "asof":  "2026.08.05 14:12"
                                      },
                                      {
                                          "name":  "S\u0026P 500",
                                          "code":  "SPX",
-                                         "value":  "7,736.52",
+                                         "value":  "7,743.71",
                                          "unit":  "",
-                                         "change":  "136.02",
+                                         "change":  "7.19",
                                          "change_unit":  "",
-                                         "ratio":  1.79,
+                                         "ratio":  0.09,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.08.04 16:42"
+                                         "asof":  "2026.08.05 14:12"
                                      },
                                      {
                                          "name":  "필라델피아 반도체",
                                          "code":  "SOX",
-                                         "value":  "12,179.26",
+                                         "value":  "12,142.82",
                                          "unit":  "",
-                                         "change":  "748.91",
+                                         "change":  "-36.44",
                                          "change_unit":  "",
-                                         "ratio":  6.55,
-                                         "dir":  "up",
+                                         "ratio":  -0.3,
+                                         "dir":  "down",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.08.04 17:15"
+                                         "asof":  "2026.08.05 14:12"
                                      },
                                      {
                                          "name":  "니케이 225",
@@ -115,50 +115,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "미국 USD",
                                          "code":  "USDKRW",
-                                         "value":  "1,425.80",
+                                         "value":  "1,423.20",
                                          "unit":  "원",
-                                         "change":  "5.20",
+                                         "change":  "7.80",
                                          "change_unit":  "",
-                                         "ratio":  -0.36,
+                                         "ratio":  -0.55,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.08.05 19:11"
+                                         "asof":  "2026.08.05 21:04"
                                      },
                                      {
                                          "name":  "일본 JPY(100엔)",
                                          "code":  "JPYKRW100",
-                                         "value":  "903.66",
+                                         "value":  "902.76",
                                          "unit":  "원",
-                                         "change":  "3.44",
+                                         "change":  "4.34",
                                          "change_unit":  "",
-                                         "ratio":  -0.38,
+                                         "ratio":  -0.48,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.08.05 19:11"
+                                         "asof":  "2026.08.05 21:04"
                                      },
                                      {
                                          "name":  "유럽연합 EUR",
                                          "code":  "EURKRW",
-                                         "value":  "1,645.02",
+                                         "value":  "1,644.86",
                                          "unit":  "원",
-                                         "change":  "5.21",
+                                         "change":  "5.37",
                                          "change_unit":  "",
-                                         "ratio":  -0.32,
+                                         "ratio":  -0.33,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.08.05 19:11"
+                                         "asof":  "2026.08.05 21:04"
                                      },
                                      {
                                          "name":  "중국 CNY",
                                          "code":  "CNYKRW",
-                                         "value":  "211.25",
+                                         "value":  "210.92",
                                          "unit":  "원",
-                                         "change":  "0.83",
+                                         "change":  "1.16",
                                          "change_unit":  "",
-                                         "ratio":  -0.39,
+                                         "ratio":  -0.55,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.08.05 19:11"
+                                         "asof":  "2026.08.05 21:04"
                                      }
                                  ]
                    },
@@ -285,11 +285,11 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "휘발유",
                                          "code":  "GASOLINE_KR",
-                                         "value":  "1865.65",
+                                         "value":  "1865.72",
                                          "unit":  "원",
-                                         "change":  "0.52",
+                                         "change":  "0.45",
                                          "change_unit":  "",
-                                         "ratio":  -0.03,
+                                         "ratio":  -0.02,
                                          "dir":  "down",
                                          "note":  "한국석유공사 Opinet 기준",
                                          "asof":  "2026.08.05"
@@ -309,14 +309,14 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "국내 금",
                                          "code":  "GOLD_KR",
-                                         "value":  "190365.45",
+                                         "value":  "194319.41",
                                          "unit":  "원",
-                                         "change":  "2,649.59",
+                                         "change":  "6,603.55",
                                          "change_unit":  "",
-                                         "ratio":  1.41,
+                                         "ratio":  3.52,
                                          "dir":  "up",
                                          "note":  "신한은행 기준",
-                                         "asof":  "2026.08.05 19:09"
+                                         "asof":  "2026.08.05 23:59"
                                      }
                                  ]
                    },
@@ -328,38 +328,38 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "달러/일본 엔",
                                          "code":  "USDJPY",
-                                         "value":  "157.5600",
+                                         "value":  "157.4800",
                                          "unit":  "엔",
-                                         "change":  "1.0100",
+                                         "change":  "0.0800",
                                          "change_unit":  "",
-                                         "ratio":  0.65,
-                                         "dir":  "up",
+                                         "ratio":  -0.05,
+                                         "dir":  "down",
                                          "note":  "모닝스타 기준",
-                                         "asof":  "2026.08.04"
+                                         "asof":  "2026.08.05"
                                      },
                                      {
                                          "name":  "유로/달러",
                                          "code":  "EURUSD",
-                                         "value":  "1.1523",
+                                         "value":  "1.1552",
                                          "unit":  "달러",
-                                         "change":  "0.0009",
+                                         "change":  "0.0029",
                                          "change_unit":  "",
-                                         "ratio":  0.08,
+                                         "ratio":  0.25,
                                          "dir":  "up",
                                          "note":  "모닝스타 기준",
-                                         "asof":  "2026.08.04"
+                                         "asof":  "2026.08.05"
                                      },
                                      {
                                          "name":  "영국 파운드/달러",
                                          "code":  "GBPUSD",
-                                         "value":  "1.3447",
+                                         "value":  "1.3478",
                                          "unit":  "달러",
-                                         "change":  "0.0007",
+                                         "change":  "0.0031",
                                          "change_unit":  "",
-                                         "ratio":  0.05,
+                                         "ratio":  0.23,
                                          "dir":  "up",
                                          "note":  "모닝스타 기준",
-                                         "asof":  "2026.08.04"
+                                         "asof":  "2026.08.05"
                                      },
                                      {
                                          "name":  "달러인덱스",
@@ -385,9 +385,15 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
+                                       "title":  "(특징주)본느, 경영권 인수 기대감에 4거래일 연속 상한가",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE94a1gwWFl2VnR4cHV2OV9tc3VJaTA5VWVFRnlua0tfYklQU3M2cG1zSzNlOHJBMkRTWEtBUW5uUkxpa3puaG1nbWpNeEx4MGt2aUlUR3BNeEpRVFoxeTJBZg?oc=5",
+                                       "source":  "newstomato.com",
+                                       "published":  "2026-08-05T02:51:20Z"
+                                   },
+                                   {
                                        "title":  "4개 기업이 Curium의 80억 달러 Lantheus Take-Private 거래를 주도",
                                        "title_en":  "4 Firms Steer Curium\u0027s $8B Lantheus Take-Private Deal",
-                                       "url":  "https://news.google.com/rss/articles/CBMilwFBVV95cUxPQktmUXBmTUtZOXBLQnVQV19zcFpvcXYwTVEtWjN5S1o5LTJsOV93cElNNFdoa04xNl9xUzNYdzJBbzctT2M5SXlkT25zSjEyTVlYR2ZnLW1JQTV0VmtRclNXamlYcE1Kb2ZfQ2p2eWNLSUVYaFRFemg4ZkdnZ1ZYOHpSOTliSmVlSmpJUXdwYmdENEE0VW5v0gFWQVVfeXFMUHlHNVhqZmFldTVDQjZlUkVQbnF5OE54eUlmNTRIMHlTQk8wOUhLTG5tOC1GVkpySE9pa1BpSUFaMjA5bHhhbHRmN29IdkM5Zk1Ebkl2SkE?oc=5",
+                                       "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB5RzVYamZhZXU1Q0I2ZVJFUG5xeThOeHlJZjU0SDB5U0JPMDlIS0xubTgtRlZKckhPaWtQaUlBWjIwOWx4YWx0ZjdvSHZDOWZNRG5JdkpB0gFWQVVfeXFMUHlHNVhqZmFldTVDQjZlUkVQbnF5OE54eUlmNTRIMHlTQk8wOUhLTG5tOC1GVkpySE9pa1BpSUFaMjA5bHhhbHRmN29IdkM5Zk1Ebkl2SkE?oc=5",
                                        "source":  "Law360",
                                        "published":  "2026-08-03T22:52:00Z",
                                        "intl":  true
@@ -402,9 +408,9 @@ window.DASHBOARD_DATA = {
                                    },
                                    {
                                        "title":  "대백 경영권 인수 세경인베스트 \"부동산 개발 목적 아냐\"",
-                                       "url":  "https://news.google.com/rss/articles/CBMiVEFVX3lxTE8xN25ITzc1WkpOUUpBWWdveGlXMEY4ZDltUFJqYU5XLTVEV1l5NkdEdEVEU29WOEE3ZGt4ZHdDQnhWLUd6MkxsckRjX3RQN2V4cWRZZg?oc=5",
+                                       "url":  "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBWTU1ma3dLS1JCRUtmVWFhenRhcnB5YjRjeG9TRC1veWJSbG42M3NBY21xVG1uYS1QU1EwQ3lPdm1qOEh2NUE?oc=5",
                                        "source":  "v.daum.net",
-                                       "published":  "2026-07-27T05:27:05Z"
+                                       "published":  "2026-07-27T07:00:00Z"
                                    },
                                    {
                                        "title":  "[경인 WIDE] 사모펀드 ‘차고지 → 주상복합’ 기막힌 투자",
@@ -442,7 +448,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "PESP 사모펀드 병원 추적기(2026)",
                                        "title_en":  "PESP Private Equity Hospital Tracker (2026)",
                                        "url":  "https://news.google.com/rss/articles/CBMie0FVX3lxTE1EXzd1Sld6QTM1cmlnZkRBVS1ZUkVQRmFHSG1ScndMYmNOejEtQVpwWmk4aHFYaTdNM2lJNUczcktSQlZjWEZwYlVhZVhpS2EwdHZtMkMyZjh5NkZ3MXdQZmNZV3FvbTREQzZ2Q0xYb2Rja3Z0d3VFTnFiOA?oc=5",
-                                       "source":  "pestakeholder.org",
+                                       "source":  "Private Equity Stakeholder Project PESP",
                                        "published":  "2026-07-21T02:24:40Z",
                                        "intl":  true
                                    },
@@ -473,22 +479,16 @@ window.DASHBOARD_DATA = {
                                        "intl":  true
                                    },
                                    {
-                                       "title":  "코오롱인더, IMM PE에 기능·이미지 소재 사업부 매각 MOU",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA4b1BPS3d5NzZZN2FRUnJ1Q2QwOHlFMEF3SnZDM091djhPRm4yOXc1TU84N280aVBoZEhmT2JDM09BTTFFUTRDYVVKTWpicEotYm5MYjBTYVB2UzTSAWBBVV95cUxQNV94Q0hjdmxTUVI3dFZaWk5idWNMYUh6NTlpX1hOMUVZSzM2QVBvekhOUXlnNFNLelg0ZzZUM19xaGd6cEFvSGl2Qy0wVXZ3Q1VyYUs1Y2NzOEx4andHVkM?oc=5",
-                                       "source":  "연합뉴스",
-                                       "published":  "2026-07-13T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "2조 실탄 쌓은 한앤코, 하반기 M\u0026A 달군다[시그널]",
                                        "url":  "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9ERFIyQXZ5YUFkS1kzd2N1NHhlQjhDQkVNZEk0Mm9lX0ZtZmg5eDR5N3R1Z05DNTk3Vzc0Vy0yZ1ZNbFQ1NWlBUWprdXVsZGRmbXc?oc=5",
                                        "source":  "서울경제",
                                        "published":  "2026-07-13T07:00:00Z"
                                    },
                                    {
-                                       "title":  "우버, 유럽 배달 영토 확장 전략 중단…‘딜리버리 히어로’ 경영권 인수 \u0027눈독\u0027",
-                                       "url":  "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4ybGpmS2FjeHFyaVNORU90LS01RERDV1dTZFQwUW1sS3VHdE5nVG40b1pvT0pBLTliVnVEZkJDdk1GYk93bU5LdWNVX1dUd094MWhBcVdXaWZ2MlRUWk5zUUY2SQ?oc=5",
-                                       "source":  "더구루",
-                                       "published":  "2026-07-10T07:00:00Z"
+                                       "title":  "코오롱인더, IMM PE에 기능·이미지 소재 사업부 매각 MOU",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA4b1BPS3d5NzZZN2FRUnJ1Q2QwOHlFMEF3SnZDM091djhPRm4yOXc1TU84N280aVBoZEhmT2JDM09BTTFFUTRDYVVKTWpicEotYm5MYjBTYVB2UzTSAWBBVV95cUxQNV94Q0hjdmxTUVI3dFZaWk5idWNMYUh6NTlpX1hOMUVZSzM2QVBvekhOUXlnNFNLelg0ZzZUM19xaGd6cEFvSGl2Qy0wVXZ3Q1VyYUs1Y2NzOEx4andHVkM?oc=5",
+                                       "source":  "연합뉴스",
+                                       "published":  "2026-07-13T07:00:00Z"
                                    },
                                    {
                                        "title":  "공정위, 미래에셋 \u0027코빗\u0027 경영권 인수 승인…\"경쟁 제한 우려 크지 않아\"",
@@ -514,12 +514,6 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "[기고]장부 밖에서 자라는 위험…사모대출 시장과 AI",
-                                       "url":  "https://news.google.com/rss/articles/CBMia0FVX3lxTFBsV1QwZm5uQXk2VTFvYzAyWkFZbGNaOW9JMlh3ZV9iUVljcFNiaWxOVnM4OE5HU1dhMlRPWlN2TTkxV2Y1QjJaR1EzTW9MREVqWEJqV0dzYUMzWVpyeDRscjREM29zY3ljN01F?oc=5",
-                                       "source":  "비즈워치",
-                                       "published":  "2026-08-01T05:00:02Z"
-                                   },
-                                   {
                                        "title":  "‘율곡 인수전 승기’ VIG파트너스, 인수금융 주선사로 KB국민은행 선정 - 조선비즈",
                                        "url":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOV3BOc0hmNWo5YjNncFIxWnVUZmtFWEE4c3BSNng2cWQyNWMtTHV6VVkyYXFpOEhZem8yYWdTXzRGYTZPaXVKeXhnWXI2cXp5eTBBamhvMGgyWGdOalBFOXNhdm03eXVHSzl1RUJVTUpIZ09KbDNOT19uZkVudmVWcjFGR0dvOUc30gGcAUFVX3lxTE5QdVFOWnh3MjkwZmduUmZQSUtOLUZEajlZb3EyOGptTzJNX0RkOXN5enVOaFFhMDlIWVFGSkcxZDFZZ2xkMi04OVNZTTMwR2lvS3o2Mm9mMENrMDJVbzVJcGoxcVZwbklZd0lEUWMzbV9CWVBkUkxJRFNxNzZqYzNHU19XczFtX1c1aFhXREtTY1d5UVZBaG5IZkxNLQ?oc=5",
                                        "source":  "Chosunbiz",
@@ -534,14 +528,6 @@ window.DASHBOARD_DATA = {
                                        "intl":  true
                                    },
                                    {
-                                       "title":  "Fresno City Retirement는 사모대출 구축에서 직접대출을 넘어섰습니다.",
-                                       "title_en":  "Fresno City Retirement moves beyond direct lending in private credit buildout",
-                                       "url":  "https://news.google.com/rss/articles/CBMitAFBVV95cUxQOGxGN2FYZU8xaTVvbG45Sl9DNDB3UlNfZzhKNHloU3U4MHpCYWVTZGUxMjBhUWJPaHl1YTBWNTRMZm5obm9LbHV2UzdsaUV4bTc4SVJZbE1zcUN2cWg4aGZlOFdaSldvbXlidEk0MzNsQUxnLXRDcHlObGdzUmZfYTVPRThwc2hUOEZkcFltVnlKbGkyUFFzblkxejNZZmd4bHVaekJuRFg4Tjd2czdZQ29OYWM?oc=5",
-                                       "source":  "Pensions \u0026 Investments",
-                                       "published":  "2026-07-29T19:56:00Z",
-                                       "intl":  true
-                                   },
-                                   {
                                        "title":  "Latham, SkyKnight Capital과의 Apex Infusion 파트너십을 위한 사모대출 금융에 대한 자문",
                                        "title_en":  "Latham Advises on Private Credit Financing for Apex Infusion Partnership With SkyKnight Capital",
                                        "url":  "https://news.google.com/rss/articles/CBMiygFBVV95cUxQTG9lNHpmcEJRalRzMXcwWVpHQXNpY2haT19DUlJ1SXRjcC0wdnE4TEgtUEx5NXppX21selpsMlFCcElVZk54UWFzWXdYZmxiaFFEcl9IYy1vZFRteU9rMko2RDY5MkFHQmZFRVVyY01nWng5QjMtWjVJTFVfMzZYSldlTHdFVDNOOEp4NllWSkQ3S3NSZE9LdE9OR1FJd0w2b2FpSWJjTUJ4UzlEMzVpV04xbEViTHdhdmxBc3QyTUw4Z3hha3R2aVN3?oc=5",
@@ -550,18 +536,18 @@ window.DASHBOARD_DATA = {
                                        "intl":  true
                                    },
                                    {
+                                       "title":  "Ares 290억 달러 규모의 사모대출 기금, 미지급액 증가세 확인",
+                                       "title_en":  "Ares $29 Billion Private Credit Fund Sees Uptick in Non-Accruals",
+                                       "url":  "https://news.google.com/rss/articles/CBMitAFBVV95cUxOUkowQnhZY0RBRmlnYm0wWTVCZ09WQVFwQ3ZoME9DUUYwQmw4bC1MdW9VRk8xVEhLS3FsZ05PX21WZTVBRjZmZWZxU3dZUlM2TEwxQ0NVMzl3b3VYQktZQ1dOWnlVRnk2dk5HTEJLbVN3clFFd0hGam9IaU94YWFjM0NicE02M2l0Y2FhWWFsbFBKX3M1QUItSzNKaERnVFgxUTlMb2pQd21ZNGl0X3p3N2JxNWU?oc=5",
+                                       "source":  "Bloomberg.com",
+                                       "published":  "2026-07-29T10:00:44Z",
+                                       "intl":  true
+                                   },
+                                   {
                                        "title":  "블랙스톤 \"주력 사모대출펀드 환매 속도 둔화\"",
                                        "url":  "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBQQUZVdjVnNVQ1dngxQ1FhSC04dkhGWmFNZEdjYzdVcERHOHFaRlJGMEFrYkFzSzlfUmNnYzJob3JTY08yaVVrMVRFTW1La3V4SFE?oc=5",
                                        "source":  "매일경제 마켓",
                                        "published":  "2026-07-24T07:00:00Z"
-                                   },
-                                   {
-                                       "title":  "Blackstone 사모대출 기금 인출 요청이 둔화되고 있다고 대통령은 말합니다.",
-                                       "title_en":  "Blackstone private credit fund withdrawal requests slowing, president says",
-                                       "url":  "https://news.google.com/rss/articles/CBMipwFBVV95cUxQeTRObncwX0F0cTFnYXJERmc5anYwcENkTFJtR1A2UXlxWWVqVy1ROFhEZEVRMmdNTTMzWjRoVlY4VWhLaXhfeWxSeEJ0LUVraW82UzNoZWt5eUY1VlpnV1BxYkg1T1RxNExDOEZaR0NMRWFUN2J2UGRzOXk5eHhRQk5IQjRIRGFOc2JwdlNhZElqVlBHMEhzNGR1RkVPTlJ0Ml91bjNqUQ?oc=5",
-                                       "source":  "WTVB",
-                                       "published":  "2026-07-23T14:35:19Z",
-                                       "intl":  true
                                    },
                                    {
                                        "title":  "KKR, SK AI DC 지분 인수에 5000억 규모 인수금융 활용 추진",
@@ -576,9 +562,17 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-21T07:00:00Z"
                                    },
                                    {
+                                       "title":  "BDC 신용 스트레스 상승; 소프트웨어 이름은 압박감을 더합니다",
+                                       "title_en":  "BDC credit stress climbs; software names add pressure",
+                                       "url":  "https://news.google.com/rss/articles/CBMinwFBVV95cUxQTXFMWW9JcmJ2S1J0akZvSERoaE9ISU5adTdTYU9fU3NPSjQ3cDFzdFZTblZZWktrWDFHSGdmMDBjYnpTUmlNRnB6UENpd3BMcFJRTHlPVEJVN3VUZUM5SEpnSThtYkl6WDd5b3R1eHN0ZE1hZlpUMVJKZXpqZnR3cG13dF9heVZveVNWZ0hwWnhlNjlTSHJ0QlhWUVIwOGc?oc=5",
+                                       "source":  "Yahoo Finance",
+                                       "published":  "2026-07-21T07:00:00Z",
+                                       "intl":  true
+                                   },
+                                   {
                                        "title":  "[IB토마토]KCC, 모멘티브 인수금융 털고 회사채로 차입구조 재편",
                                        "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FdFNjVDltenBsa3U0VmVEbzBoaXk3YzJqQVpkZnZCZmNsUTNUWlEwVGdnbVBkZVV3bjkyYzNDb1I4Nkxzb1pZOEE5d2J5b29ISk1ERk5aLUw1Mm4xRVVJeg?oc=5",
-                                       "source":  "뉴스토마토",
+                                       "source":  "newstomato.com",
                                        "published":  "2026-07-21T00:03:00Z"
                                    },
                                    {
@@ -596,16 +590,10 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-15T07:00:00Z"
                                    },
                                    {
-                                       "title":  "[마켓인] 자금 몰리는 글로벌 사모대출…PE 거래 위축에 집행은 급감",
-                                       "url":  "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1xS3RKWWFubnlac3RSTmZfNHpRaXA1c2ZDQWZZR0VyQlNqNVJMT2pXdUVFYXM3bG83ZTBUdXdxbjdJVUxPNmt1cnhVV1ZDcDlXZFJj?oc=5",
-                                       "source":  "네이트",
-                                       "published":  "2026-07-13T09:31:00Z"
-                                   },
-                                   {
-                                       "title":  "신한자산운용, 업계 최초 사모대출 펀드 내놨다",
-                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE9YOTMwY3RzNEpPS2lCdnI1YkQ2RzNzZFE2ZlRwWndwcWtZVDI2NnBQdk9KLUxYTHYxZUxLQ1gtRENDS1ltOFhGLW1XWm1aS2ZmTUkzNU9uN2w2MUgzaWkyVEs4Umo0a3pYcC1RWUNpMk3SAXRBVV95cUxQVkl1MW96NDd2dURNZ0xkSmtObVUwUU0zWjZwWFcyM0s2cTB2dDB6c3Z2cS1BcXItcFlvdXB2S3lKZXJub3dGeDZFWTN2dTYxWHNwOGFIZ2twUUo5aEFvYWIxcWVmLUl4Z3k2LXhReWRLcUROMg?oc=5",
-                                       "source":  "연합인포맥스",
-                                       "published":  "2026-07-09T07:00:00Z"
+                                       "title":  "자금 몰리는 글로벌 사모대출…PE 거래 위축에 집행은 급감",
+                                       "url":  "https://news.google.com/rss/articles/CBMickFVX3lxTE1nWHYxQ3lQMzVGanpTdmV4eHV0Z3E4OFBBU0k2ZmlsZnA3dUZRTlVkUnRwb3ZOQzdnQ3VBclBvSldWV3VtZ1lFVWFOeDVxajVObnlhTXVEY0JINWpWQ1ZjWGpKR1RHdV8tbXotY1Vpd0lFZw?oc=5",
+                                       "source":  "마켓인",
+                                       "published":  "2026-07-13T07:00:00Z"
                                    },
                                    {
                                        "title":  "사모대출 이어 레버리지까지?…한투에 쏠리는 당국 시선",
@@ -614,12 +602,22 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-09T07:00:00Z"
                                    },
                                    {
-                                       "title":  "WNC, 2억 1천만 달러 세금 공제 기금 마무리",
-                                       "title_en":  "WNC Wraps Up $210M Tax Credit Fund",
-                                       "url":  "https://news.google.com/rss/articles/CBMidkFVX3lxTE9JQUxEbGpPY2NaWkJtLXJob05ldkQ1d0U4Nzl4TVFWWXMySTJ1bjltZmpVZDRSMU82NF9Xd0VkVmhhZV9nQ3VncW42XzhndHJQWmZ2WHBIWkpXLVJxemJfRzBDWVJ6ZkhTYkRHd09aeGtFTDhWSVE?oc=5",
-                                       "source":  "Multifamily Housing News",
-                                       "published":  "2026-07-08T07:00:00Z",
-                                       "intl":  true
+                                       "title":  "신한자산운용, 업계 최초 사모대출 펀드 내놨다",
+                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE9YOTMwY3RzNEpPS2lCdnI1YkQ2RzNzZFE2ZlRwWndwcWtZVDI2NnBQdk9KLUxYTHYxZUxLQ1gtRENDS1ltOFhGLW1XWm1aS2ZmTUkzNU9uN2w2MUgzaWkyVEs4Umo0a3pYcC1RWUNpMk3SAXRBVV95cUxQVkl1MW96NDd2dURNZ0xkSmtObVUwUU0zWjZwWFcyM0s2cTB2dDB6c3Z2cS1BcXItcFlvdXB2S3lKZXJub3dGeDZFWTN2dTYxWHNwOGFIZ2twUUo5aEFvYWIxcWVmLUl4Z3k2LXhReWRLcUROMg?oc=5",
+                                       "source":  "연합인포맥스",
+                                       "published":  "2026-07-09T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "국내기업 사모대출시장에 투자…\u0027신한사모기업대출 사모펀드\u0027 출시 - 머니투데이",
+                                       "url":  "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9lT3luZlhGYzhoOGJ2ZHVaTk1PalVVTE0wQmxSTE12NkhTQkpPWURyeEFHckVoY01QczZWZHcxekFrMU5CVXFlUW9oeXFZcFAwOVdCRE1fX2VweHBUOVRJcnhoMGdaczdr0gFuQVVfeXFMTjVfZE9qclRFbnQyQUtzZ3d0dEM2dHhUM0hBak9FWHUwUGtFT0pBdlllRmxBSWxMOFFCaW9ydGxrcDhybnhWaFFIekkyYTVzU0RhR2VyN2UwaU9IVFljNWxzdFhDMjY0TUxRZXN6LXc?oc=5",
+                                       "source":  "머니투데이",
+                                       "published":  "2026-07-09T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "블랙록 \"AI 인프라 구축에 사모대출 큰 역할\"",
+                                       "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5RYU9YYjAxdnJpR1NneXk1aTZUVF9PVDdELWs2MnhMMnlHbjRwT2p5S0FHVGF2SWhHX3RYR1VEUnRqbHlZUTJCdGkyckdLQnc?oc=5",
+                                       "source":  "v.daum.net",
+                                       "published":  "2026-07-08T07:00:00Z"
                                    },
                                    {
                                        "title":  "[2026 상반기 리그테이블] [인수금융] 인수금융 무대 오른 우리투자증권…1조 증자 후 \u0027체급 변화\u0027",
@@ -628,10 +626,12 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-08T07:00:00Z"
                                    },
                                    {
-                                       "title":  "블랙록 \"AI 인프라 구축에 사모대출 큰 역할\"",
-                                       "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5RYU9YYjAxdnJpR1NneXk1aTZUVF9PVDdELWs2MnhMMnlHbjRwT2p5S0FHVGF2SWhHX3RYR1VEUnRqbHlZUTJCdGkyckdLQnc?oc=5",
-                                       "source":  "v.daum.net",
-                                       "published":  "2026-07-08T07:00:00Z"
+                                       "title":  "WNC, 2억 1천만 달러 세금 공제 기금 마무리",
+                                       "title_en":  "WNC Wraps Up $210M Tax Credit Fund",
+                                       "url":  "https://news.google.com/rss/articles/CBMidkFVX3lxTE9JQUxEbGpPY2NaWkJtLXJob05ldkQ1d0U4Nzl4TVFWWXMySTJ1bjltZmpVZDRSMU82NF9Xd0VkVmhhZV9nQ3VncW42XzhndHJQWmZ2WHBIWkpXLVJxemJfRzBDWVJ6ZkhTYkRHd09aeGtFTDhWSVE?oc=5",
+                                       "source":  "multihousingnews.com",
+                                       "published":  "2026-07-08T07:00:00Z",
+                                       "intl":  true
                                    }
                                ]
                  },
@@ -642,12 +642,6 @@ window.DASHBOARD_DATA = {
                      "sublabel":  "벤처투자·스타트업",
                      "stale":  false,
                      "items":  [
-                                   {
-                                       "title":  "메디큐스타 “프리 시리즈B 투자 유치…의료 AI 사업화 추진”",
-                                       "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1Pd0dzOEcxVFF1OXBzNUk1cDFFZ2hVOUhQeVMzczM0b3phQU42eXhmSXB3cEdXTjZaQy1wVjA3SDJxRWJHSUtISXh1THFvcmc?oc=5",
-                                       "source":  "v.daum.net",
-                                       "published":  "2026-07-30T04:57:37Z"
-                                   },
                                    {
                                        "title":  "Sequoia Capital(22151786) 직원 수 2026 | 직원 수 및 인원수 데이터",
                                        "title_en":  "Sequoia Capital (22151786) Number of Employees 2026 | Employee Count \u0026 Headcount Data",
@@ -675,7 +669,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "모태펀드 5개 중 1개 AC가 운용하지만…결성액 비중은 5.6%",
                                        "url":  "https://news.google.com/rss/articles/CBMiTkFVX3lxTE96OFdBSlE0ampYczNPa3VNeGtRUnZnOWNqNWdOampELU9CNnNfcXQ4Y3RrUTBRM2FUQ3lNeUZKeUl3R3EzVjhxa0tRZlg2Zw?oc=5",
-                                       "source":  "전자신문",
+                                       "source":  "etnews.com",
                                        "published":  "2026-07-29T07:00:00Z"
                                    },
                                    {
@@ -685,9 +679,9 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-29T06:56:01Z"
                                    },
                                    {
-                                       "title":  "국민연금, 실리콘밸리 대표 벤처캐피털 6곳과 MOU 체결 - 조선비즈",
-                                       "url":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSWpzWmVOc0EzOFAycjdmbW1VN0VDWHBHLS1CQXhzRTRETDlMMGVhRVZuS2dxWkd0UEFRWFZkdjlPTFJGM1B4NVNISVZpZXFzYlc2d1B0TmpNNkV3TDdsN3F1UmRGYjZ4QW9Ta3Q4V3QwWndoRmpYNFBQeDhWaTlPaW02ZDZXWnZp0gGcAUFVX3lxTE1rdnJmQ1RBY09rU05CeU4waldIWkg3OWJTdElDT1VPbkNXTDNBODI5LUprMVhLWlduR09OQW43UHJQeEVlTjNUUWhHSUpLclk2UWJGLUwyNEMzN3JmS3o3cHE1SHNKWTZpRVpCc2sxN1V6MF9pbjkwa2xiN0JkWVJzZUNBXzF1MmFyMkhwRmdHaU9qZW1Zd250ZWtDeA?oc=5",
-                                       "source":  "Chosunbiz",
+                                       "title":  "국민연금, 실리콘밸리 벤처캐피털 6곳과 투자협력 협약",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9TRTUwR3R0X2RsX2lXVENYVDcwTlFmUkhld05tWXA0VXRqcHFiU2NHYmgxNjZEb1ppUTE5UHNpcWp1SmR1Q3dSN1ROTHMwZk5DV05wTG9JbTQzYXfSAWBBVV95cUxORlZ6WUZaRWUzNkVjSlI5ODhiWWN0Z01YbU5Ba1ptcHZIOVhZU0xJbVlGVV9VZ0NvVWtnM0lkMHJOZUJFc3lUQWlNTFpQV28zN3FCQnFEeDlUYXRkdlpXdDQ?oc=5",
+                                       "source":  "연합뉴스",
                                        "published":  "2026-07-26T07:00:00Z"
                                    },
                                    {
@@ -711,6 +705,12 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-21T07:00:00Z"
                                    },
                                    {
+                                       "title":  "AI 자본 과잉이 부른 경매장… 벤처캐피털과 한국 반도체 흔든다",
+                                       "url":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQc0pXQmp1b1JtVl8yNlJWRnd0c3BWdkdrUHZ2YU5rYV9MSUFLcjBXZ0tMN3ZUYkxINGxOYVo5MGRtTEtaRDVKTWo5d3VhZE42a2RzNTdWWUxoQXdaVG1IeGszeDdBWE1yUUQ2ZDlGTHNPTVZoaHVSVmFYRXhJMklGUnl2eHo1dGFt?oc=5",
+                                       "source":  "글로벌이코노믹",
+                                       "published":  "2026-07-19T19:15:00Z"
+                                   },
+                                   {
                                        "title":  "생명공학 졸업생, 샌디에이고 의료 기술 스타트업에 초점을 맞춘 벤처캐피탈 펀드 출시",
                                        "title_en":  "Bioengineering Alumnus Launches Venture Capital Fund Focused on San Diego MedTech Startups",
                                        "url":  "https://news.google.com/rss/articles/CBMiuwFBVV95cUxONFZuUTh6a2UzSkx0NElIM3pnXzFkQ0ppMFFjaFM4Z2NNX0stTjN3S3RBVS1tTlJUQVc5UkJ6aG9tWWl5TFZTS19NVDVGUFI1N0d1bUhBMEpaVWYtVGxQTTJZa1RfOVhoM09zNmhhWTZhdk85NEYzUDJFMW5ZN3p4dzFuLVlhcVNERHdiNkMxUkxGVmNMYU9MMjJ4bXN5THgtY01YaHU2ZzVwWUo4MDR4amhsLTluOFByZWVV?oc=5",
@@ -719,16 +719,16 @@ window.DASHBOARD_DATA = {
                                        "intl":  true
                                    },
                                    {
-                                       "title":  "\"올해만 모태펀드 삼수\"…현대차증권, 재난안전 분야 단독 GP 도전",
-                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTFBDWkx4d2RubmRHdTBGYklELTh0V0FBeWczakZ3V1RldWFlbjRhTjgzQldYSW9rOGExelhRaEdVTUI2UEdyZnd2bm5tRnVCTlppOXlDazM2SGdEWHg2SGpyRDV5N0dKNXBNZDgxeWxkaGo?oc=5",
+                                       "title":  "\"벤처투자모태펀드로 AI 창업 지원\"…AI 기본법 시행령 개정안 통과",
+                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE40NXRVYWJ1QkxkN29jcHBtVmYyWXVxUEFjeEVGT2QwNDZ2WW44OXBLVFBoMUpRc3ZTX3ZkUGJjbU8zZXpUd2JFVFFjU0h6R0ZYQzUxMGJlaVZsVVFHTnRFZlJwMWdvWHVPODNOeFkzSm3SAXRBVV95cUxNUTRoRXNOUWxkb3dQX2x4TXRxSFRWV1BQWkNhenNoSnIxcEtLTnZ1U3pGTEJPSzZia3p6azdVRmRKbGxfd0xPMG1aMU5nQWVEV2lUOEdlOGZPemJrQTVuZkZZSmpxT2hfc0FxLUlwa0RnOUM4Vw?oc=5",
                                        "source":  "연합인포맥스",
-                                       "published":  "2026-07-16T07:00:00Z"
+                                       "published":  "2026-07-14T07:00:00Z"
                                    },
                                    {
-                                       "title":  "벤처캐피탈협회, 대만·베트남 협회와 MOU...공동펀드 조성 추진",
-                                       "url":  "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5sX2lnTjljSlRmdUc3c3RUcjZFLTNCZ2pkUEZlRzdpWG81MGNkZ01Yb04zVlI2TDFtM3dHN3lEXy1Cck93d3RWR3JUUVBUNkY3M1Y2YzlNTV9wZU4t?oc=5",
-                                       "source":  "뉴스핌",
-                                       "published":  "2026-07-15T07:00:00Z"
+                                       "title":  "홀리데이로보틱스, 제조 자율화 실현 발판 마련...1550억 원 규모 시리즈 A 투자 유치해",
+                                       "url":  "https://news.google.com/rss/articles/CBMiX0FVX3lxTFAyZ3ZVbUdXeHVqeTAxZXRzTkNNUVNXSVdtZ1hUaXgtU0FfbV9mT0NDbklMMVVpdjVrSktYdXBwdzRPaGdTY3NiODNSR3JYejNKUnk1eko1Rk1qOUJMR2Nr?oc=5",
+                                       "source":  "헬로티",
+                                       "published":  "2026-07-13T07:00:00Z"
                                    },
                                    {
                                        "title":  "모태펀드, 800억 \u0027세컨더리\u0027 숏리스트 확정…IMM 등 6곳 경합",
@@ -737,10 +737,10 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-13T07:00:00Z"
                                    },
                                    {
-                                       "title":  "홀리데이로보틱스, 제조 자율화 실현 발판 마련...1550억 원 규모 시리즈 A 투자 유치해",
-                                       "url":  "https://news.google.com/rss/articles/CBMiX0FVX3lxTFAyZ3ZVbUdXeHVqeTAxZXRzTkNNUVNXSVdtZ1hUaXgtU0FfbV9mT0NDbklMMVVpdjVrSktYdXBwdzRPaGdTY3NiODNSR3JYejNKUnk1eko1Rk1qOUJMR2Nr?oc=5",
-                                       "source":  "헬로티",
-                                       "published":  "2026-07-13T07:00:00Z"
+                                       "title":  "베라모어, 라쿠텐 캐피탈·스트롱벤처스서 프리 시리즈A 투자 유치",
+                                       "url":  "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5oZGxDd3JtYkNpZjFFZndrUS1YNUtfeV9ERVJUTmtROUlvNEdraC1qclFfcHU4MnlxajJLcXdqS3g1WDJuQzI3Yg?oc=5",
+                                       "source":  "플래텀(Platum)",
+                                       "published":  "2026-07-10T07:00:00Z"
                                    },
                                    {
                                        "title":  "Shanghai Quantum Sensing Startup, 내비게이션 및 가스 감지 제품 확장을 위해 엔젤 자금 조달",
@@ -753,7 +753,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "특허 AI ‘워트인텔리전스’, 165억원 시리즈B 투자 유치",
                                        "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE4wdlc0OFV0Y1ZnZlJmSEdROG1NUk0ydHotQldfaHB0T25lVVlQUTQ4T2VNc3Ftb0U3dE93N0NJNVhpVkNOX0VFb3gwaUxUeXM?oc=5",
-                                       "source":  "와우테일",
+                                       "source":  "wowtale.net",
                                        "published":  "2026-07-08T23:20:08Z"
                                    },
                                    {
@@ -786,7 +786,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "오피스→아파트 9만 가구…뉴욕 주택난 해법, 공사장 붕괴 위험에 \u0027제동\u0027",
                                        "url":  "https://news.google.com/rss/articles/CBMif0FVX3lxTFB3U2pYaXJCcXg2QmtkWGpOZGpGbVQ3b1dycjUwTThGRjNjZDJDVkktT05GSmhYd3pHYmxSbmE1TFZZSUtILW44MGRPb2xzMnhwSU4tTThwdWw4dHNab1VDMGRTT2dmdFphM0E2eWxMRGkxeTB5OURTUnNFX2pNNVnSAXNBVV95cUxQUFZ1TzBWaHFodl8tU05KV0VKZFBiVDUzRXJXak1WTFdqUmQzYUNpZ0laczczQmJGcUJZWmtXSlBOWkgzOHFsRXFCaUVvS0IxR3Nsc1VHUHhYY0JEUDlYdWNZeE5vamJZdnlDXzlfcGg4Tmhn?oc=5",
-                                       "source":  "realty.chosun.com",
+                                       "source":  "땅집고",
                                        "published":  "2026-07-28T21:00:00Z"
                                    },
                                    {
@@ -808,7 +808,7 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-24T07:00:00Z"
                                    },
                                    {
-                                       "title":  "뉴스 | Crown Realty Partners, 부동산 투자 회사를 운영할 공동 대표 두 명 지명",
+                                       "title":  "뉴스 | Crown Realty Partners는 부동산 투자 회사를 운영할 공동 대표 두 명을 지명했습니다.",
                                        "title_en":  "News | Crown Realty Partners names two co-heads to run the property investment firm",
                                        "url":  "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQcUJ6U3l3M1dhWjNGRWlEandVOTJWTHFPbzdUMDE0T3REUGFoV09VVnJ0Nm9pZ21XNzc4Wk1Cc2Q3a01NYllfWDlyQVl4WFZiRkcyaUxvY3oySExjU1dYRVh4elQ2b2xUQjZvOVNvYV9ZUjloMFA2Vjl2SVRWVjNaeWtWMjNCNG5oRFB1VHlkMF95TS1FQUs1R2FUSjhPU0VsWEJuSEZjNkpIZU1iUC1KUWpZVVNGLXJy?oc=5",
                                        "source":  "CoStar",
@@ -832,7 +832,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "대우건설, 베트남 부동산 개발사 그린아이파크와 협력 확대 추진",
                                        "url":  "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1ZVjQtbDdnS1RSeDVkcmJrWDh2R3dhUWtaM3cybnhsS3VMRDJzMnpnZ3pnZkRWeVpodGxGckRRaVJPNlhuNEVaeGRCbUZPQ2M3VlRwUEJJSDh1cEpHS0Zjbk16RQ?oc=5",
-                                       "source":  "더구루",
+                                       "source":  "theguru.co.kr",
                                        "published":  "2026-07-20T07:00:00Z"
                                    },
                                    {
@@ -901,10 +901,12 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "KKR, \u002726조원 규모\u0027 글로벌 인프라 5호 펀드 결성",
-                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9sekZZZjBRNHEtV0phQ3lSWmxXTGR0U2EyamQ0ZG1YWnE3a2lPSWFWdl9mNlJ0NTJaV29od3JHbXRkWnAwS3BVemkyT0tCbXdHSlByMkZ5RTVMdVFaR2xLTNIBYEFVX3lxTE9sekZZZjBRNHEtV0phQ3lSWmxXTGR0U2EyamQ0ZG1YWnE3a2lPSWFWdl9mNlJ0NTJaV29od3JHbXRkWnAwS3BVemkyT0tCbXdHSlByMkZ5RTVMdVFaR2xLTA?oc=5",
-                                       "source":  "연합뉴스",
-                                       "published":  "2026-08-04T01:19:38Z"
+                                       "title":  "하이퍼스케일러가 인프라 기업으로 전환하는 가운데 데이터센터 투자는 아직 초기 단계",
+                                       "title_en":  "Data center investment is still in its early stages amid hyperscalers\u0027 shift toward becoming infrastructure companies",
+                                       "url":  "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOcUFmTTRFLWlPNWxrVVltN09nUjcwZVVOQWdyd1lJeFB2SVh0WHBEdlowd2J3Z2g4a0FCMGk4YjNJMUVxWkFLM2NRMVJDU1EwSDg5VGs0VU5aVFdnTVlOZGEtWlNqM3Z4LXdNQ0VQaWg5dnNGMmhwU2oxNmdickQyWmNYZTlYSl9rcXhTR05rcUFnbmxsNTJiYk5VYkx6amNaa3FXc3dYQ0diZw?oc=5",
+                                       "source":  "Moomoo",
+                                       "published":  "2026-08-02T08:58:04Z",
+                                       "intl":  true
                                    },
                                    {
                                        "title":  "[AI 인프라 전쟁] 넥스트에라·브룩필드, 145조원 데이터센터 추진",
@@ -943,18 +945,16 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-27T21:00:00Z"
                                    },
                                    {
-                                       "title":  "엔비디아·브룩필드에서 100억달러…네이버, AI 투자·인프라 조달 확보",
-                                       "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5ES3h6eUlzOWtHSjFOaEJDUFVjam9WQ0ZMbnI3dHlIX3NmTnBLejF4dktfMVFQc204ZWM2WjBLUTFJSUZUM2ZvNnRVQ2xRYk51c0R6RlJEeHVzUdIBX0FVX3lxTE9tM1doU3N5VVJzeGJBTFlFLTBWdHEta2tNU1o5T1U5U3czTEJCOFFFT0VBVC16RXhILXMxMF82QXNUaFM2aEIwZWI0VExRdHZYMHdmbTI4YzdvZFZ3REVJ?oc=5",
-                                       "source":  "경향신문",
-                                       "published":  "2026-07-27T11:46:00Z"
+                                       "title":  "엔비디아·브룩필드가 베팅한 네이버…14.6兆 장비 등 인프라 투자",
+                                       "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTFByVHhBYUFoeDV0VnFRQ2xhS21fSnhmNTRvcTljemtsU1B1WFNPTFZ6NlVDVVFwc1paNENjR2ZjUEwzdHk3dndVUWRjbHh0THF6LTNQYUhn?oc=5",
+                                       "source":  "지디넷코리아",
+                                       "published":  "2026-07-27T07:00:00Z"
                                    },
                                    {
-                                       "title":  "뉴질랜드, 데이터센터 투자에 \u0027상식적 규칙\u0027 주목",
-                                       "title_en":  "New Zealand Eyes ‘Common Sense Rules’ for Data Center Investment",
-                                       "url":  "https://news.google.com/rss/articles/CBMixgFBVV95cUxPR292WHFCbmk1Qkd3SERfVFN4RGs0RXFqbkh5MTUwbzNlT0FaSUVxc2tsYmdYYUlzOFFBV0JoZVV1UjZ0dFR2bFl0Ukd1dThKOWtCRGtBNU9KN19zZTJyZFVrSnQ2OGVjOWdyX2V5ZERaTEZPQmlNbzZ5OHVMdTRkdWQ1c2FqVzRuOXdSN3k4eWZvUGd2WHp6Q0ROTWFEUFM2VThQQzFfYWtFVUt4aGV2bXE2UlhIdWs5VGJubWNsNW1FaDh6eGc?oc=5",
-                                       "source":  "Bloomberg.com",
-                                       "published":  "2026-07-27T04:59:00Z",
-                                       "intl":  true
+                                       "title":  "네이버·엔비디아·브룩필드, 한국 AI 인프라에 100억달러 투자 - 조선비즈",
+                                       "url":  "https://news.google.com/rss/articles/CBMiggFBVV95cUxPTzJ0Wjk0R2thcnRSY3YxWUVTSFdOaDZuOXRFMDFuUFZfSk9jV0Z5ZHh1Z2otZ253MkRQa1NibWM0b3NHUm5aSzZYOVpiOWZ2MnZnVmhxYnNrNG5WZ1d4WmNjcmIxM0hHSkNJR0NCb2k5VlgwWFVWVEpxOXhKSGtMSmNR0gGWAUFVX3lxTE9iZnJIbUJJMW9lYUUxd0QtbTY5cU9JbzJkT0hMRHhuTXhnZlBSWGp4M3UyOXA5Y0NxWnFCMnJvRzJSeUNNXzR1enp2blpHNjhiU2dVQnJTN2UxS1FEZmxCbi1NMjdFR1pqX3JOTnpQaDliMWRQdDd2V1ZtdkZiV2tHOXRWT3Z4UWNIelJWUTlNeUZJUlZrUQ?oc=5",
+                                       "source":  "Chosunbiz",
+                                       "published":  "2026-07-26T07:00:00Z"
                                    },
                                    {
                                        "title":  "네이버·NVIDIA·브룩필드, 한국의 국가 AI 팩토리 인프라를 확대하다",
@@ -963,33 +963,33 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-25T06:00:40Z"
                                    },
                                    {
-                                       "title":  "브룩필드, ESS 업체 아이파 10조원에 인수",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9pVkpza1FwTnB3MmtnZGdKdnZXUGI4RXNXbzBKZ3Y4NnF6VkRHMW42bE0zYmRRZmFVWVJCbGtuTWdhdEYxMEtuMG5hMi1tam1wWUZRT2F3eGU2ZTjSAWBBVV95cUxONzVobUk1bUxXLXRDR2M5QW5fSTRNbi1hY1BvWnNVeFJ2alJaaGxCMDJraXR6NmpBYXcyTm9aU1pBVmNDZzFQSV9iaVBxUHZSV1l5bVBaNWJhMVpDOTQzd1A?oc=5",
-                                       "source":  "연합뉴스",
-                                       "published":  "2026-07-23T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "국내 건설사 첫 SMR 표준화 설계 계약, 글로벌 에너지 인프라 시장 적극 공략",
                                        "url":  "https://news.google.com/rss/articles/CBMijgFBVV95cUxONzlnVFN4OUtvTlg3ODZRMjFuZEprZFpZOGJIMHk0WF9EMEFmdGkyR1FWMEJsUVlxMENuQnFKQ043TmpZd3ZaNDIyLVNsVmpfUjZnUUl1MjBuWjUyVUFZZUt4OENXMkx2aUJwb0dZVUlJLUozNlNTY0EwWGFkanJBU0Eyam5seF9NZVVHME1B?oc=5",
                                        "source":  "조선일보",
                                        "published":  "2026-07-23T07:00:00Z"
                                    },
                                    {
-                                       "title":  "브룩필드, 배터리 저장업체 \u0027아이파파워\u0027 70억 달러에 인수…AI 전력 수요 선점",
-                                       "url":  "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBBMVRwTEFuM1dWUl9uR295ZWVPUXVSZExmV3MyNGpSUkFnaW5fMDRQckt2NkV0NnJSbGNZclQ5dHhkR3UyRWFDSUNtekZxUms4SHFYVE9YVnIwYWtnYnF2Tmpzaw?oc=5",
-                                       "source":  "더구루",
-                                       "published":  "2026-07-23T05:43:13Z"
+                                       "title":  "브룩필드, ESS 업체 아이파 10조원에 인수",
+                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9pVkpza1FwTnB3MmtnZGdKdnZXUGI4RXNXbzBKZ3Y4NnF6VkRHMW42bE0zYmRRZmFVWVJCbGtuTWdhdEYxMEtuMG5hMi1tam1wWUZRT2F3eGU2ZTjSAWBBVV95cUxONzVobUk1bUxXLXRDR2M5QW5fSTRNbi1hY1BvWnNVeFJ2alJaaGxCMDJraXR6NmpBYXcyTm9aU1pBVmNDZzFQSV9iaVBxUHZSV1l5bVBaNWJhMVpDOTQzd1A?oc=5",
+                                       "source":  "연합뉴스",
+                                       "published":  "2026-07-23T07:00:00Z"
                                    },
                                    {
-                                       "title":  "저가형 무인 항공기: 글로벌 에너지 인프라에 대한 새로운 위협.",
-                                       "url":  "https://news.google.com/rss/articles/CBMikAFBVV95cUxPZEVVZG5pcnNZTTY1Ulo5akxsTV9vc2FZekJqTzd3aEpmU3lXMjFFaHZYSlNFOUVZRlF4VnFuN3NQUTFBcU1xSVZITmJ0UkN4X3BTekpyWnNlZ2VlZWhjMjNGMVl1ZmJpUC1INHlOVWhfZDdPc0NWQ01QeXhFSTd3SmI0Rm5PY1U4TWIxWWJUWWI?oc=5",
-                                       "source":  "Vietnam.vn",
-                                       "published":  "2026-07-20T07:00:00Z"
+                                       "title":  "브룩필드, 배터리 저장업체 \u0027아이파파워\u0027 70억 달러에 인수…AI 전력 수요 선점",
+                                       "url":  "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBBMVRwTEFuM1dWUl9uR295ZWVPUXVSZExmV3MyNGpSUkFnaW5fMDRQckt2NkV0NnJSbGNZclQ5dHhkR3UyRWFDSUNtekZxUms4SHFYVE9YVnIwYWtnYnF2Tmpzaw?oc=5",
+                                       "source":  "theguru.co.kr",
+                                       "published":  "2026-07-23T05:43:13Z"
                                    },
                                    {
                                        "title":  "네이버, 브룩필드 찾는다…AI 인프라 조성 속도 내나",
                                        "url":  "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1Pc0IxblNjNGNOYnpfODFmSWlja0lwUG9wRUdaLUM3SWZ3MTBGQ3FVeTF4c3QzWDlhbTRBeEpwUm1GTWVkMU5fSFJqMFhURTBEXzE2dDZkei1LLUxaS3QtSHRnR2d6dw?oc=5",
                                        "source":  "디일렉",
+                                       "published":  "2026-07-20T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "저가형 무인 항공기: 글로벌 에너지 인프라에 대한 새로운 위협.",
+                                       "url":  "https://news.google.com/rss/articles/CBMikAFBVV95cUxPZEVVZG5pcnNZTTY1Ulo5akxsTV9vc2FZekJqTzd3aEpmU3lXMjFFaHZYSlNFOUVZRlF4VnFuN3NQUTFBcU1xSVZITmJ0UkN4X3BTekpyWnNlZ2VlZWhjMjNGMVl1ZmJpUC1INHlOVWhfZDdPc0NWQ01QeXhFSTd3SmI0Rm5PY1U4TWIxWWJUWWI?oc=5",
+                                       "source":  "vietnam.vn",
                                        "published":  "2026-07-20T07:00:00Z"
                                    },
                                    {
@@ -1033,7 +1033,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "강남 임대료, 서울 오피스 시장 최초로 CBD 추월",
                                        "title_en":  "Gangnam rents overtake CBD for first time in Seoul office market",
                                        "url":  "https://news.google.com/rss/articles/CBMirwFBVV95cUxQZzdWellHUUc3emlrTmVlN0hxNnJhb0N4N0JZVkxzY1JpTE5kZDR1UThGZ2NEV2sxY0RYUEhLbmhIZk15bnotNTBiN2lxZnJFVE0tYlVYdklKckZhYVNxRUszYUlmMlNQTk9BbkR0NVVLMDRYV1ozODhHMEpxY3ZfanlQY3F5M2t3ODdDTzR6NkdTeXF2T0JQeGJ0RVVWOEhJMTBTUllqN1JvQXNCdHgw?oc=5",
-                                       "source":  "realestateasia.com",
+                                       "source":  "Real Estate Asia",
                                        "published":  "2026-08-03T23:52:23Z",
                                        "intl":  true
                                    },
@@ -1044,12 +1044,6 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-08-03T15:59:38Z"
                                    },
                                    {
-                                       "title":  "한국리츠협회, 금융위원회에 상장리츠 외부감사인 지정제도 개선 건의",
-                                       "url":  "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5NZlYwOVZWcWtRLVg5Wm9UVC1GYmpOMTBQaXVhUTdnOXpFWjFBaVJFQ0w5R3FDTEp6eVhQRWhxcXIzZElwclk2UHpHVTF1QXVNUE9FQWhhbkhCZVQxbTREd3p5TQ?oc=5",
-                                       "source":  "국토일보",
-                                       "published":  "2026-08-03T06:15:00Z"
-                                   },
-                                   {
                                        "title":  "코람코자산신탁, 수도권 도심형 안양물류센터 매각 추진…매각가 2000억대 중후반 추산 - 조선비즈",
                                        "url":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNd29IYmFzeThNN2t6ajBCUXBPaDJjSF9rYmd1X3Rvb3ZDQzFvNXljV3llem5kUGJReXdiZ0sybTRtMGl1ZnloU0JXNFJZeDFvVkxVTEN3d1FmaWxDR01GM0ZxdnowbWtPYmNSeDZUZHpTSjVGU2VkQWIwQW1ueWVxME1nTEZKSHVi0gGcAUFVX3lxTE1JaU9NT0FHU3pmWWZGWXBGajJWNzJidVRyM1JwUktwQTRYM0gzR3Voa0gxTmhqbDFaQ0FtVHJrbG9IcF94cURCVjBDcUtsS2M1X1lJZ0YxTGkyUE1pdWNSbDJZMW1LU0ZlczJOc1ppWWJYYTlxN2p3QnZLa0pLU21HcWtRRFlyZXBCSXlWMGE3NlFnXzVzZkdnb2lGYQ?oc=5",
                                        "source":  "Chosunbiz",
@@ -1058,7 +1052,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "쿠시먼앤드웨이크필드, “서울 오피스 공실률 5.8%… 강남은 ‘AI 거점’ 부상”",
                                        "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3WG9nNUdnMHJiLTFBQkcwbDA3ajBpRWhqYXRCVTdFaUJyQVZ3NURabmV4aXFLeXVxOHl6VWpyVGcwRE13LWgyb3JHVlFqOUlCekw1bHNBS1IyUTdqZ3M4clZzWVFMMzg?oc=5",
-                                       "source":  "geconomy.co.kr",
+                                       "source":  "지이코노미",
                                        "published":  "2026-07-29T06:42:16Z"
                                    },
                                    {
@@ -1080,18 +1074,32 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-24T07:00:00Z"
                                    },
                                    {
-                                       "title":  "국토부, 부동산 PF 사업성 평가기관 8월 말 선정",
-                                       "url":  "https://news.google.com/rss/articles/CBMidEFVX3lxTE13bXpRS0NUR2pzOFhIcjNxeFhUZkFPSzBQaGxvMFZUNlNhbzVTajRnbEdmVDBOdTRFM0xMSTUtT0kxUHJTRG9MaGN0SzhPeWpnWEp3Z0o3SjVTUnh6a2M0LWRWZ3dTVGg2UkUzMWhkVFpYSnk5?oc=5",
-                                       "source":  "대한경제",
-                                       "published":  "2026-07-23T21:00:31Z"
-                                   },
-                                   {
-                                       "title":  "한국부동산투자신탁(KRX:034830)의 EBITDA 대비 기업가치",
+                                       "title":  "한국부동산투자신탁(주)의 EBITDA 대비 기업가치 - KRX:034830",
                                        "title_en":  "Enterprise value to EBITDA forward of Korea Real Estate Investment Trust Co., Ltd. – KRX:034830",
                                        "url":  "https://news.google.com/rss/articles/CBMirAFBVV95cUxQem11U21aVjdTaUdhbU1HeVNpTVA4ZVRoRDV5TksyQkVSTzV0Zklkclk1Y2kydUc4dkVOdU1Ca0NiQ2t0eklEckxVSFRZbGdLSU1IQVNaYkt6aXJtTjdyUFBuVjNpQk1aVnhqeVVjWXJxOFd1RTEtSWdEd0g2MVA3Q29YUEtOYzRwUWZVWW9nR191d3BmcWZVSWFRTGg1NTdod19WMFFNN1RUNUNW?oc=5",
                                        "source":  "TradingView",
                                        "published":  "2026-07-23T17:19:36Z",
                                        "intl":  true
+                                   },
+                                   {
+                                       "title":  "리츠협회 \"상장리츠, 장기 안정 배당이 목적…공매도 막아달라\"",
+                                       "url":  "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBBOHlDN2tJbVk2aGhmcXhkMWFGMnFBWjBFQVdpeS1GNld5WHJGWERRNGg3MXNoV2VxaS1kdGZkTDBMczhxQTdXeUtiWGtjTU1vdXo5Ulh2LXJmRkJpVEZn?oc=5",
+                                       "source":  "뉴스1",
+                                       "published":  "2026-07-22T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "“배당주, 왜 공매도 하는가?” — South Korea’s REIT Industry Formally Asks Regulators for Short-Selling Exemption",
+                                       "title_en":  "“Dividend Stocks, So Why Short?” — South Korea’s REIT Industry Formally Asks Regulators for Short-Selling Exemption",
+                                       "url":  "https://news.google.com/rss/articles/CBMidkFVX3lxTE44LVVEQ0VCcjlaYWNLMmxEYnRfaDNfZ2dKY0I4dkhfeURldmRWQkdBNWNEUmtyNDByYjhpUFc5bUhsSnpHWXAtWTVQMG5mbFIxdFNmT1RZaVJrNWJIUVJ4eWhzcVZ4LVFhaC1KQUxVXzBvSHctUnc?oc=5",
+                                       "source":  "finance.biggo.com",
+                                       "published":  "2026-07-21T07:00:00Z",
+                                       "intl":  true
+                                   },
+                                   {
+                                       "title":  "시공사가 다 책임지는 부동산 PF…\"3년 뒤 주택공급 끊길 수 있다\"",
+                                       "url":  "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5SbXhVbHlBRmM1WnlKY1lTbFlxdUtHRVl3S1p6aTJDekhGbGgyeW1rMzVHaFFLSk56cGw1V1Fpb3pmSzg5VW42NTI3Q2FVb24yMVdnb1RLU3pPdl93?oc=5",
+                                       "source":  "뉴스핌",
+                                       "published":  "2026-07-20T07:00:00Z"
                                    },
                                    {
                                        "title":  "\"주택공급 늘리려면 부동산 PF 활성화해야\" 국회서 해법 모색",
@@ -1102,7 +1110,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "[2026 상반기 리그테이블][부동산] 저조한 거래 속 CBD 오피스가 시장 지탱 : 네이버 블로그",
                                        "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9YaGJYX1IxcE5wa1VGRVNVVFd5YkdUa0I1cHdxWTU5UWlyLVJWaHh0YWJmUS13NTM1QXZ0RTZONnR1OGZ2MDJWQm9oRDl6SHJES29EQ0hlZ1N2UTM1NFlzSFdvS3hRRFE?oc=5",
-                                       "source":  "Naver Blog",
+                                       "source":  "blog.naver.com",
                                        "published":  "2026-07-08T07:00:00Z"
                                    },
                                    {
@@ -1127,22 +1135,16 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
+                                       "title":  "예천군 \u0026 푸른예천환경 하수관거정비 \u0027임대형 민자사업(BTL) 실시 협약식\u0027체결",
+                                       "url":  "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvemt3Y3JaZTFSY1BGTTV5OHc2OER2WWFwanVYMEx3dVNXVDVUSzlYX0steGp3VkdPX2NUSDdzQXJHQ0YwRVFsUEF0Q3ItWHc5dXNpTnMwVFVTZ052YWE5Y1p4LWhUaDE2em1N?oc=5",
+                                       "source":  "예천인터넷뉴스",
+                                       "published":  "2026-08-05T08:02:11Z"
+                                   },
+                                   {
                                        "title":  "페루 프로인베르시온, \u00277조 규모\u0027 철도 민자사업 추진",
                                        "url":  "https://news.google.com/rss/articles/CBMia0FVX3lxTFB4SzZ0cWNLM3UyTFJGVC1iZTVZcThuTTg2SXpZam5JRkgwSDlhZVRYRllQMGYzRW4zdFFsM2JodmNUUDQ3blpqbGtBWHdPd3l3VHFqN25FUTFMcnNubzBzRFRZd0dUYUxmOWlF?oc=5",
                                        "source":  "철도경제신문",
                                        "published":  "2026-08-04T00:03:42Z"
-                                   },
-                                   {
-                                       "title":  "충남대 공학1호관, 48년 만에 BTL사업으로 교육·연구 환경 개선",
-                                       "url":  "https://news.google.com/rss/articles/CBMibkFVX3lxTE5RM1U5STdLMUtwNHhwWkhJVWtqNzZ4b0phU2VyaUo5bDlvNVU1TnBYd2M0dEdqQVRDY1ZpRDZhdGhZalNKRENtLVdLdDdKMWNSTjdxRHc0T0EtZzNDWlkyVEI5UVdrcHZlMElHbXlR?oc=5",
-                                       "source":  "전국매일신문",
-                                       "published":  "2026-08-03T05:07:15Z"
-                                   },
-                                   {
-                                       "title":  "예천군 \u0026 푸른예천환경 하수관거정비 \u0027임대형 민자사업(BTL) 실시 협약식\u0027체결",
-                                       "url":  "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvemt3Y3JaZTFSY1BGTTV5OHc2OER2WWFwanVYMEx3dVNXVDVUSzlYX0steGp3VkdPX2NUSDdzQXJHQ0YwRVFsUEF0Q3ItWHc5dXNpTnMwVFVTZ052YWE5Y1p4LWhUaDE2em1N?oc=5",
-                                       "source":  "예천인터넷뉴스",
-                                       "published":  "2026-08-01T08:00:05Z"
                                    },
                                    {
                                        "title":  "\u0027BTL사업\u0027, 끝이 보인다",
@@ -1193,9 +1195,15 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-07-15T01:36:38Z"
                                    },
                                    {
-                                       "title":  "한솔제지, 가평 자원회수시설 민자사업 PQ 탈락… 재도전 준비",
-                                       "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBoSnl3RlhnR0d4c0Rjc2haeEQwdmxneFpDYnZSMFJQZVVDSkxkU3lSanZPWHQ3WUZva3lZc2hDMjE4MUNNWEFrQjJVbUVLeDQ?oc=5",
+                                       "title":  "대전구치소 BTL 사업 우협에 \u0027계룡건설\u0027 컨소시엄 선정",
+                                       "url":  "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1UQXg4eTBlT0JCeWVRVDUtM2ZlZ0NZQkZ6RUZHQXV0N2R0SFhnOHB6enlqNFhLVmtKd3NpYU5fVXotR1Z6SUdTN2g1U0FFMlpQNUhCZQ?oc=5",
                                        "source":  "v.daum.net",
+                                       "published":  "2026-07-14T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "한솔제지, 가평 자원회수시설 민자사업 PQ 탈락… 재도전 준비",
+                                       "url":  "https://news.google.com/rss/articles/CBMiZEFVX3lxTE42MUl4cnp3djlMRnFwZVNXejlLcm5RT18wMnFLYWh3WGJxa21iMlhrWWNELUtPc0RCWkFyX0w0ZHZ3SVVIRmptSkhBYy0yMWQ3dHlONnU5N19mNW9BVVZXR1R6UVc?oc=5",
+                                       "source":  "MTN 머니투데이방송",
                                        "published":  "2026-07-10T07:00:00Z"
                                    }
                                ]
