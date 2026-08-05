@@ -19,8 +19,9 @@ $ErrorActionPreference = "Stop"
   [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
 $UA      = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
-$OutFile = Join-Path $PSScriptRoot "data.js"
-$errors  = New-Object System.Collections.Generic.List[string]
+$OutFile  = Join-Path $PSScriptRoot "data.js"
+$HistFile = Join-Path $PSScriptRoot "history.csv"
+$errors   = New-Object System.Collections.Generic.List[string]
 
 function Log([string]$msg) { Write-Host $msg }
 function Fail([string]$msg) { $errors.Add($msg) | Out-Null; Write-Host ("  ! " + $msg) -ForegroundColor Yellow }
@@ -71,10 +72,15 @@ function New-Metric {
   param(
     [string]$Name, [string]$Value, [string]$Unit,
     [string]$Change, [string]$ChangeUnit, $Ratio,
-    [string]$Dir, [string]$Note, [string]$AsOf
+    [string]$Dir, [string]$Note, [string]$AsOf,
+    [string]$Code = ""
   )
+  # code 는 history.csv 의 시계열 식별자다. 표시명(name)은 네이버 표기가 바뀌면
+  # 같이 바뀌지만 code 는 고정이라, 이력이 끊기지 않는다.
+  # 이름으로 긁어오는 항목은 비워 두고 Resolve-MetricCode 가 나중에 채운다.
   return [ordered]@{
     name        = $Name
+    code        = $Code
     value       = $Value
     unit        = $Unit
     change      = $Change
@@ -84,6 +90,42 @@ function New-Metric {
     note        = $Note
     asof        = $AsOf
   }
+}
+
+# 표시명 → 시계열 코드. 네이버에서 이름으로 긁어오는 항목들이 대상이다.
+# (지수·국고채는 수집 루프에서 -Code 로 직접 넣으므로 여기 없다.)
+#
+# 이름이 바뀌면 이력이 끊기므로, 네이버 표기가 바뀌면 이 표만 고치면 된다.
+# 여기에 없는 항목은 이력을 쌓지 않고 넘어간다 (수집은 정상, 차트만 없음).
+$HISTORY_CODES = @{
+  # 환율 (하나은행 고시)
+  "미국 USD"          = "USDKRW"
+  "일본 JPY(100엔)"   = "JPYKRW100"
+  "유럽연합 EUR"      = "EURKRW"
+  "중국 CNY"          = "CNYKRW"
+  # 국제 시장 환율
+  "달러/일본 엔"      = "USDJPY"
+  "유로/달러"         = "EURUSD"
+  "영국 파운드/달러"  = "GBPUSD"
+  "달러인덱스"        = "DXY"
+  # 유가·금
+  "WTI"               = "WTI"
+  "휘발유"            = "GASOLINE_KR"
+  "국제 금"           = "GOLD_INTL"
+  "국내 금"           = "GOLD_KR"
+  # 국내시장금리
+  "CD금리(91일)"      = "CD91"
+  "콜 금리"           = "CALL"
+  "회사채 AA- (3년)"  = "CORPAA3Y"
+  "COFIX 잔액"        = "COFIX_BAL"
+  "COFIX 신규취급액"  = "COFIX_NEW"
+}
+
+# 수집 루프에서 코드를 못 넣은 항목을 이름으로 채운다.
+function Resolve-MetricCode($metric) {
+  if ($metric.code) { return $metric.code }
+  if ($HISTORY_CODES.ContainsKey($metric.name)) { return $HISTORY_CODES[$metric.name] }
+  return ""
 }
 
 # ────────────────────────────────────────────────────────────────
@@ -198,9 +240,9 @@ function Get-MarketIndex {
 # API 에서 받는다. 코드는 로이터 형식이다 (KR5YT=RR).
 # 1·2·20·30년도 같은 방식으로 받을 수 있다.
 $BOND_TENORS = @(
-  @{ code = "KR3YT=RR";  label = "국고채 3년"  },
-  @{ code = "KR5YT=RR";  label = "국고채 5년"  },
-  @{ code = "KR10YT=RR"; label = "국고채 10년" }
+  @{ code = "KR3YT=RR";  label = "국고채 3년";  hist = "KTB3Y"  },
+  @{ code = "KR5YT=RR";  label = "국고채 5년";  hist = "KTB5Y"  },
+  @{ code = "KR10YT=RR"; label = "국고채 10년"; hist = "KTB10Y" }
 )
 
 function Get-BondYields {
@@ -232,7 +274,7 @@ function Get-BondYields {
       # 시장지표 표의 국고채는 최종호가수익률이고 이쪽은 체결 기준이라 값이 조금 다르다
       $rows += (New-Metric -Name $t.label -Value $valTxt -Unit "%" `
                            -Change $chgTxt -ChangeUnit "%p" -Ratio $null `
-                           -Dir $dir -Note "체결 기준" -AsOf $asof)
+                           -Dir $dir -Note "체결 기준" -AsOf $asof -Code $t.hist)
     } catch {
       Fail ($t.label + " 수집 실패")
     }
@@ -260,19 +302,19 @@ function Sort-Rates($rates) {
 # ────────────────────────────────────────────────────────────────
 
 $DOMESTIC_INDEX = @(
-  @{ code = "KOSPI";  label = "코스피"  },
-  @{ code = "KOSDAQ"; label = "코스닥"  }
+  @{ code = "KOSPI";  label = "코스피";  hist = "KOSPI"  },
+  @{ code = "KOSDAQ"; label = "코스닥";  hist = "KOSDAQ" }
 )
 $WORLD_INDEX = @(
-  @{ code = ".DJI";  label = "다우존스"          },
-  @{ code = ".IXIC"; label = "나스닥 종합"       },
-  @{ code = ".INX";  label = "S&P 500"           },
-  @{ code = ".SOX";  label = "필라델피아 반도체" },
-  @{ code = ".N225"; label = "니케이 225"        },
-  @{ code = ".HSI";  label = "항셍"              }
+  @{ code = ".DJI";  label = "다우존스";          hist = "DJI"  },
+  @{ code = ".IXIC"; label = "나스닥 종합";       hist = "IXIC" },
+  @{ code = ".INX";  label = "S&P 500";           hist = "SPX"  },
+  @{ code = ".SOX";  label = "필라델피아 반도체"; hist = "SOX"  },
+  @{ code = ".N225"; label = "니케이 225";        hist = "N225" },
+  @{ code = ".HSI";  label = "항셍";              hist = "HSI"  }
 )
 
-function Convert-IndexPayload($j, [string]$label, [string]$note) {
+function Convert-IndexPayload($j, [string]$label, [string]$note, [string]$hist = "") {
   $dir = "flat"
   $t = $j.compareToPreviousPrice.text
   if ($t -eq "상승") { $dir = "up" }
@@ -288,7 +330,7 @@ function Convert-IndexPayload($j, [string]$label, [string]$note) {
 
   return (New-Metric -Name $label -Value $j.closePrice -Unit "" `
                      -Change $j.compareToPreviousClosePrice -ChangeUnit "" -Ratio $ratio `
-                     -Dir $dir -Note $note -AsOf $asof)
+                     -Dir $dir -Note $note -AsOf $asof -Code $hist)
 }
 
 function Get-Indices {
@@ -298,7 +340,7 @@ function Get-Indices {
   foreach ($ix in $DOMESTIC_INDEX) {
     try {
       $j = (Get-Web ("https://polling.finance.naver.com/api/realtime/domestic/index/" + $ix.code)) | ConvertFrom-Json
-      $rows += (Convert-IndexPayload $j.datas[0] $ix.label "한국거래소")
+      $rows += (Convert-IndexPayload $j.datas[0] $ix.label "한국거래소" $ix.hist)
     } catch { Fail ("지수 " + $ix.label + " 수집 실패") }
   }
 
@@ -308,7 +350,7 @@ function Get-Indices {
       $j = (Get-Web ("https://api.stock.naver.com/index/" + $ix.code + "/basic") $h) | ConvertFrom-Json
       $name = $ix.label
       if ($j.indexName) { $name = $j.indexName }
-      $rows += (Convert-IndexPayload $j $name "해외 지수 · 종가 기준")
+      $rows += (Convert-IndexPayload $j $name "해외 지수 · 종가 기준" $ix.hist)
     } catch { Fail ("지수 " + $ix.label + " 수집 실패") }
   }
   return $rows
@@ -738,6 +780,113 @@ function Get-PrevNews($prev, [string]$key) {
 }
 
 # ────────────────────────────────────────────────────────────────
+# 5. 지표 이력 (history.csv)
+# ────────────────────────────────────────────────────────────────
+#
+#   date,code,value
+#   2026-08-05,USDKRW,1421.88
+#
+# data.js 는 "지금 값"만 담는 스냅샷이라 어제와 비교할 수 없다. 이력은 따로 쌓는다.
+#
+# SQLite 를 쓰지 않는 이유: 이 저장소는 GitHub Actions(러너는 매번 새로 뜬다)에서
+# 돌기 때문에 이력이 남으려면 파일이 리포에 커밋돼야 한다. 바이너리 DB 를 평일
+# 24회 커밋하면 리포가 급격히 부풀고 diff 도 볼 수 없다. CSV 는 추가된 줄만
+# diff 에 잡힌다.
+#
+# 하루에 24번 도는데 한 날짜에 한 행만 남긴다 — 그날 마지막 값이 이긴다.
+# 그래서 append 가 아니라 (date,code) 로 덮어쓰고 정렬해 다시 쓴다. 정렬 순서가
+# 고정이라 실제로 바뀐 줄만 diff 에 나온다.
+
+# "2026.07.30 16:56" / "2026.07.30" → "2026-07-30".
+# asof 가 비면(금리처럼 고시 시각이 없는 항목) 수집 시점(KST)으로 둔다.
+#
+# 수집일이 아니라 asof 를 쓰는 게 중요하다. 미국 지수는 KST 오전에 받아도
+# 전날 종가라, 수집일로 찍으면 하루씩 밀린다.
+function Get-MetricDate([string]$asof) {
+  $m = [regex]::Match($asof, '^(\d{4})\.(\d{2})\.(\d{2})')
+  if ($m.Success) {
+    return ($m.Groups[1].Value + "-" + $m.Groups[2].Value + "-" + $m.Groups[3].Value)
+  }
+  return (Get-Date).ToUniversalTime().AddHours(9).ToString("yyyy-MM-dd")
+}
+
+# "date|code" → value 사전으로 읽는다. 파일이 없으면 빈 사전.
+function Read-History {
+  $map = New-Object 'System.Collections.Generic.Dictionary[string,string]'
+  if (-not (Test-Path $HistFile)) { return $map }
+  try {
+    $lines = [IO.File]::ReadAllLines($HistFile, [Text.Encoding]::UTF8)
+  } catch {
+    Fail "history.csv 를 읽지 못했습니다 (이번 회차 이력은 건너뜁니다)"
+    return $null
+  }
+  foreach ($line in $lines) {
+    if (-not $line -or $line.StartsWith("date,")) { continue }
+    $p = $line.Split(",")
+    if ($p.Count -lt 3) { continue }
+    $map[$p[0] + "|" + $p[1]] = $p[2]
+  }
+  return $map
+}
+
+function Save-History($map) {
+  $keys = New-Object 'string[]' $map.Count
+  $map.Keys.CopyTo($keys, 0)
+  # 날짜(고정 10자리) → 코드 순. 순서가 고정이라야 diff 가 바뀐 줄만 잡는다.
+  [Array]::Sort($keys, [StringComparer]::Ordinal)
+
+  $sb = New-Object Text.StringBuilder
+  [void]$sb.AppendLine("date,code,value")
+  foreach ($k in $keys) {
+    $i = $k.IndexOf("|")
+    [void]$sb.AppendLine($k.Substring(0, $i) + "," + $k.Substring($i + 1) + "," + $map[$k])
+  }
+  [IO.File]::WriteAllText($HistFile, $sb.ToString(), (New-Object Text.UTF8Encoding($false)))
+}
+
+function Update-History($market) {
+  $map = Read-History
+  if ($null -eq $map) { return }
+
+  $added = 0; $changed = 0; $unknown = @()
+  foreach ($g in $market) {
+    # 수집이 실패해 이전 값을 재사용 중인 그룹은 건너뛴다.
+    # 그대로 쌓으면 어제 값이 오늘 값으로 둔갑한다.
+    if ($g.stale) { continue }
+
+    foreach ($m in @($g.items)) {
+      $code = Resolve-MetricCode $m
+      if (-not $code) { $unknown += $m.name; continue }
+
+      $v = To-Number $m.value
+      if ($null -eq $v) { continue }
+
+      $key = (Get-MetricDate $m.asof) + "|" + $code
+      $txt = $v.ToString("0.######", [Globalization.CultureInfo]::InvariantCulture)
+
+      if ($map.ContainsKey($key)) {
+        if ($map[$key] -ne $txt) { $map[$key] = $txt; $changed++ }
+      } else {
+        $map[$key] = $txt; $added++
+      }
+    }
+  }
+
+  try {
+    Save-History $map
+  } catch {
+    Fail "history.csv 를 쓰지 못했습니다"
+    return
+  }
+
+  Log ("· 지표 이력 · 신규 " + $added + " / 갱신 " + $changed + " / 누적 " + $map.Count + "행")
+  if ($unknown.Count -gt 0) {
+    # 새 지표가 늘었거나 네이버 표기가 바뀐 것이다. 수집 자체는 정상이라 경고만.
+    Log ("  (코드 미지정 " + $unknown.Count + "건: " + (($unknown | Select-Object -Unique) -join ", ") + ")")
+  }
+}
+
+# ────────────────────────────────────────────────────────────────
 # 실행
 # ────────────────────────────────────────────────────────────────
 
@@ -793,6 +942,10 @@ foreach ($g in $miGroups) {
     if ($p) { $market += [ordered]@{ label=$p.label; note=$p.note; stale=$true; items=@($p.items) } }
   }
 }
+
+# 지표 이력. 뉴스보다 먼저 쌓는다 — 뉴스 수집이 길고 실패도 잦은데,
+# 거기서 죽더라도 이번 회차 지표는 이력에 남아야 한다.
+try { Update-History $market } catch { Fail "지표 이력 기록 실패" }
 
 # 뉴스
 Log "· 자산군별 뉴스 …"
