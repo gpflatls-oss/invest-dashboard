@@ -31,15 +31,46 @@ function Fail([string]$msg) { $errors.Add($msg) | Out-Null; Write-Host ("  ! " +
 # 공통 유틸
 # ────────────────────────────────────────────────────────────────
 
+# 429/503 은 서버(주로 구글)가 요청이 잦다고 일시 차단할 때 내는 응답이다.
+# 0.7초짜리 재시도로는 소용이 없어 간격을 크게 벌려 다시 두드린다.
+# 그래도 막혀 있으면 그 호스트는 이번 실행 동안 즉시 포기한다 — 쿼리 수십 개가
+# 각각 1분씩 기다리면 실행이 한없이 길어지기 때문이다.
+$RateLimitWaits = @(5, 15, 45)   # 초
+$script:BlockedHosts = New-Object 'System.Collections.Generic.HashSet[string]'
+
 function Get-Web {
   param([string]$Url, [hashtable]$Headers, [int]$Retries = 2)
   $h = @{ "User-Agent" = $UA }
   if ($Headers) { foreach ($k in $Headers.Keys) { $h[$k] = $Headers[$k] } }
-  for ($i = 0; $i -le $Retries; $i++) {
+
+  $host_ = ([uri]$Url).Host
+  if ($script:BlockedHosts.Contains($host_)) {
+    throw ($host_ + " 가 요청을 차단 중이라 건너뜁니다 (HTTP 429/503)")
+  }
+
+  $i = 0; $rateHit = 0
+  while ($true) {
     try {
       return (Invoke-WebRequest -Uri $Url -Headers $h -UseBasicParsing -TimeoutSec 25).Content
     } catch {
-      if ($i -eq $Retries) { throw }
+      $status = 0
+      if ($_.Exception.Response) {
+        try { $status = [int]$_.Exception.Response.StatusCode } catch { }
+      }
+
+      if ($status -eq 429 -or $status -eq 503) {
+        if ($rateHit -ge $RateLimitWaits.Count) {
+          $script:BlockedHosts.Add($host_) | Out-Null
+          throw
+        }
+        $wait = $RateLimitWaits[$rateHit]; $rateHit++
+        Log ("  … " + $host_ + " 가 요청을 제한합니다 (HTTP " + $status + "). " + $wait + "초 뒤 재시도")
+        Start-Sleep -Seconds $wait
+        continue
+      }
+
+      if ($i -ge $Retries) { throw }
+      $i++
       Start-Sleep -Milliseconds 700
     }
   }
@@ -625,7 +656,7 @@ function Get-IntlNews([hashtable]$cls, [datetime]$cutoff, $seenTitles, $accepted
       if ($bucket.Count -ge $NewsIntlPerClass) { break }
     }
     $buckets += ,$bucket
-    Start-Sleep -Milliseconds 200
+    Start-Sleep -Milliseconds 1200
   }
 
   # 국내 기사와 같은 방식으로 쿼리를 번갈아 뽑는다
@@ -675,6 +706,7 @@ function Get-News([hashtable]$cls, [datetime]$cutoff, $seenTitles) {
   $stopwords = Get-QueryStopwords $cls.queries
   $accepted  = @()
   $buckets   = @()   # 쿼리마다 후보를 따로 담는다
+  $failedQueries = 0
 
   foreach ($query in $cls.queries) {
     $bucket = @()
@@ -687,6 +719,7 @@ function Get-News([hashtable]$cls, [datetime]$cutoff, $seenTitles) {
       $doc.LoadXml((Get-Web $url))
     } catch {
       Fail ($cls.label + " 뉴스 쿼리 하나를 받지 못했습니다: " + $query)
+      $failedQueries++
       continue
     }
 
@@ -731,7 +764,13 @@ function Get-News([hashtable]$cls, [datetime]$cutoff, $seenTitles) {
     }
 
     $buckets += ,$bucket
-    Start-Sleep -Milliseconds 200
+    Start-Sleep -Milliseconds 1200
+  }
+
+  # 쿼리가 하나도 성공하지 못했으면 (구글 차단 등) 예외를 던진다.
+  # 그래야 호출부가 이전 회차 뉴스를 되살린다 — 빈 목록을 돌려주면 0건으로 덮어써 버린다.
+  if ($failedQueries -ge @($cls.queries).Count) {
+    throw ($cls.label + " 뉴스 쿼리가 모두 실패했습니다")
   }
 
   # 쿼리 하나가 목록을 독식하지 않도록 버킷을 돌아가며 한 건씩 뽑는다.
@@ -1055,7 +1094,7 @@ foreach ($cls in $NEWS_CLASSES) {
     stale    = $stale
     items    = @($items)
   }
-  Start-Sleep -Milliseconds 250
+  Start-Sleep -Milliseconds 1000
 }
 
 # 결과 기록
