@@ -4,8 +4,9 @@ on:
   schedule:
     # GitHub Actions 의 cron 은 UTC 기준입니다 (KST = UTC + 9).
     # 실제 실행은 예약 시각보다 5~20분쯤 늦을 수 있습니다.
-    - cron: "0 0 * * 1-5"    # 평일 KST 09:00
-    - cron: "0 7 * * 1-5"    # 평일 KST 16:00
+    # 정각(특히 UTC 00:00)은 혼잡해서 실행이 통째로 스킵되기도 하므로 어중간한 분으로 예약합니다.
+    - cron: "48 23 * * 0-4"    # 평일 KST 08:48 (UTC 전날 23:48)
+    - cron: "48 6 * * 1-5"     # 평일 KST 15:48
   workflow_dispatch:              # Actions 탭에서 수동 실행
   push:
     branches: [main]
