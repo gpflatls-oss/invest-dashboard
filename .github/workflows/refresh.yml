@@ -47,3 +47,10 @@ jobs:
           $stamp = (Get-Date).ToUniversalTime().AddHours(9).ToString("yyyy-MM-dd HH:mm")
           git commit -m "data: refreshed at $stamp KST"
           git push
+          if ($LASTEXITCODE -ne 0) {
+            # 로컬 갱신.bat 등이 그 사이 푸시한 경우: 받아서 얹은 뒤 재시도.
+            # 충돌 구간은 방금 수집한 이 러너의 값(-X theirs)을 우선한다.
+            git pull --rebase -X theirs
+            git push
+          }
+          if ($LASTEXITCODE -ne 0) { exit 1 }
