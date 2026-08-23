@@ -583,18 +583,29 @@ $GLOSSARY = @(
 
 # 해외 매체 기사는 원문이 영어라 제목을 한국어로 옮겨 싣는다.
 # 구글 번역의 비공식 엔드포인트라 키는 필요 없지만 언제든 막히거나 조여질 수 있다.
+# 실제로 translate.googleapis.com 이 이 IP 를 429 로 조인 적이 있는데, 호스트가
+# 다른 clients5.google.com 은 그때도 멀쩡했다. 차단은 호스트 단위로 걸리므로
+# 예비 엔드포인트를 하나 더 둔다 (응답 형식이 서로 다르니 주의).
 # 번역에 실패한 기사는 아예 싣지 않는다 (영어 제목이 섞이면 안 되므로).
 function Convert-ToKorean([string]$text) {
-  $u = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=" +
-       [uri]::EscapeDataString($text)
-  try {
-    $json = (Get-Web $u $null 1) | ConvertFrom-Json
-  } catch {
-    return $null
-  }
+  $q   = [uri]::EscapeDataString($text)
   $out = ""
-  foreach ($seg in $json[0]) { $out += [string]$seg[0] }
-  $out = $out.Trim()
+
+  # 1차: gtx — 응답이 [[["번역","원문",…],…],…] 꼴이라 조각을 이어 붙인다
+  try {
+    $json = (Get-Web ("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ko&dt=t&q=" + $q) $null 1) | ConvertFrom-Json
+    foreach ($seg in $json[0]) { $out += [string]$seg[0] }
+    $out = $out.Trim()
+  } catch { $out = "" }
+
+  # 2차: dict-chrome-ex — 응답이 ["번역"] 꼴
+  if (-not $out) {
+    try {
+      $json = (Get-Web ("https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=en&tl=ko&q=" + $q) $null 1) | ConvertFrom-Json
+      $out = ([string]$json[0]).Trim()
+    } catch { return $null }
+  }
+
   if (-not $out) { return $null }
   # 번역이 사실상 그대로면 (한글이 거의 없으면) 실패로 본다
   if (($out -replace '[^가-힣]', '').Length -lt 2) { return $null }
@@ -695,7 +706,8 @@ function Get-IntlNews([hashtable]$cls, [datetime]$cutoff, $seenTitles, $accepted
       published = $cand.published
       intl      = $true
     }
-    Start-Sleep -Milliseconds 120
+    # 너무 빠르게 두드리면 429 로 IP 가 조여진다 (120ms 로 돌리다 실제로 겪었다)
+    Start-Sleep -Milliseconds 400
   }
 
   if ($failed -gt 0) { Fail ($cls.label + " 해외 기사 " + $failed + "건 번역 실패") }

@@ -354,7 +354,13 @@ footer {
   </footer>
 </div>
 
-<script src="data.js"></script>
+<script>
+// GitHub Pages 는 data.js 를 10분 동안 캐시한다 (Cache-Control: max-age=600).
+// 그대로 두면 갱신 직후 사이트를 열어도 브라우저·CDN 이 묵은 값을 내줘
+// "로컬은 바뀌었는데 사이트는 그대로"가 된다. 매 로드마다 주소를 바꿔 우회한다.
+// file:// 로 열었을 때도 그대로 동작한다.
+document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
+</script>
 <script>
 (function () {
   "use strict";
