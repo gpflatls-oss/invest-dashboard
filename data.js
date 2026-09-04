@@ -1,7 +1,7 @@
 /* 이 파일은 refresh.ps1 이 자동으로 만듭니다. 직접 고치지 마세요. */
 window.DASHBOARD_DATA = {
-    "generated_at":  "2026-09-04T07:15:45Z",
-    "generated_at_display":  "2026년 9월 4일 16:15 KST",
+    "generated_at":  "2026-09-04T11:47:03Z",
+    "generated_at_display":  "2026년 9월 4일 20:47 KST",
     "news_window_days":  30,
     "market":  [
                    {
@@ -19,7 +19,7 @@ window.DASHBOARD_DATA = {
                                          "ratio":  1.64,
                                          "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.09.04 16:12"
+                                         "asof":  "2026.09.04 18:59"
                                      },
                                      {
                                          "name":  "코스닥",
@@ -31,7 +31,7 @@ window.DASHBOARD_DATA = {
                                          "ratio":  2.95,
                                          "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.09.04 16:12"
+                                         "asof":  "2026.09.04 18:59"
                                      },
                                      {
                                          "name":  "다우존스",
@@ -96,14 +96,14 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "항셍",
                                          "code":  "HSI",
-                                         "value":  "25,655.37",
+                                         "value":  "25,650.87",
                                          "unit":  "",
-                                         "change":  "442.06",
+                                         "change":  "437.56",
                                          "change_unit":  "",
-                                         "ratio":  1.75,
+                                         "ratio":  1.74,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.09.04 14:57"
+                                         "asof":  "2026.09.04 16:08"
                                      }
                                  ]
                    },
@@ -115,50 +115,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "미국 USD",
                                          "code":  "USDKRW",
-                                         "value":  "1,351.50",
+                                         "value":  "1,351.40",
                                          "unit":  "원",
-                                         "change":  "7.00",
+                                         "change":  "7.10",
                                          "change_unit":  "",
                                          "ratio":  -0.52,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.04 16:09"
+                                         "asof":  "2026.09.04 20:40"
                                      },
                                      {
                                          "name":  "일본 JPY(100엔)",
                                          "code":  "JPYKRW100",
-                                         "value":  "864.32",
+                                         "value":  "864.67",
                                          "unit":  "원",
-                                         "change":  "5.87",
+                                         "change":  "5.52",
                                          "change_unit":  "",
-                                         "ratio":  -0.67,
+                                         "ratio":  -0.63,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.04 16:09"
+                                         "asof":  "2026.09.04 20:40"
                                      },
                                      {
                                          "name":  "유럽연합 EUR",
                                          "code":  "EURKRW",
-                                         "value":  "1,571.52",
+                                         "value":  "1,570.53",
                                          "unit":  "원",
-                                         "change":  "7.53",
+                                         "change":  "8.52",
                                          "change_unit":  "",
-                                         "ratio":  -0.48,
+                                         "ratio":  -0.54,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.04 16:09"
+                                         "asof":  "2026.09.04 20:40"
                                      },
                                      {
                                          "name":  "중국 CNY",
                                          "code":  "CNYKRW",
-                                         "value":  "201.41",
+                                         "value":  "201.42",
                                          "unit":  "원",
-                                         "change":  "0.81",
+                                         "change":  "0.80",
                                          "change_unit":  "",
                                          "ratio":  -0.4,
                                          "dir":  "down",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.04 16:09"
+                                         "asof":  "2026.09.04 20:40"
                                      }
                                  ]
                    },
@@ -194,26 +194,26 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "국고채 3년",
                                          "code":  "KTB3Y",
-                                         "value":  "3.884",
+                                         "value":  "3.883",
                                          "unit":  "%",
-                                         "change":  "0.004",
+                                         "change":  "0.005",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "down",
                                          "note":  "체결 기준",
-                                         "asof":  "2026.09.04 15:49"
+                                         "asof":  "2026.09.04 16:19"
                                      },
                                      {
                                          "name":  "국고채 5년",
                                          "code":  "KTB5Y",
-                                         "value":  "4.101",
+                                         "value":  "4.118",
                                          "unit":  "%",
-                                         "change":  "0.041",
+                                         "change":  "0.024",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "down",
                                          "note":  "체결 기준",
-                                         "asof":  "2026.09.04 15:49"
+                                         "asof":  "2026.09.04 16:16"
                                      },
                                      {
                                          "name":  "국고채 10년",
@@ -232,10 +232,10 @@ window.DASHBOARD_DATA = {
                                          "code":  "CORPAA3Y",
                                          "value":  "4.56",
                                          "unit":  "%",
-                                         "change":  "0.04",
+                                         "change":  "0.00",
                                          "change_unit":  "%p",
                                          "ratio":  null,
-                                         "dir":  "down",
+                                         "dir":  "flat",
                                          "note":  "무보증 3년 · AA- 등급",
                                          "asof":  ""
                                      },
@@ -285,9 +285,9 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "휘발유",
                                          "code":  "GASOLINE_KR",
-                                         "value":  "1859.49",
+                                         "value":  "1859.48",
                                          "unit":  "원",
-                                         "change":  "0.17",
+                                         "change":  "0.18",
                                          "change_unit":  "",
                                          "ratio":  -0.01,
                                          "dir":  "down",
@@ -309,14 +309,14 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "국내 금",
                                          "code":  "GOLD_KR",
-                                         "value":  "194119.15",
+                                         "value":  "194099.82",
                                          "unit":  "원",
-                                         "change":  "1,446.01",
+                                         "change":  "1,465.34",
                                          "change_unit":  "",
-                                         "ratio":  -0.74,
+                                         "ratio":  -0.75,
                                          "dir":  "down",
                                          "note":  "신한은행 기준",
-                                         "asof":  "2026.09.04 16:09"
+                                         "asof":  "2026.09.04 20:44"
                                      }
                                  ]
                    },
@@ -382,7 +382,7 @@ window.DASHBOARD_DATA = {
                      "slot":  1,
                      "label":  "Private Equity",
                      "sublabel":  "사모펀드·바이아웃",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "사모펀드 운용사 VIG파트너스, 유신혁 부대표·강성욱 총괄 영입",
@@ -511,7 +511,7 @@ window.DASHBOARD_DATA = {
                      "slot":  2,
                      "label":  "Private Debt",
                      "sublabel":  "사모대출·프라이빗 크레딧",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "국민연금, 호주 사모대출 운용사 지분 9.9%로 확대…‘GP 투자’ 보폭 넓힌다",
@@ -640,7 +640,7 @@ window.DASHBOARD_DATA = {
                      "slot":  3,
                      "label":  "Venture Capital",
                      "sublabel":  "벤처투자·스타트업",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "엠브릭스, 80억 시리즈B 투자 유치…생체 내 CAR-T 개발 가속",
@@ -769,7 +769,7 @@ window.DASHBOARD_DATA = {
                      "slot":  4,
                      "label":  "해외 부동산",
                      "sublabel":  "글로벌 상업용·오피스",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "리츠로 보는 글로벌 상업용 부동산 시장, 중요한 것은 우량 자산에 투자하는 것",
@@ -898,7 +898,7 @@ window.DASHBOARD_DATA = {
                      "slot":  5,
                      "label":  "해외 인프라",
                      "sublabel":  "글로벌 인프라 자산",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "1000억달러짜리 프로젝트도 멈췄다…美 확산하는 ‘데이터센터 반란’",
@@ -991,7 +991,7 @@ window.DASHBOARD_DATA = {
                      "slot":  6,
                      "label":  "국내 부동산",
                      "sublabel":  "상업용·리츠·개발",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "국내 상장 리츠, ‘초과배당·비과세’ 카드로 주주 달래기… 배당 착시·원금 손실 주의 - 조선비즈",
@@ -1080,7 +1080,7 @@ window.DASHBOARD_DATA = {
                      "slot":  7,
                      "label":  "국내 인프라",
                      "sublabel":  "민자사업·SOC",
-                     "stale":  false,
+                     "stale":  true,
                      "items":  [
                                    {
                                        "title":  "대구 달서천 하수처리 전 구역 우·오수 분류화 속도…5구역 BTL 사업 ‘순항’",
@@ -1158,6 +1158,43 @@ window.DASHBOARD_DATA = {
                  }
              ],
     "errors":  [
-
+                   "Private Equity 뉴스 쿼리 하나를 받지 못했습니다: \"사모펀드\" OR \"PEF\" OR \"프라이빗에쿼티\"",
+                   "Private Equity 뉴스 쿼리 하나를 받지 못했습니다: \"바이아웃 펀드\" OR \"경영권 인수\" OR \"블라인드 펀드 결성\"",
+                   "Private Equity 뉴스 쿼리 하나를 받지 못했습니다: \"MBK파트너스\" OR \"한앤컴퍼니\" OR \"IMM PE\" OR \"스틱인베스트먼트\"",
+                   "Private Equity 뉴스 수집 실패",
+                   "Private Debt 뉴스 쿼리 하나를 받지 못했습니다: \"사모대출\" OR \"프라이빗 크레딧\" OR \"private credit\"",
+                   "Private Debt 뉴스 쿼리 하나를 받지 못했습니다: \"메자닌 투자\" OR \"인수금융\" OR \"사모사채\"",
+                   "Private Debt 뉴스 쿼리 하나를 받지 못했습니다: \"대출채권 투자\" OR \"직접대출 펀드\" OR \"private debt\"",
+                   "Private Debt 뉴스 수집 실패",
+                   "Venture Capital 뉴스 쿼리 하나를 받지 못했습니다: \"벤처캐피탈\" OR \"벤처캐피털\"",
+                   "Venture Capital 뉴스 쿼리 하나를 받지 못했습니다: \"시리즈A 투자유치\" OR \"시리즈B 투자유치\" OR \"시리즈C 투자유치\"",
+                   "Venture Capital 뉴스 쿼리 하나를 받지 못했습니다: \"벤처펀드 결성\" OR \"모태펀드\" OR \"신기술투자조합\"",
+                   "Venture Capital 뉴스 수집 실패",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"해외 부동산 투자\" OR \"해외부동산 펀드\"",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"글로벌 상업용 부동산\" OR \"해외 오피스 빌딩\" OR \"미국 상업용 부동산\"",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"유럽 부동산 시장\" OR \"일본 부동산 투자\" OR \"해외 물류센터 투자\"",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"미국 리츠\" OR \"일본 리츠\"",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"뉴욕 오피스\" OR \"런던 오피스\" OR \"도쿄 부동산\" OR \"해외 오피스 공실률\"",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"글로벌 부동산 시장\" OR \"해외 부동산 펀드 손실\" OR \"해외 대체투자\"",
+                   "해외 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"싱가포르 부동산\" OR \"베트남 부동산\" OR \"호주 부동산 투자\"",
+                   "해외 부동산 뉴스 수집 실패",
+                   "해외 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"해외 인프라 투자\" OR \"글로벌 인프라 펀드\"",
+                   "해외 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"브룩필드\" OR \"해외 발전소 인수\" OR \"글로벌 인프라 자산\"",
+                   "해외 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"해외 신재생 발전 투자\" OR \"해외 데이터센터 투자\" OR \"해외 공항 민영화\"",
+                   "해외 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"해외 도로 사업\" OR \"해외 항만 투자\" OR \"글로벌 에너지 인프라\"",
+                   "해외 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"해외 전력망 투자\" OR \"글로벌 인프라 M\u0026A\" OR \"해외 수처리 사업\"",
+                   "해외 인프라 뉴스 수집 실패",
+                   "국내 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"국내 상업용 부동산\" OR \"오피스 빌딩 매각\"",
+                   "국내 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"상장리츠\" OR \"리츠 배당\"",
+                   "국내 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"부동산 PF\" OR \"물류센터 거래\" OR \"부동산 개발사업\"",
+                   "국내 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"이지스자산운용\" OR \"코람코자산신탁\" OR \"마스턴투자운용\" OR \"캡스톤자산운용\"",
+                   "국내 부동산 뉴스 쿼리 하나를 받지 못했습니다: \"서울 오피스 공실률\" OR \"지식산업센터\" OR \"데이터센터 부지\"",
+                   "국내 부동산 뉴스 수집 실패",
+                   "국내 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"민자사업\" OR \"BTL 사업\" OR \"BTO 사업\"",
+                   "국내 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"사회기반시설 투자\" OR \"국내 인프라 펀드\"",
+                   "국내 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"도로 민자\" OR \"철도 민자사업\" OR \"환경기초시설 민자\"",
+                   "국내 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"국가철도망\" OR \"GTX 사업\" OR \"고속도로 민자\"",
+                   "국내 인프라 뉴스 쿼리 하나를 받지 못했습니다: \"신재생 프로젝트 파이낸싱\" OR \"국내 발전소 매각\" OR \"인프라 자산 인수\"",
+                   "국내 인프라 뉴스 수집 실패"
                ]
 };
