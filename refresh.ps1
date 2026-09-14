@@ -278,11 +278,12 @@ $BOND_TENORS = @(
 )
 
 function Get-BondYields {
+  param([array]$Tenors = $BOND_TENORS, [string]$Note = "체결 기준", [string]$Label = "국고채 수익률")
   $rows = @()
-  Log "· 국고채 수익률 …"
+  Log ("· " + $Label + " …")
 
   $h = @{ "Referer" = "https://m.stock.naver.com/"; "Accept" = "application/json" }
-  foreach ($t in $BOND_TENORS) {
+  foreach ($t in $Tenors) {
     try {
       $j = (Get-Web ("https://api.stock.naver.com/marketindex/bond/" + $t.code) $h) | ConvertFrom-Json
 
@@ -306,7 +307,7 @@ function Get-BondYields {
       # 시장지표 표의 국고채는 최종호가수익률이고 이쪽은 체결 기준이라 값이 조금 다르다
       $rows += (New-Metric -Name $t.label -Value $valTxt -Unit "%" `
                            -Change $chgTxt -ChangeUnit "%p" -Ratio $null `
-                           -Dir $dir -Note "체결 기준" -AsOf $asof -Code $t.hist)
+                           -Dir $dir -Note $Note -AsOf $asof -Code $t.hist)
     } catch {
       Fail ($t.label + " 수집 실패")
     }
@@ -327,6 +328,58 @@ function Sort-Rates($rates) {
     $i = $RATE_ORDER.IndexOf($_.name)
     if ($i -lt 0) { 99 } else { $i }
   } })
+}
+
+# ────────────────────────────────────────────────────────────────
+# 1-3. 미국 금리 — 연준 기준금리(뉴욕연은) · 미국 국채(네이버 채권 API)
+# ────────────────────────────────────────────────────────────────
+
+# 미국 국채도 국고채와 같은 네이버 채권 API 로 받는다 (US2YT=RR, US30YT=RR 도 가능).
+# localTradedAt 이 미국 동부시간이라 이력 날짜도 동부시간 기준으로 찍힌다.
+$US_BOND_TENORS = @(
+  @{ code = "US10YT=RR"; label = "미국 국채 10년"; hist = "UST10Y" }
+)
+
+# 연준 기준금리는 뉴욕연은 마켓 API 에서 받는다. 매 영업일 아침(ET) 전날의
+# 실효연방기금금리(EFFR)를 고시하는데, 같은 레코드에 그날 적용된 목표범위
+# (targetRateFrom/To)가 붙어 온다. 키가 필요 없고 연준 공식 자료다.
+# FRED 도 같은 값을 주지만 이 PC 에서는 타임아웃이 잦아 쓰지 않았다.
+#
+# 표시는 관행대로 "3.50~3.75" 범위로 하고, 이력(차트)에는 상단값을 쌓는다 —
+# 범위 문자열은 숫자가 아니라 Update-History 가 그냥 건너뛰기 때문이다.
+function Get-FedFunds {
+  Log "· 미국 기준금리 …"
+  $j = (Get-Web "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/2.json" `
+                @{ "Accept" = "application/json" }) | ConvertFrom-Json
+  $rows = @($j.refRates)
+  if ($rows.Count -eq 0) { throw "refRates 가 비어 있습니다" }
+
+  $cur   = $rows[0]
+  $lower = [double]$cur.targetRateFrom
+  $upper = [double]$cur.targetRateTo
+  $effr  = [double]$cur.percentRate
+
+  # 전일 목표범위와 비교한다. FOMC 다음 날에만 0 이 아니다.
+  $chg = 0.0
+  if ($rows.Count -ge 2) { $chg = $upper - [double]$rows[1].targetRateTo }
+  $dir = "flat"
+  if ($chg -gt 0) { $dir = "up" } elseif ($chg -lt 0) { $dir = "down" }
+
+  $asof = ([string]$cur.effectiveDate) -replace "-", "."
+  $m = New-Metric -Name "미국 기준금리" `
+                  -Value ($lower.ToString("0.00") + "~" + $upper.ToString("0.00")) -Unit "%" `
+                  -Change ([Math]::Abs($chg).ToString("0.00")) -ChangeUnit "%p" -Ratio $null `
+                  -Dir $dir -Note ("연준 목표범위 · EFFR " + $effr.ToString("0.00") + "%") `
+                  -AsOf $asof -Code "FEDFUNDS"
+  $m.hist_value = $upper.ToString("0.00")
+  return $m
+}
+
+function Get-USRates {
+  $rows = @()
+  try { $rows += @(Get-FedFunds) } catch { Fail "미국 기준금리 수집 실패" }
+  $rows += @(Get-BondYields -Tenors $US_BOND_TENORS -Note "체결 기준 · 미국 동부시간" -Label "미국 국채 수익률")
+  return $rows
 }
 
 # ────────────────────────────────────────────────────────────────
@@ -971,7 +1024,10 @@ function Update-History($market) {
       $code = Resolve-MetricCode $m
       if (-not $code) { $unknown += $m.name; continue }
 
-      $v = To-Number $m.value
+      # 값이 범위("3.50~3.75")처럼 숫자가 아닌 항목은 hist_value 에 쌓을 숫자를 따로 둔다
+      $v = $null
+      if ($m.hist_value) { $v = To-Number $m.hist_value }
+      if ($null -eq $v) { $v = To-Number $m.value }
       if ($null -eq $v) { continue }
 
       $key = (Get-MetricDate $m.asof) + "|" + $code
@@ -1040,20 +1096,26 @@ if ($mi -and $mi.rates.Count) {
   $mi.rates = Sort-Rates $mi.rates
 }
 
+# 미국 금리는 네이버 시장지표와 무관한 소스라 따로 받는다 (실패해도 다른 그룹은 그대로).
+$usRates = @()
+try { $usRates = @(Get-USRates) } catch { Fail "미국 금리 수집 실패" }
+
 $miGroups = @(
-  @{ label="환율";           note="하나은행 고시 기준";       key="fx"    },
-  @{ label="국내시장금리";   note="최종 고시치 · 등락은 %p";  key="rates" },
-  @{ label="유가·금 시세";   note="국제·국내 시세";           key="oil"   },
-  @{ label="국제 시장 환율"; note="주요 통화쌍";              key="world" }
+  @{ label="환율";           note="하나은행 고시 기준";               key="fx"    },
+  @{ label="국내시장금리";   note="최종 고시치 · 등락은 %p";          key="rates" },
+  @{ label="미국 금리";      note="연준 목표범위 · 국채는 체결 기준"; items=$usRates },
+  @{ label="유가·금 시세";   note="국제·국내 시세";                   key="oil"   },
+  @{ label="국제 시장 환율"; note="주요 통화쌍";                      key="world" }
 )
 
 foreach ($g in $miGroups) {
   $items = @()
-  if ($mi) { $items = @($mi[$g.key]) }
+  if ($g.ContainsKey("items")) { $items = @($g.items) }
+  elseif ($mi) { $items = @($mi[$g.key]) }
   if ($items.Count -gt 0) {
     $market += [ordered]@{ label=$g.label; note=$g.note; stale=$false; items=@($items) }
   } else {
-    if ($mi) { Fail ($g.label + " 항목을 찾지 못했습니다 (페이지 구조 변경 가능성)") }
+    if ($mi -and $g.key) { Fail ($g.label + " 항목을 찾지 못했습니다 (페이지 구조 변경 가능성)") }
     $p = Get-PrevGroup $prev $g.label
     if ($p) { $market += [ordered]@{ label=$p.label; note=$p.note; stale=$true; items=@($p.items) } }
   }

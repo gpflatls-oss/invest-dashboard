@@ -69,7 +69,8 @@ function Get-Json([string]$Url, [hashtable]$Headers, [int]$Retries = 2) {
 #
 # 소스별 커버리지
 #   yahoo : 키 불필요. 지수·환율·원자재.
-#   naver : 키 불필요. 국고채. m.stock 채권 화면이 쓰는 일별 시세 API.
+#   naver : 키 불필요. 국고채·미국 국채. m.stock 채권 화면이 쓰는 일별 시세 API.
+#   nyfed : 키 불필요. 연준 기준금리(목표범위 상단). 뉴욕연은 마켓 API.
 #   ecos  : 한국은행 키 필요. 네이버가 이력 API 를 주지 않는 국내 금리들.
 #   (없음): 휘발유(오피넷)·국내 금은 과거 API 가 없어 백필하지 못한다.
 #           refresh.ps1 이 도는 날부터 앞으로만 쌓인다.
@@ -106,6 +107,12 @@ $BACKFILL = @(
   @{ code = "KTB3Y";       source = "naver"; symbol = "KR3YT=RR" },
   @{ code = "KTB5Y";       source = "naver"; symbol = "KR5YT=RR" },
   @{ code = "KTB10Y";      source = "naver"; symbol = "KR10YT=RR" },
+
+  # ── 미국 금리
+  #    국채는 국고채와 같은 네이버 채권 API. 기준금리는 뉴욕연은 EFFR 레코드에
+  #    붙어 오는 목표범위 상단(targetRateTo)이다 — refresh.ps1 이 쌓는 값과 같다.
+  @{ code = "UST10Y";      source = "naver"; symbol = "US10YT=RR" },
+  @{ code = "FEDFUNDS";    source = "nyfed" },
 
   # ── 국내 금리 (ECOS 817Y002 = 시장금리(일별). 키가 없으면 통째로 건너뛴다)
   #
@@ -194,6 +201,21 @@ function Get-NaverBondSeries([string]$symbol, [datetime]$from, [datetime]$to) {
     # 요청 구간보다 과거로 넘어갔으면 더 볼 필요가 없다
     if ($oldest -and ($oldest -lt $fromText)) { break }
     Start-Sleep -Milliseconds 300
+  }
+  return $out
+}
+
+# 뉴욕연은 EFFR 일별 레코드. 각 영업일에 적용된 목표범위가 함께 온다.
+# 한 번에 전 구간을 주므로 페이징이 없다.
+function Get-NyFedSeries([datetime]$from, [datetime]$to) {
+  $url = "https://markets.newyorkfed.org/api/rates/unsecured/effr/search.json?startDate=" +
+         $from.ToString("yyyy-MM-dd") + "&endDate=" + $to.ToString("yyyy-MM-dd")
+  $j = Get-Json $url
+  $out = @{}
+  foreach ($r in @($j.refRates)) {
+    if (-not $r.effectiveDate) { continue }
+    $v = To-Number ([string]$r.targetRateTo)
+    if ($null -ne $v) { $out[[string]$r.effectiveDate] = $v }
   }
   return $out
 }
@@ -374,6 +396,7 @@ foreach ($t in $targets) {
     switch ($t.source) {
       "yahoo"   { $series = Get-YahooSeries $t.symbol $fromDate $toDate }
       "naver"   { $series = Get-NaverBondSeries $t.symbol $fromDate $toDate }
+      "nyfed"   { $series = Get-NyFedSeries $fromDate $toDate }
       "ecos"    { $series = Get-EcosSeries $t $fromDate $toDate }
       "derived" { $series = Get-DerivedSeries $t $fromDate $toDate }
     }
