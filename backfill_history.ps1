@@ -69,12 +69,12 @@ function Get-Json([string]$Url, [hashtable]$Headers, [int]$Retries = 2) {
 #
 # 소스별 커버리지
 #   yahoo : 키 불필요. 지수·환율·원자재.
-#   naver : 키 불필요. 국고채·미국 국채. m.stock 채권 화면이 쓰는 일별 시세 API.
+#   naver : 키 불필요. 국고채·해외 국채·국내 금리·국내 금·휘발유. 네이버 시장지표
+#           JSON API 의 일별 시세 (api.stock.naver.com/marketindex/{cat}/{code}/prices).
 #   nyfed : 키 불필요. 연준 기준금리(목표범위 상단)·SOFR. 뉴욕연은 마켓 API.
 #   spread: 이미 history.csv 에 있는 두 코드의 차이. 원천이 먼저 채워져 있어야 한다.
-#   ecos  : 한국은행 키 필요. 네이버가 이력 API 를 주지 않는 국내 금리들.
-#   (없음): 휘발유(오피넷)·국내 금은 과거 API 가 없어 백필하지 못한다.
-#           refresh.ps1 이 도는 날부터 앞으로만 쌓인다.
+#   ecos  : 한국은행 키 필요. 국내 금리의 예비 경로 (지금은 대상 없음).
+#   (없음): 없다. 모든 지표에 백필 소스가 있다 — $NO_BACKFILL 은 비어 있다.
 
 $BACKFILL = @(
   # ── 주요 지수 (야후)
@@ -104,10 +104,23 @@ $BACKFILL = @(
   @{ code = "WTI";         source = "yahoo"; symbol = "CL=F";      scale = 1 },
   @{ code = "GOLD_INTL";   source = "yahoo"; symbol = "GC=F";      scale = 1 },
 
-  # ── 국고채 (네이버 채권 일별 시세)
+  # ── 국고채 (네이버 채권 일별 시세. cat 을 생략하면 bond)
   @{ code = "KTB3Y";       source = "naver"; symbol = "KR3YT=RR" },
   @{ code = "KTB5Y";       source = "naver"; symbol = "KR5YT=RR" },
   @{ code = "KTB10Y";      source = "naver"; symbol = "KR10YT=RR" },
+
+  # ── 국내 금리 (네이버 domesticInterest. refresh.ps1 이 쓰는 것과 같은 코드)
+  #    금투협·한국은행·은행연합회 고시치를 네이버가 일별로 쌓아 둔 것이라 키가 필요 없다.
+  #    ECOS 로도 받을 수 있지만(아래) 키가 있어야 해서 이쪽을 먼저 쓴다.
+  @{ code = "CALL";        source = "naver"; cat = "domesticInterest"; symbol = "KRCALLBOKK" },
+  @{ code = "CD91";        source = "naver"; cat = "domesticInterest"; symbol = "KFIA114000" },
+  @{ code = "CORPAA3Y";    source = "naver"; cat = "domesticInterest"; symbol = "KFIA103009" },
+  @{ code = "COFIX_BAL";   source = "naver"; cat = "domesticInterest"; symbol = "KRCOFIXOUTB" },
+  @{ code = "COFIX_NEW";   source = "naver"; cat = "domesticInterest"; symbol = "KRCOFIXMANF" },
+
+  # ── 국내 금·휘발유 (네이버 metals / energy. KRX 금시장 1g · 오피넷 전국 평균)
+  @{ code = "GOLD_KR";     source = "naver"; cat = "metals"; symbol = "M04020000" },
+  @{ code = "GASOLINE_KR"; source = "naver"; cat = "energy"; symbol = "OIL_GSL" },
 
   # ── 해외 금리
   #    국채는 국고채와 같은 네이버 채권 API. 기준금리는 뉴욕연은 EFFR 레코드에
@@ -122,28 +135,20 @@ $BACKFILL = @(
   # ── 금리차 (이미 쌓인 이력에서 뺀다. 양쪽 다 있는 날만 생긴다)
   #    원천 지표 뒤에 와야 같은 실행에서 방금 받은 값으로 계산된다.
   @{ code = "UST10Y2Y";    source = "spread"; a = "UST10Y"; b = "UST2Y" },
-  @{ code = "KRUS10Y";     source = "spread"; a = "KTB10Y"; b = "UST10Y" },
+  @{ code = "KRUS10Y";     source = "spread"; a = "KTB10Y"; b = "UST10Y" }
 
-  # ── 국내 금리 (ECOS 817Y002 = 시장금리(일별). 키가 없으면 통째로 건너뛴다)
+  # ── 국내 금리 ECOS 경로 (지금은 쓰지 않는다. 네이버 domesticInterest 가 막히면 되돌린다)
   #
-  #    통계표·항목 코드는 -DiscoverEcos 817Y002 로 확인한 값이다.
-  #    721Y001(시장금리)에도 같은 이름의 항목이 있지만 그쪽은 연/분기/월만 있어
-  #    일별 이력에는 쓸 수 없다.
+  #    @{ code = "CALL";     source = "ecos"; stat = "817Y002"; item = "010101000"; cycle = "D" }
+  #    @{ code = "CD91";     source = "ecos"; stat = "817Y002"; item = "010502000"; cycle = "D" }
+  #    @{ code = "CORPAA3Y"; source = "ecos"; stat = "817Y002"; item = "010300000"; cycle = "D" }
   #
-  #    COFIX(잔액/신규취급액)는 ECOS 에 없다. 은행연합회 고시라 과거 API 가
-  #    없어 백필하지 못한다 — $NO_BACKFILL 참고.
-  @{ code = "CALL";        source = "ecos"; stat = "817Y002"; item = "010101000"; cycle = "D" },
-  @{ code = "CD91";        source = "ecos"; stat = "817Y002"; item = "010502000"; cycle = "D" },
-  @{ code = "CORPAA3Y";    source = "ecos"; stat = "817Y002"; item = "010300000"; cycle = "D" }
+  #    통계표·항목 코드는 -DiscoverEcos 817Y002 로 확인한 값이다. 721Y001(시장금리)에도
+  #    같은 이름의 항목이 있지만 연/분기/월만 있어 일별 이력에는 쓸 수 없다. COFIX 는 ECOS 에 없다.
 )
 
-# 백필 소스가 없는 지표 — 안내용
-$NO_BACKFILL = @{
-  "GASOLINE_KR" = "휘발유 (오피넷 · 과거 API 없음)"
-  "GOLD_KR"     = "국내 금 (네이버 시세 · 과거 API 없음)"
-  "COFIX_BAL"   = "COFIX 잔액 (은행연합회 고시 · ECOS 에 없음)"
-  "COFIX_NEW"   = "COFIX 신규취급액 (은행연합회 고시 · ECOS 에 없음)"
-}
+# 백필 소스가 없는 지표 — 안내용 (지금은 없다)
+$NO_BACKFILL = @{}
 
 # ────────────────────────────────────────────────────────────────
 # 소스별 수집기 — 전부 @{ "yyyy-MM-dd" = 값 } 해시테이블을 돌려준다
@@ -183,14 +188,14 @@ function Get-YahooSeries([string]$symbol, [datetime]$from, [datetime]$to) {
   return $out
 }
 
-# 네이버 채권 일별 시세. pageSize 는 60 을 넘기면 400 이 온다.
-function Get-NaverBondSeries([string]$symbol, [datetime]$from, [datetime]$to) {
+# 네이버 시장지표 일별 시세 (채권·금리·금·유가 공통). pageSize 는 60 을 넘기면 400 이 온다.
+function Get-NaverSeries([string]$cat, [string]$symbol, [datetime]$from, [datetime]$to) {
   $h = @{ "Referer" = "https://m.stock.naver.com/" }
   $out = @{}
   $fromText = $from.ToString("yyyy-MM-dd")
 
   for ($page = 1; $page -le 80; $page++) {
-    $url = "https://api.stock.naver.com/marketindex/bond/" +
+    $url = "https://api.stock.naver.com/marketindex/" + $cat + "/" +
            [Uri]::EscapeDataString($symbol) + "/prices?page=$page&pageSize=60"
     # PowerShell 5.1 의 ConvertFrom-Json 은 JSON 배열을 원소별로 내보내지 않고
     # 배열 하나를 통째로 내보낸다. @() 로 감싸면 "원소 1개(=배열)" 가 되므로
@@ -420,7 +425,10 @@ foreach ($t in $targets) {
   try {
     switch ($t.source) {
       "yahoo"   { $series = Get-YahooSeries $t.symbol $fromDate $toDate }
-      "naver"   { $series = Get-NaverBondSeries $t.symbol $fromDate $toDate }
+      "naver"   {
+        $cat = "bond"; if ($t.ContainsKey("cat")) { $cat = $t.cat }
+        $series = Get-NaverSeries $cat $t.symbol $fromDate $toDate
+      }
       "nyfed"   { $series = Get-NyFedSeries $t.path $t.field $fromDate $toDate }
       "spread"  { $series = Get-SpreadSeries $t.a $t.b $map }
       "ecos"    { $series = Get-EcosSeries $t $fromDate $toDate }

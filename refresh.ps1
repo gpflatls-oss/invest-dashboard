@@ -91,15 +91,6 @@ function To-Number([string]$s) {
   return $null
 }
 
-# 등락률을 직접 계산한다 (시장지표 페이지는 절대 등락폭만 제공)
-function Get-Ratio([double]$value, [double]$change, [string]$dir) {
-  $signed = [Math]::Abs($change)
-  if ($dir -eq "down") { $signed = -$signed }
-  $prev = $value - $signed
-  if ($prev -eq 0) { return $null }
-  return [Math]::Round(($signed / $prev) * 100.0, 2)
-}
-
 function New-Metric {
   param(
     [string]$Name, [string]$Value, [string]$Unit,
@@ -109,7 +100,6 @@ function New-Metric {
   )
   # code 는 history.csv 의 시계열 식별자다. 표시명(name)은 네이버 표기가 바뀌면
   # 같이 바뀌지만 code 는 고정이라, 이력이 끊기지 않는다.
-  # 이름으로 긁어오는 항목은 비워 두고 Resolve-MetricCode 가 나중에 채운다.
   return [ordered]@{
     name        = $Name
     code        = $Code
@@ -124,151 +114,171 @@ function New-Metric {
   }
 }
 
-# 표시명 → 시계열 코드. 네이버에서 이름으로 긁어오는 항목들이 대상이다.
-# (지수·국고채는 수집 루프에서 -Code 로 직접 넣으므로 여기 없다.)
-#
-# 이름이 바뀌면 이력이 끊기므로, 네이버 표기가 바뀌면 이 표만 고치면 된다.
-# 여기에 없는 항목은 이력을 쌓지 않고 넘어간다 (수집은 정상, 차트만 없음).
-$HISTORY_CODES = @{
-  # 환율 (하나은행 고시)
-  "미국 USD"          = "USDKRW"
-  "일본 JPY(100엔)"   = "JPYKRW100"
-  "유럽연합 EUR"      = "EURKRW"
-  "중국 CNY"          = "CNYKRW"
-  # 국제 시장 환율
-  "달러/일본 엔"      = "USDJPY"
-  "유로/달러"         = "EURUSD"
-  "영국 파운드/달러"  = "GBPUSD"
-  "달러인덱스"        = "DXY"
-  # 유가·금
-  "WTI"               = "WTI"
-  "휘발유"            = "GASOLINE_KR"
-  "국제 금"           = "GOLD_INTL"
-  "국내 금"           = "GOLD_KR"
-  # 국내시장금리
-  "CD금리(91일)"      = "CD91"
-  "콜 금리"           = "CALL"
-  "회사채 AA- (3년)"  = "CORPAA3Y"
-  "COFIX 잔액"        = "COFIX_BAL"
-  "COFIX 신규취급액"  = "COFIX_NEW"
-}
-
-# 수집 루프에서 코드를 못 넣은 항목을 이름으로 채운다.
-function Resolve-MetricCode($metric) {
-  if ($metric.code) { return $metric.code }
-  if ($HISTORY_CODES.ContainsKey($metric.name)) { return $HISTORY_CODES[$metric.name] }
-  return ""
-}
-
 # ────────────────────────────────────────────────────────────────
 # 1. 네이버 금융 시장지표 (환율 / 국제환율 / 유가·금 / 국내금리)
 # ────────────────────────────────────────────────────────────────
+#
+# finance.naver.com/marketindex 가 2026-09 에 Next.js 로 개편되면서 HTML 에 값이
+# 실려 오지 않는다(전부 클라이언트 렌더링). 그 화면이 쓰는 JSON API 를 직접 읽는다.
+#
+#   https://api.stock.naver.com/marketindex/{category}          목록
+#   https://api.stock.naver.com/marketindex/{category}/{code}   개별
+#
+# category 는 exchange / energy / metals / agricultural / domesticInterest / bond.
+# 목록 한 번에 카테고리 전체가 오므로 카테고리당 1회만 부른다. 항목은 reutersCode 로
+# 고른다 — 표시명은 네이버가 바꿀 수 있지만 코드는 고정이다.
+#
+# 개편 전 화면과 기준이 달라진 항목:
+#   국내 금  신한은행 고시 → KRX 금시장 1g 종가 (한국거래소). 이력에 단차가 있다.
+#   금리     최종호가 고시치는 같지만 고시일(localTradedAt)이 붙어 온다.
+#   달러/엔  이 API 에 없어 야후 시세로 받는다 (백필 이력과 같은 소스).
 
-# <li> 카드 형태(환율·국제환율·유가금)를 공통 파싱
-function Parse-Cards([string]$section) {
-  $rows = @()
-  if (-not $section) { return $rows }
-
-  $blocks = [regex]::Split($section, '<li[^>]*>')
-  foreach ($b in $blocks) {
-    $name = Get-Group $b '<h3 class="h_lst"><span class="blind">([^<]+)</span>'
-    if (-not $name) { continue }
-
-    $headClass = Get-Group $b '<div class="head_info([^"]*)">'
-    $inner     = Get-Group $b '<div class="head_info[^"]*">(.*?)</div>'
-    if (-not $inner) { continue }
-
-    $valueTxt  = (Get-Group $inner '<span class="value">([^<]*)</span>').Trim()
-    $unit      = (Get-Group $inner '<span class="txt_[a-z]+"><span class="blind">([^<]*)</span>').Trim()
-    $changeTxt = (Get-Group $inner '<span class="change">([^<]*)</span>').Trim()
-
-    $dir = "flat"
-    if ($headClass -match "point_up") { $dir = "up" }
-    elseif ($headClass -match "point_dn") { $dir = "down" }
-
-    $ratio = $null
-    $v = To-Number $valueTxt
-    $c = To-Number $changeTxt
-    if ($null -ne $v -and $null -ne $c -and $dir -ne "flat") { $ratio = Get-Ratio $v $c $dir }
-
-    $asof   = (Get-Group $b '<span class="time">([^<]*)</span>').Trim()
-    $source = (Get-Group $b '<span class="source">([^<]*)</span>').Trim()
-
-    $rows += (New-Metric -Name $name.Trim() -Value $valueTxt -Unit $unit `
-                         -Change $changeTxt -ChangeUnit "" -Ratio $ratio `
-                         -Dir $dir -Note $source -AsOf $asof)
-  }
-  return $rows
+$MI_ITEMS = @{
+  fx = @(
+    @{ cat = "exchange"; code = "FX_USDKRW"; name = "미국 USD";        hist = "USDKRW";    unit = "원" },
+    @{ cat = "exchange"; code = "FX_JPYKRW"; name = "일본 JPY(100엔)"; hist = "JPYKRW100"; unit = "원" },
+    @{ cat = "exchange"; code = "FX_EURKRW"; name = "유럽연합 EUR";    hist = "EURKRW";    unit = "원" },
+    @{ cat = "exchange"; code = "FX_CNYKRW"; name = "중국 CNY";        hist = "CNYKRW";    unit = "원" }
+  )
+  world = @(
+    @{ cat = "exchange"; code = "EURUSD"; name = "유로/달러";        hist = "EURUSD"; unit = "달러"; note = "전일 종가 기준" },
+    @{ cat = "exchange"; code = "GBPUSD"; name = "영국 파운드/달러"; hist = "GBPUSD"; unit = "달러"; note = "전일 종가 기준" },
+    @{ cat = "exchange"; code = ".DXY";   name = "달러인덱스";       hist = "DXY";    unit = "" }
+  )
+  oil = @(
+    @{ cat = "energy"; code = "CLcv1";     name = "WTI";     hist = "WTI";         unit = "달러"; note = "NYMEX 최근월물 · 배럴당" },
+    @{ cat = "energy"; code = "OIL_GSL";   name = "휘발유";  hist = "GASOLINE_KR"; unit = "원";   note = "한국석유공사 Opinet 기준 · 리터당" },
+    @{ cat = "metals"; code = "GCcv1";     name = "국제 금"; hist = "GOLD_INTL";   unit = "달러"; note = "COMEX 최근월물 · 트로이온스당" },
+    @{ cat = "metals"; code = "M04020000"; name = "국내 금"; hist = "GOLD_KR";     unit = "원";   note = "KRX 금시장 기준 · g당" }
+  )
+  rates = @(
+    @{ cat = "domesticInterest"; code = "KFIA114000";  name = "CD금리(91일)";     hist = "CD91";      unit = "%" },
+    @{ cat = "domesticInterest"; code = "KRCALLBOKK";  name = "콜 금리";          hist = "CALL";      unit = "%" },
+    @{ cat = "domesticInterest"; code = "KFIA103009";  name = "회사채 AA- (3년)"; hist = "CORPAA3Y";  unit = "%"; note = "무보증 3년 · AA- 등급" },
+    @{ cat = "domesticInterest"; code = "KRCOFIXOUTB"; name = "COFIX 잔액";       hist = "COFIX_BAL"; unit = "%" },
+    @{ cat = "domesticInterest"; code = "KRCOFIXMANF"; name = "COFIX 신규취급액"; hist = "COFIX_NEW"; unit = "%" }
+  )
 }
 
-# 네이버는 회사채 등급을 표기하지 않는다. 국내시장금리의 회사채(3년)는
-# 금융투자협회가 고시하는 무보증 3년 AA- 최종호가수익률이다.
-# 실제 값으로도 확인된다 — 국고채 3년 대비 스프레드가 70bp 안팎으로,
-# BBB- 였다면 수백 bp 벌어져 있어야 한다.
-$RATE_LABELS = @{
-  "회사채 (3년)" = @{ name = "회사채 AA- (3년)"; note = "무보증 3년 · AA- 등급" }
-  "국고채 (3년)" = @{ name = "국고채 3년";       note = "" }
+# 카테고리 목록을 reutersCode → 항목 사전으로. exchange 는 normalList/majorList 로
+# 나뉘어 오고(EURUSD 같은 통화쌍은 majorList 에만 있다) 나머지는 배열 하나다.
+function Get-MarketIndexList([string]$cat) {
+  $h = @{ "Referer" = "https://m.stock.naver.com/"; "Accept" = "application/json" }
+  $j = (Get-Web ("https://api.stock.naver.com/marketindex/" + $cat) $h) | ConvertFrom-Json
+
+  $items = @()
+  if ($j -is [array]) { $items = $j }
+  else {
+    foreach ($k in "normalList", "majorList") { if ($j.$k) { $items += @($j.$k) } }
+  }
+
+  $map = @{}
+  foreach ($it in $items) {
+    if ($it.reutersCode -and -not $map.ContainsKey($it.reutersCode)) { $map[$it.reutersCode] = $it }
+  }
+  return $map
 }
 
-function Parse-Rates([string]$html) {
-  $rows = @()
-  $tbody = Get-Group $html '<h3 class="h_interest"><span>국내시장금리</span></h3>.*?<tbody>(.*?)</tbody>'
-  if (-not $tbody) { return $rows }
+# "2026-09-14T15:15:43+09:00" → "2026.09.14 15:15". 금리처럼 시각이 00:00 인 고시치는
+# 날짜만 남긴다. 현지 시각을 그대로 쓴다 — 이력 날짜가 그 시장의 거래일과 맞아야 한다.
+function Format-AsOf([string]$iso) {
+  if (-not $iso) { return "" }
+  try {
+    $d = [datetimeoffset]$iso
+    if ($d.Hour -eq 0 -and $d.Minute -eq 0) { return $d.ToString("yyyy.MM.dd") }
+    return $d.ToString("yyyy.MM.dd HH:mm")
+  } catch { return "" }
+}
 
-  $trs = [regex]::Matches($tbody, '<tr[^>]*>(.*?)</tr>', "Singleline")
-  foreach ($tr in $trs) {
-    $row  = $tr.Groups[1].Value
-    $name = (Get-Group $row '<th[^>]*>.*?<span>([^<]+)</span>').Trim()
-    if (-not $name) { continue }
+# API 항목 하나를 지표로. 등락폭은 부호가 붙어 오므로 절대값으로 두고 방향은 따로 둔다.
+# 금리(IsRate)는 %p 변화가 의미 있으므로 등락률을 싣지 않는다.
+function ConvertTo-Metric($spec, $it, [bool]$IsRate) {
+  $dir = "flat"
+  if ($it.fluctuationsType.text -eq "상승") { $dir = "up" }
+  elseif ($it.fluctuationsType.text -eq "하락") { $dir = "down" }
 
-    $tds = [regex]::Matches($row, '<td[^>]*>(.*?)</td>', "Singleline")
-    if ($tds.Count -lt 2) { continue }
-
-    $valueTxt = ($tds[0].Groups[1].Value -replace '<[^>]+>', '').Trim()
-    $chgCell  = $tds[1].Groups[1].Value
-    $dirWord  = (Get-Group $chgCell 'alt="([^"]*)"').Trim()
-
-    $dir = "flat"
-    if ($dirWord -eq "상승") { $dir = "up" }
-    elseif ($dirWord -eq "하락") { $dir = "down" }
-
-    $changeTxt = ($chgCell -replace '<[^>]+>', '').Trim()
-    $ratio = $null   # 금리는 %p 변화가 의미 있으므로 비율은 표시하지 않는다
-
-    $note = ""
-    if ($RATE_LABELS.ContainsKey($name)) {
-      $note = $RATE_LABELS[$name].note
-      $name = $RATE_LABELS[$name].name
-    }
-
-    $rows += (New-Metric -Name $name -Value $valueTxt -Unit "%" `
-                         -Change $changeTxt -ChangeUnit "%p" -Ratio $ratio `
-                         -Dir $dir -Note $note -AsOf "")
+  $chgTxt = ""
+  if ($null -ne (To-Number ([string]$it.fluctuations))) {
+    $chgTxt = ([string]$it.fluctuations).TrimStart("-")
   }
-  return $rows
+
+  $ratio = $null; $chgUnit = ""
+  if ($IsRate) { $chgUnit = "%p" }
+  else {
+    $r = To-Number ([string]$it.fluctuationsRatio)
+    if ($null -ne $r) { $ratio = $r }
+  }
+
+  $note = ""
+  if ($spec.note) { $note = $spec.note }
+  elseif ($it.stockExchangeType.nameKor) { $note = $it.stockExchangeType.nameKor + " 기준" }
+
+  return (New-Metric -Name $spec.name -Value ([string]$it.closePrice) -Unit $spec.unit `
+                     -Change $chgTxt -ChangeUnit $chgUnit -Ratio $ratio `
+                     -Dir $dir -Note $note -AsOf (Format-AsOf ([string]$it.localTradedAt)) -Code $spec.hist)
+}
+
+# 달러/엔은 네이버 API 에 없다(원화 교차만 있다). 야후 일봉의 마지막 두 종가로 만든다 —
+# 마지막 봉은 장중 현재가라 전일 종가 대비가 된다. 백필 이력(JPY=X)과 같은 소스다.
+function Get-UsdJpy {
+  $j = (Get-Web "https://query1.finance.yahoo.com/v8/finance/chart/JPY=X?range=5d&interval=1d" `
+                @{ "Accept" = "application/json" }) | ConvertFrom-Json
+  $r = $j.chart.result[0]
+  $closes = @($r.indicators.quote[0].close | Where-Object { $null -ne $_ })
+  if ($closes.Count -lt 2) { throw "달러/엔 종가가 부족합니다" }
+
+  $cur  = [double]$closes[-1]
+  $prev = [double]$closes[-2]
+  $chg  = $cur - $prev
+  $dir = "flat"
+  if ($chg -gt 0) { $dir = "up" } elseif ($chg -lt 0) { $dir = "down" }
+  $ratio = $null
+  if ($prev -ne 0) { $ratio = [Math]::Round($chg / $prev * 100.0, 2) }
+
+  $asof = ""
+  if ($r.meta.regularMarketTime) {
+    $asof = ([datetimeoffset]::FromUnixTimeSeconds([long]$r.meta.regularMarketTime)).ToOffset([timespan]::FromHours(9)).ToString("yyyy.MM.dd HH:mm")
+  }
+  return (New-Metric -Name "달러/일본 엔" -Value $cur.ToString("0.00") -Unit "엔" `
+                     -Change ([Math]::Abs($chg).ToString("0.00")) -ChangeUnit "" -Ratio $ratio `
+                     -Dir $dir -Note "야후 파이낸스 기준" -AsOf $asof -Code "USDJPY")
 }
 
 function Get-MarketIndex {
   Log "· 네이버 금융 시장지표 …"
-  $html = Get-Web "https://finance.naver.com/marketindex/"
 
-  $fxSec    = Get-Group $html 'id="exchangeList">(.*?)</ul>'
-  $worldSec = Get-Group $html 'id="worldExchangeList">(.*?)</ul>'
-  $oilSec   = Get-Group $html 'id="oilGoldList">(.*?)</ul>'
+  # 필요한 카테고리만 한 번씩
+  $cats = @()
+  foreach ($key in $MI_ITEMS.Keys) { foreach ($spec in $MI_ITEMS[$key]) { if ($cats -notcontains $spec.cat) { $cats += $spec.cat } } }
 
-  return [ordered]@{
-    fx     = Parse-Cards $fxSec
-    world  = Parse-Cards $worldSec
-    oil    = Parse-Cards $oilSec
-    rates  = Parse-Rates $html
+  $lists = @{}
+  foreach ($cat in $cats) {
+    try { $lists[$cat] = Get-MarketIndexList $cat }
+    catch { Fail ("시장지표 " + $cat + " 목록 수집 실패"); $lists[$cat] = @{} }
   }
+
+  $out = [ordered]@{}
+  foreach ($key in "fx", "rates", "oil", "world") {
+    $rows = @()
+    foreach ($spec in $MI_ITEMS[$key]) {
+      $it = $lists[$spec.cat][$spec.code]
+      if (-not $it) { Fail ($spec.name + " 을(를) 시장지표 목록에서 찾지 못했습니다 (" + $spec.code + ")"); continue }
+      $rows += (ConvertTo-Metric $spec $it ($key -eq "rates"))
+    }
+    $out[$key] = $rows
+  }
+
+  # 국제 시장 환율의 첫 항목은 달러/엔 (이전 화면과 같은 순서)
+  try { $out.world = @(@(Get-UsdJpy) + @($out.world)) } catch { Fail "달러/엔 수집 실패" }
+
+  return $out
 }
 
 # ────────────────────────────────────────────────────────────────
-# 1-2. 한국은행 ECOS — 네이버에 없는 만기·등급
+# 1-2. 국고채 — 네이버 채권 API (체결 기준)
 # ────────────────────────────────────────────────────────────────
 
-# 네이버 시장지표 표에는 국고채 3년밖에 없다. 장기물은 모바일 채권 화면이 쓰는
+# 국내시장금리 목록(domesticInterest)에는 국고채가 없다. 모바일 채권 화면이 쓰는
 # API 에서 받는다. 코드는 로이터 형식이다 (KR5YT=RR).
 # 1·2·20·30년도 같은 방식으로 받을 수 있다.
 $BOND_TENORS = @(
@@ -1016,26 +1026,6 @@ function Save-History($map) {
   [IO.File]::WriteAllText($HistFile, $sb.ToString(), (New-Object Text.UTF8Encoding($false)))
 }
 
-# 이름으로 긁어온 항목에 code 를 채워 넣는다.
-#
-# 이걸 빠뜨리면 data.js 의 code 가 빈 채로 나가고, 대시보드는 지표와
-# history.csv 를 code 로 잇기 때문에 차트가 붙지 않는다. 수집 루프에서
-# -Code 를 직접 넘긴 지수·국고채만 살아남는다.
-function Set-MetricCodes($market) {
-  foreach ($g in $market) {
-    foreach ($m in @($g.items)) {
-      $code = Resolve-MetricCode $m
-      if (-not $code) { continue }
-      if ($m -is [System.Collections.IDictionary]) {
-        $m.code = $code
-      } else {
-        # 이전 data.js 에서 되살린 항목은 PSCustomObject 라 속성을 붙여야 한다
-        $m | Add-Member -NotePropertyName code -NotePropertyValue $code -Force
-      }
-    }
-  }
-}
-
 # history.csv 와 같은 내용을 script 태그로 읽을 수 있는 형태로도 쓴다.
 #
 # 브라우저는 file:// 에서 fetch 를 막는다. index.html 을 더블클릭해서 열면
@@ -1088,7 +1078,7 @@ function Update-History($market) {
     if ($g.stale) { continue }
 
     foreach ($m in @($g.items)) {
-      $code = Resolve-MetricCode $m
+      $code = $m.code
       if (-not $code) { $unknown += $m.name; continue }
 
       # 값이 범위("3.50~3.75")처럼 숫자가 아닌 항목은 hist_value 에 쌓을 숫자를 따로 둔다
@@ -1150,18 +1140,13 @@ if ($indices.Count -gt 0) {
 $mi = $null
 try { $mi = Get-MarketIndex } catch { Fail "네이버 금융 시장지표 수집 실패" }
 
-# 네이버 시장지표 표에 없는 만기를 채권 API 로 채운다.
-# 표의 국고채(3년)는 빼고 3·5·10년을 같은 기준(체결)으로 통일한다 — 기준이 다른
-# 3년물이 둘 나란히 있으면 값이 어긋나 보인다.
-#
-# 국고채는 시장지표 표가 깨져도 받는다 — 한미 금리차 계산에 10년물이 필요하다.
+# 국고채 3·5·10년은 채권 API 로 받아 국내시장금리 그룹에 끼운다 (체결 기준).
+# 시장지표가 실패해도 받는다 — 한미 금리차 계산에 10년물이 필요하다.
 $bonds = @()
 try { $bonds = @(Get-BondYields) } catch { Fail "국고채 수익률 수집 실패" }
 
 if ($mi -and $mi.rates.Count) {
-  if ($bonds.Count) {
-    $mi.rates = @(@($mi.rates | Where-Object { $_.name -ne "국고채 3년" }) + $bonds)
-  }
+  if ($bonds.Count) { $mi.rates = @(@($mi.rates) + $bonds) }
   $mi.rates = Sort-Rates $mi.rates
 }
 
@@ -1184,14 +1169,11 @@ foreach ($g in $miGroups) {
   if ($items.Count -gt 0) {
     $market += [ordered]@{ label=$g.label; note=$g.note; stale=$false; items=@($items) }
   } else {
-    if ($mi -and $g.key) { Fail ($g.label + " 항목을 찾지 못했습니다 (페이지 구조 변경 가능성)") }
+    if ($mi -and $g.key) { Fail ($g.label + " 항목을 하나도 받지 못했습니다 (API 변경 가능성)") }
     $p = Get-PrevGroup $prev $g.label
     if ($p) { $market += [ordered]@{ label=$p.label; note=$p.note; stale=$true; items=@($p.items) } }
   }
 }
-
-# data.js 로 나가는 지표에 code 를 채운다 (차트가 이력과 잇는 열쇠).
-try { Set-MetricCodes $market } catch { Fail "지표 코드 지정 실패" }
 
 # 지표 이력. 뉴스보다 먼저 쌓는다 — 뉴스 수집이 길고 실패도 잦은데,
 # 거기서 죽더라도 이번 회차 지표는 이력에 남아야 한다.
