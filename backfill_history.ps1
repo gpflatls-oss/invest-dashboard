@@ -70,7 +70,8 @@ function Get-Json([string]$Url, [hashtable]$Headers, [int]$Retries = 2) {
 # 소스별 커버리지
 #   yahoo : 키 불필요. 지수·환율·원자재.
 #   naver : 키 불필요. 국고채·미국 국채. m.stock 채권 화면이 쓰는 일별 시세 API.
-#   nyfed : 키 불필요. 연준 기준금리(목표범위 상단). 뉴욕연은 마켓 API.
+#   nyfed : 키 불필요. 연준 기준금리(목표범위 상단)·SOFR. 뉴욕연은 마켓 API.
+#   spread: 이미 history.csv 에 있는 두 코드의 차이. 원천이 먼저 채워져 있어야 한다.
 #   ecos  : 한국은행 키 필요. 네이버가 이력 API 를 주지 않는 국내 금리들.
 #   (없음): 휘발유(오피넷)·국내 금은 과거 API 가 없어 백필하지 못한다.
 #           refresh.ps1 이 도는 날부터 앞으로만 쌓인다.
@@ -108,11 +109,20 @@ $BACKFILL = @(
   @{ code = "KTB5Y";       source = "naver"; symbol = "KR5YT=RR" },
   @{ code = "KTB10Y";      source = "naver"; symbol = "KR10YT=RR" },
 
-  # ── 미국 금리
+  # ── 해외 금리
   #    국채는 국고채와 같은 네이버 채권 API. 기준금리는 뉴욕연은 EFFR 레코드에
   #    붙어 오는 목표범위 상단(targetRateTo)이다 — refresh.ps1 이 쌓는 값과 같다.
+  @{ code = "UST2Y";       source = "naver"; symbol = "US2YT=RR" },
   @{ code = "UST10Y";      source = "naver"; symbol = "US10YT=RR" },
-  @{ code = "FEDFUNDS";    source = "nyfed" },
+  @{ code = "UST30Y";      source = "naver"; symbol = "US30YT=RR" },
+  @{ code = "DE10Y";       source = "naver"; symbol = "DE10YT=RR" },
+  @{ code = "FEDFUNDS";    source = "nyfed"; path = "unsecured/effr"; field = "targetRateTo" },
+  @{ code = "SOFR";        source = "nyfed"; path = "secured/sofr";   field = "percentRate" },
+
+  # ── 금리차 (이미 쌓인 이력에서 뺀다. 양쪽 다 있는 날만 생긴다)
+  #    원천 지표 뒤에 와야 같은 실행에서 방금 받은 값으로 계산된다.
+  @{ code = "UST10Y2Y";    source = "spread"; a = "UST10Y"; b = "UST2Y" },
+  @{ code = "KRUS10Y";     source = "spread"; a = "KTB10Y"; b = "UST10Y" },
 
   # ── 국내 금리 (ECOS 817Y002 = 시장금리(일별). 키가 없으면 통째로 건너뛴다)
   #
@@ -205,17 +215,32 @@ function Get-NaverBondSeries([string]$symbol, [datetime]$from, [datetime]$to) {
   return $out
 }
 
-# 뉴욕연은 EFFR 일별 레코드. 각 영업일에 적용된 목표범위가 함께 온다.
+# 뉴욕연은 일별 레코드 (EFFR 에는 그날 적용된 목표범위가 함께 온다).
 # 한 번에 전 구간을 주므로 페이징이 없다.
-function Get-NyFedSeries([datetime]$from, [datetime]$to) {
-  $url = "https://markets.newyorkfed.org/api/rates/unsecured/effr/search.json?startDate=" +
+function Get-NyFedSeries([string]$path, [string]$field, [datetime]$from, [datetime]$to) {
+  $url = "https://markets.newyorkfed.org/api/rates/" + $path + "/search.json?startDate=" +
          $from.ToString("yyyy-MM-dd") + "&endDate=" + $to.ToString("yyyy-MM-dd")
   $j = Get-Json $url
   $out = @{}
   foreach ($r in @($j.refRates)) {
     if (-not $r.effectiveDate) { continue }
-    $v = To-Number ([string]$r.targetRateTo)
+    $v = To-Number ([string]$r.$field)
     if ($null -ne $v) { $out[[string]$r.effectiveDate] = $v }
+  }
+  return $out
+}
+
+# history.csv 에 이미 있는 두 코드의 차이(a − b). 양쪽 다 값이 있는 날만 남는다.
+function Get-SpreadSeries([string]$a, [string]$b, $map) {
+  $out = @{}
+  foreach ($k in $map.Keys) {
+    $i = $k.IndexOf("|")
+    if ($k.Substring($i + 1) -ne $a) { continue }
+    $d  = $k.Substring(0, $i)
+    $kb = $d + "|" + $b
+    if (-not $map.ContainsKey($kb)) { continue }
+    $va = To-Number $map[$k]; $vb = To-Number $map[$kb]
+    if ($null -ne $va -and $null -ne $vb) { $out[$d] = [Math]::Round($va - $vb, 4) }
   }
   return $out
 }
@@ -396,7 +421,8 @@ foreach ($t in $targets) {
     switch ($t.source) {
       "yahoo"   { $series = Get-YahooSeries $t.symbol $fromDate $toDate }
       "naver"   { $series = Get-NaverBondSeries $t.symbol $fromDate $toDate }
-      "nyfed"   { $series = Get-NyFedSeries $fromDate $toDate }
+      "nyfed"   { $series = Get-NyFedSeries $t.path $t.field $fromDate $toDate }
+      "spread"  { $series = Get-SpreadSeries $t.a $t.b $map }
       "ecos"    { $series = Get-EcosSeries $t $fromDate $toDate }
       "derived" { $series = Get-DerivedSeries $t $fromDate $toDate }
     }

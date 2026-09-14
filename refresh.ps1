@@ -331,29 +331,38 @@ function Sort-Rates($rates) {
 }
 
 # ────────────────────────────────────────────────────────────────
-# 1-3. 미국 금리 — 연준 기준금리(뉴욕연은) · 미국 국채(네이버 채권 API)
+# 1-3. 해외 금리 — 연준 기준금리·SOFR(뉴욕연은) · 미국/독일 국채(네이버 채권 API)
 # ────────────────────────────────────────────────────────────────
 
-# 미국 국채도 국고채와 같은 네이버 채권 API 로 받는다 (US2YT=RR, US30YT=RR 도 가능).
-# localTradedAt 이 미국 동부시간이라 이력 날짜도 동부시간 기준으로 찍힌다.
+# 해외 국채도 국고채와 같은 네이버 채권 API 로 받는다. localTradedAt 이 각 시장의
+# 현지 시각이라 이력 날짜도 현지 기준으로 찍힌다 (미국은 동부시간).
+# 같은 형식으로 US3MT / US5YT / JP10YT / GB10YT 도 받을 수 있다.
 $US_BOND_TENORS = @(
-  @{ code = "US10YT=RR"; label = "미국 국채 10년"; hist = "UST10Y" }
+  @{ code = "US2YT=RR";  label = "미국 국채 2년";  hist = "UST2Y"  },
+  @{ code = "US10YT=RR"; label = "미국 국채 10년"; hist = "UST10Y" },
+  @{ code = "US30YT=RR"; label = "미국 국채 30년"; hist = "UST30Y" }
+)
+$EU_BOND_TENORS = @(
+  @{ code = "DE10YT=RR"; label = "독일 국채 10년"; hist = "DE10Y" }
 )
 
-# 연준 기준금리는 뉴욕연은 마켓 API 에서 받는다. 매 영업일 아침(ET) 전날의
-# 실효연방기금금리(EFFR)를 고시하는데, 같은 레코드에 그날 적용된 목표범위
-# (targetRateFrom/To)가 붙어 온다. 키가 필요 없고 연준 공식 자료다.
-# FRED 도 같은 값을 주지만 이 PC 에서는 타임아웃이 잦아 쓰지 않았다.
+# 뉴욕연은 마켓 API. 키가 필요 없고 연준 공식 자료다. 매 영업일 아침(ET) 전날
+# 값을 고시한다. FRED 도 같은 값을 주지만 이 PC 에서는 타임아웃이 잦아 쓰지 않았다.
+function Get-NyFedRates([string]$path) {
+  $j = (Get-Web ("https://markets.newyorkfed.org/api/rates/" + $path + "/last/2.json") `
+                @{ "Accept" = "application/json" }) | ConvertFrom-Json
+  $rows = @($j.refRates)
+  if ($rows.Count -eq 0) { throw ($path + " refRates 가 비어 있습니다") }
+  return $rows
+}
+
+# 연준 기준금리. EFFR 레코드에 그날 적용된 목표범위(targetRateFrom/To)가 붙어 온다.
 #
 # 표시는 관행대로 "3.50~3.75" 범위로 하고, 이력(차트)에는 상단값을 쌓는다 —
 # 범위 문자열은 숫자가 아니라 Update-History 가 그냥 건너뛰기 때문이다.
 function Get-FedFunds {
   Log "· 미국 기준금리 …"
-  $j = (Get-Web "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/2.json" `
-                @{ "Accept" = "application/json" }) | ConvertFrom-Json
-  $rows = @($j.refRates)
-  if ($rows.Count -eq 0) { throw "refRates 가 비어 있습니다" }
-
+  $rows  = Get-NyFedRates "unsecured/effr"
   $cur   = $rows[0]
   $lower = [double]$cur.targetRateFrom
   $upper = [double]$cur.targetRateTo
@@ -375,11 +384,69 @@ function Get-FedFunds {
   return $m
 }
 
-function Get-USRates {
+# SOFR. 달러 사모대출·레버리지론의 변동금리 기준이라 Private Debt 를 읽을 때 본다.
+function Get-Sofr {
+  Log "· SOFR …"
+  $rows = Get-NyFedRates "secured/sofr"
+  $cur  = [double]$rows[0].percentRate
+  $chg  = 0.0
+  if ($rows.Count -ge 2) { $chg = $cur - [double]$rows[1].percentRate }
+  $dir = "flat"
+  if ($chg -gt 0.0001) { $dir = "up" } elseif ($chg -lt -0.0001) { $dir = "down" }
+
+  return (New-Metric -Name "SOFR" -Value $cur.ToString("0.00") -Unit "%" `
+                     -Change ([Math]::Abs($chg).ToString("0.00")) -ChangeUnit "%p" -Ratio $null `
+                     -Dir $dir -Note "담보부 익일물 · 달러 변동금리 기준" `
+                     -AsOf (([string]$rows[0].effectiveDate) -replace "-", ".") -Code "SOFR")
+}
+
+# 지표의 등락은 절대값 + 방향으로 들어 있다. 두 지표를 빼려면 부호를 되살려야 한다.
+function Get-SignedChange($m) {
+  $c = To-Number $m.change
+  if ($null -eq $c) { return 0.0 }
+  if ($m.dir -eq "down") { return -[Math]::Abs($c) }
+  if ($m.dir -eq "up")   { return  [Math]::Abs($c) }
+  return 0.0
+}
+
+# 두 금리의 차이(A − B). 값·등락 모두 %p 다. 한쪽이라도 없으면 $null.
+function New-SpreadMetric([string]$Name, $A, $B, [string]$Note, [string]$Code) {
+  if (-not $A -or -not $B) { return $null }
+  $va = To-Number $A.value; $vb = To-Number $B.value
+  if ($null -eq $va -or $null -eq $vb) { return $null }
+
+  $spread = $va - $vb
+  $chg    = (Get-SignedChange $A) - (Get-SignedChange $B)
+  $dir = "flat"
+  if ($chg -gt 0.0005) { $dir = "up" } elseif ($chg -lt -0.0005) { $dir = "down" }
+
+  return (New-Metric -Name $Name -Value $spread.ToString("0.000") -Unit "%p" `
+                     -Change ([Math]::Abs($chg).ToString("0.000")) -ChangeUnit "%p" -Ratio $null `
+                     -Dir $dir -Note $Note -AsOf $A.asof -Code $Code)
+}
+
+function Find-Metric($rows, [string]$code) {
+  foreach ($r in @($rows)) { if ($r.code -eq $code) { return $r } }
+  return $null
+}
+
+# $Ktb10 은 국고채 10년 지표(한미 금리차용). 없으면 그 타일만 빠진다.
+function Get-GlobalRates($Ktb10) {
   $rows = @()
   try { $rows += @(Get-FedFunds) } catch { Fail "미국 기준금리 수집 실패" }
-  $rows += @(Get-BondYields -Tenors $US_BOND_TENORS -Note "체결 기준 · 미국 동부시간" -Label "미국 국채 수익률")
-  return $rows
+  try { $rows += @(Get-Sofr) }     catch { Fail "SOFR 수집 실패" }
+
+  $us = @(Get-BondYields -Tenors $US_BOND_TENORS -Note "체결 기준 · 미국 동부시간" -Label "미국 국채 수익률")
+  $rows += $us
+
+  # 10년−2년: 음수면 장단기 역전. 한미 10년: 해외 자산 환헤지 비용·자금 흐름의 배경.
+  $rows += @(New-SpreadMetric "미국 장단기 금리차" (Find-Metric $us "UST10Y") (Find-Metric $us "UST2Y") `
+                              "국채 10년 − 2년 · 음수면 역전" "UST10Y2Y")
+  $rows += @(New-SpreadMetric "한미 10년 금리차" $Ktb10 (Find-Metric $us "UST10Y") `
+                              "국고채 10년 − 미국 국채 10년" "KRUS10Y")
+
+  $rows += @(Get-BondYields -Tenors $EU_BOND_TENORS -Note "체결 기준 · 유럽 현지시간" -Label "독일 국채 수익률")
+  return @($rows | Where-Object { $_ })
 }
 
 # ────────────────────────────────────────────────────────────────
@@ -1086,24 +1153,26 @@ try { $mi = Get-MarketIndex } catch { Fail "네이버 금융 시장지표 수집
 # 네이버 시장지표 표에 없는 만기를 채권 API 로 채운다.
 # 표의 국고채(3년)는 빼고 3·5·10년을 같은 기준(체결)으로 통일한다 — 기준이 다른
 # 3년물이 둘 나란히 있으면 값이 어긋나 보인다.
-if ($mi -and $mi.rates.Count) {
-  $bonds = @()
-  try { $bonds = @(Get-BondYields) } catch { Fail "국고채 수익률 수집 실패" }
+#
+# 국고채는 시장지표 표가 깨져도 받는다 — 한미 금리차 계산에 10년물이 필요하다.
+$bonds = @()
+try { $bonds = @(Get-BondYields) } catch { Fail "국고채 수익률 수집 실패" }
 
+if ($mi -and $mi.rates.Count) {
   if ($bonds.Count) {
     $mi.rates = @(@($mi.rates | Where-Object { $_.name -ne "국고채 3년" }) + $bonds)
   }
   $mi.rates = Sort-Rates $mi.rates
 }
 
-# 미국 금리는 네이버 시장지표와 무관한 소스라 따로 받는다 (실패해도 다른 그룹은 그대로).
-$usRates = @()
-try { $usRates = @(Get-USRates) } catch { Fail "미국 금리 수집 실패" }
+# 해외 금리는 네이버 시장지표와 무관한 소스라 따로 받는다 (실패해도 다른 그룹은 그대로).
+$globalRates = @()
+try { $globalRates = @(Get-GlobalRates (Find-Metric $bonds "KTB10Y")) } catch { Fail "해외 금리 수집 실패" }
 
 $miGroups = @(
   @{ label="환율";           note="하나은행 고시 기준";               key="fx"    },
   @{ label="국내시장금리";   note="최종 고시치 · 등락은 %p";          key="rates" },
-  @{ label="미국 금리";      note="연준 목표범위 · 국채는 체결 기준"; items=$usRates },
+  @{ label="해외 금리";      note="연준·뉴욕연은 고시 · 국채는 체결 기준"; items=$globalRates },
   @{ label="유가·금 시세";   note="국제·국내 시세";                   key="oil"   },
   @{ label="국제 시장 환율"; note="주요 통화쌍";                      key="world" }
 )
