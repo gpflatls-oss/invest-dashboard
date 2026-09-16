@@ -641,7 +641,21 @@ $NEWS_CLASSES = @(
        '"Korea infrastructure project" OR "Korea PPP project"',
        '"Korea data center" OR "Korea power plant project"'
      )
-     filterEn = @('(?i)korea|korean|seoul', '(?i)infrastructure|ppp|power plant|data cent|rail|highway|port|grid') }
+     filterEn = @('(?i)korea|korean|seoul', '(?i)infrastructure|ppp|power plant|data cent|rail|highway|port|grid') },
+
+  # 국내 정책 용어라 해외 매체에는 대응하는 보도가 없다. 영어 쿼리를 두지 않는다
+  # ("productive finance" 는 영국 연금의 별개 제도를 가리켜 엉뚱한 기사만 온다).
+  # 보험업권은 이 정책의 핵심 자금 공급처라 전용 쿼리를 따로 둔다.
+  @{ key="prodfin";   slot=8; label="생산적 금융";      sublabel="모험자본·보험업권 자금공급"
+     queries = @(
+       '"생산적 금융"',
+       '"생산적 금융 전환" OR "생산적 금융 확대" OR "생산적 금융 공급"',
+       '"보험업권 생산적 금융" OR "보험사 생산적 금융" OR "보험업 생산적 금융"',
+       '"보험사 모험자본" OR "보험업권 모험자본" OR "보험사 벤처투자"',
+       '"모험자본 공급" OR "모험자본 활성화" OR "생산적 분야 자금"'
+     )
+     # "생산적인 논의" 같은 일반 표현에 걸리지 않게 뒤에 오는 말까지 함께 요구한다.
+     filter = @('생산적\s?금융|생산적금융|모험자본|생산적\s?분야|생산적\s?부문') }
 )
 
 # 쿼리에 쓴 낱말은 그 자산군 기사 대부분에 나타나므로 중복 판정에서 제외한다.
