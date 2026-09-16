@@ -525,6 +525,20 @@ function Get-Indices {
 # 자산군마다 쿼리를 여러 개 던진다. 하나만 쓰면 그날 큰 기사 하나에 목록이
 # 통째로 잠식되거나(예: 잠실 MICE), 반대로 너무 좁아 몇 건밖에 안 잡힌다.
 $NEWS_CLASSES = @(
+  # 국내 정책 용어라 해외 매체에는 대응하는 보도가 없다. 영어 쿼리를 두지 않는다
+  # ("productive finance" 는 영국 연금의 별개 제도를 가리켜 엉뚱한 기사만 온다).
+  # 보험업권은 이 정책의 핵심 자금 공급처라 전용 쿼리를 따로 둔다.
+  @{ key="prodfin";   slot=8; label="생산적 금융";      sublabel="모험자본·보험업권 자금공급"
+     queries = @(
+       '"생산적 금융"',
+       '"생산적 금융 전환" OR "생산적 금융 확대" OR "생산적 금융 공급"',
+       '"보험업권 생산적 금융" OR "보험사 생산적 금융" OR "보험업 생산적 금융"',
+       '"보험사 모험자본" OR "보험업권 모험자본" OR "보험사 벤처투자"',
+       '"모험자본 공급" OR "모험자본 활성화" OR "생산적 분야 자금"'
+     )
+     # "생산적인 논의" 같은 일반 표현에 걸리지 않게 뒤에 오는 말까지 함께 요구한다.
+     filter = @('생산적\s?금융|생산적금융|모험자본|생산적\s?분야|생산적\s?부문') },
+
   @{ key="pe";        slot=1; label="Private Equity";  sublabel="사모펀드·바이아웃"
      queries = @(
        '"사모펀드" OR "PEF" OR "프라이빗에쿼티"',
@@ -568,6 +582,26 @@ $NEWS_CLASSES = @(
      )
      filterEn = @('(?i)venture capital|vc fund|series [abc]|seed round|sequoia capital|andreessen|startup rais') },
 
+  # 해외 인프라보다 앞에 둔다. $seenTitles 가 배열 순서대로 기사를 선점하므로
+  # 데이터센터·전력 기사가 인프라 칸으로 새기 전에 이 칸이 먼저 가져간다.
+  # "AI" 는 대문자 두 글자뿐이라 -match 의 기본 대소문자 무시에 걸리면
+  # DUBAI·SHANGHAI 까지 딸려온다. (?-i) 로 끄고 앞뒤에 알파벳이 없을 때만 본다.
+  @{ key="ai";        slot=9; label="AI 인프라";        sublabel="데이터센터·전력·AI 투자"
+     queries = @(
+       '"AI 데이터센터" OR "인공지능 데이터센터"',
+       '"AI 인프라 투자" OR "하이퍼스케일 데이터센터" OR "데이터센터 구축"',
+       '"데이터센터 전력" OR "AI 전력 수요" OR "데이터센터 전력 확보"',
+       '"AI 인프라 펀드" OR "데이터센터 투자" OR "데이터센터 매각"',
+       '"AI 반도체 투자" OR "AI 컴퓨팅 인프라" OR "엔비디아 투자"'
+     )
+     filter = @('데이터센터|인공지능|하이퍼스케일|엔비디아|GPU|(?-i)(^|[^A-Za-z])AI([^A-Za-z]|$)')
+     queriesEn = @(
+       '"AI data center" OR "AI datacenter"',
+       '"hyperscale data center" OR "data center capex" OR "AI infrastructure investment"',
+       '"data center power" OR "AI compute buildout" OR "Nvidia investment"'
+     )
+     filterEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|nvidia|gpu|ai') },
+
   # 국내 기사와 섞이지 않도록 "부동산 낱말"과 "해외 낱말"을 둘 다 요구한다.
   @{ key="re_intl";   slot=4; label="해외 부동산";      sublabel="글로벌 상업용·오피스"
      queries = @(
@@ -595,21 +629,31 @@ $NEWS_CLASSES = @(
      queries = @(
        '"해외 인프라 투자" OR "글로벌 인프라 펀드"',
        '"브룩필드" OR "해외 발전소 인수" OR "글로벌 인프라 자산"',
-       '"해외 신재생 발전 투자" OR "해외 데이터센터 투자" OR "해외 공항 민영화"',
+       '"해외 신재생 발전 투자" OR "해외 공항 민영화" OR "해외 철도 사업"',
        '"해외 도로 사업" OR "해외 항만 투자" OR "글로벌 에너지 인프라"',
-       '"해외 전력망 투자" OR "글로벌 인프라 M&A" OR "해외 수처리 사업"'
+       '"해외 전력망 투자" OR "글로벌 인프라 M&A" OR "해외 수처리 사업"',
+       '"해외 해상풍력 투자" OR "해외 풍력 발전 투자" OR "해외 태양광 발전 인수"',
+       '"글로벌 인프라 투자" OR "해외 발전자산 인수" OR "해외 민관협력 사업"'
      )
      filter = @(
-       '인프라|발전|데이터센터|공항|항만|철도|도로|파이프라인|신재생|전력|ESS',
+       '인프라|발전|공항|항만|철도|도로|파이프라인|신재생|전력|ESS',
        '해외|글로벌|미국|美|유럽|일본|日|브룩필드|맥쿼리|블랙스톤|아시아|중동'
      )
+     # 데이터센터·AI 는 전용 칸으로 뺐다. 여기 남으면 같은 기사가 두 칸에 걸린다.
+     exclude   = @('데이터센터|인공지능|하이퍼스케일|(?-i)(^|[^A-Za-z])AI([^A-Za-z]|$)')
      queriesEn = @(
        # "infrastructure investment" 은 미국 법률명(IIJA)에 걸려 엉뚱한 기사를 부른다
        '"infrastructure fund" OR "infrastructure investor" OR "infrastructure deal"',
        '"Brookfield" OR "Macquarie Asset Management" OR "toll road concession"',
-       '"data center investment" OR "renewable energy project finance" OR "airport privatisation"'
+       '"renewable energy project finance" OR "airport privatisation" OR "port terminal acquisition"',
+       '"offshore wind investment" OR "energy transition fund" OR "utility acquisition"'
      )
-     filterEn = @('(?i)infrastructure|data cent|renewable|power plant|grid|airport|port|toll road|pipeline|brookfield|macquarie') },
+     # brookfield·macquarie 를 대안에 그냥 두면 미국 지명 Brookfield 의 동네 기사
+     # (고교 미식축구·경찰)가 통과한다. 쿼리에는 남기되 필터는 인프라 낱말을 요구한다.
+     filterEn = @('(?i)infrastructure|renewable|offshore wind|power plant|utility|grid|airport|port terminal|seaport|toll road|pipeline|concession|water treatment|energy asset|energy transition')
+     excludeEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|ai',
+                   # 지역 매체의 생활 기사. "infrastructure fund" 가 시(市) 예산을 뜻하기도 한다
+                   '(?i)police|football|basketball|baseball|high school|obituary|city council|township|village of') },
 
   # "리츠" 만 쓰면 미국 리츠 기사가 섞여 들어온다.
   @{ key="re_kr";     slot=6; label="국내 부동산";      sublabel="상업용·리츠·개발"
@@ -639,23 +683,12 @@ $NEWS_CLASSES = @(
      filter = @('민자|BTL|BTO|사회기반시설|인프라|SOC|민투심|실시협약')
      queriesEn = @(
        '"Korea infrastructure project" OR "Korea PPP project"',
-       '"Korea data center" OR "Korea power plant project"'
+       '"Korea power plant project" OR "Korea renewable energy project"'
      )
-     filterEn = @('(?i)korea|korean|seoul', '(?i)infrastructure|ppp|power plant|data cent|rail|highway|port|grid') },
-
-  # 국내 정책 용어라 해외 매체에는 대응하는 보도가 없다. 영어 쿼리를 두지 않는다
-  # ("productive finance" 는 영국 연금의 별개 제도를 가리켜 엉뚱한 기사만 온다).
-  # 보험업권은 이 정책의 핵심 자금 공급처라 전용 쿼리를 따로 둔다.
-  @{ key="prodfin";   slot=8; label="생산적 금융";      sublabel="모험자본·보험업권 자금공급"
-     queries = @(
-       '"생산적 금융"',
-       '"생산적 금융 전환" OR "생산적 금융 확대" OR "생산적 금융 공급"',
-       '"보험업권 생산적 금융" OR "보험사 생산적 금융" OR "보험업 생산적 금융"',
-       '"보험사 모험자본" OR "보험업권 모험자본" OR "보험사 벤처투자"',
-       '"모험자본 공급" OR "모험자본 활성화" OR "생산적 분야 자금"'
-     )
-     # "생산적인 논의" 같은 일반 표현에 걸리지 않게 뒤에 오는 말까지 함께 요구한다.
-     filter = @('생산적\s?금융|생산적금융|모험자본|생산적\s?분야|생산적\s?부문') }
+     filterEn = @('(?i)korea|korean|seoul', '(?i)infrastructure|ppp|power plant|rail|highway|port|grid')
+     # 해외 인프라와 같은 이유로 데이터센터·AI 는 AI 인프라 칸에 넘긴다
+     exclude   = @('데이터센터|인공지능|하이퍼스케일|(?-i)(^|[^A-Za-z])AI([^A-Za-z]|$)')
+     excludeEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|ai') }
 )
 
 # 쿼리에 쓴 낱말은 그 자산군 기사 대부분에 나타나므로 중복 판정에서 제외한다.
@@ -701,7 +734,10 @@ function Test-NearDuplicate($shingles, $accepted) {
 
 # 구글 뉴스는 결과가 모자라면 관련성이 뚝 떨어지는 기사까지 채워 넣는다.
 # 자산군마다 반드시 걸려야 할 낱말을 정해 걸러낸다 (여러 개면 모두 만족해야 함).
-function Test-TitleFilter([string]$title, $patterns) {
+# $exclude 는 반대로 하나라도 걸리면 떨어뜨린다. 자산군끼리 주제가 겹칠 때
+# (해외 인프라 ↔ AI 인프라의 데이터센터) 넘겨준 쪽에서 확실히 빼기 위해 쓴다.
+function Test-TitleFilter([string]$title, $patterns, $exclude) {
+  foreach ($p in @($exclude)) { if ($p -and $title -match $p) { return $false } }
   if (-not $patterns) { return $true }
   foreach ($p in $patterns) { if ($title -notmatch $p) { return $false } }
   return $true
@@ -785,7 +821,7 @@ function Get-IntlNews([hashtable]$cls, [datetime]$cutoff, $seenTitles, $accepted
       $title = $title.Trim()
       if (-not $title) { continue }
       if ($source -match $KOREAN_OUTLETS) { continue }   # 국내 언론 영문판은 제외
-      if (-not (Test-TitleFilter $title $cls.filterEn)) { continue }
+      if (-not (Test-TitleFilter $title $cls.filterEn $cls.excludeEn)) { continue }
 
       # 번역은 비싸므로 영어 제목 단계에서 먼저 중복을 걸러낸다
       $enShingles = Get-TitleShingles $title $stopwords
@@ -893,7 +929,7 @@ function Get-News([hashtable]$cls, [datetime]$cutoff, $seenTitles) {
       }
       $title = $title.Trim()
       if (-not $title) { continue }
-      if (-not (Test-TitleFilter $title $cls.filter)) { continue }
+      if (-not (Test-TitleFilter $title $cls.filter $cls.exclude)) { continue }
       if (-not $seenTitles.Add($title)) { continue }   # 다른 자산군에 이미 실린 기사
 
       $shingles = Get-TitleShingles $title $stopwords

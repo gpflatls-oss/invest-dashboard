@@ -25,6 +25,7 @@
   --slot-6: #008300;
   --slot-7: #4a3aa7;
   --slot-8: #0e8f9e;
+  --slot-9: #7a5230;
   /* 차트 잉크 — 지표 시계열은 계열이 하나뿐이라 색 하나로 충분하다.
      라이트/다크를 각각 골라 둔다 (자동 반전은 대비가 무너진다). */
   --chart-ink: #2a78d6;
@@ -50,6 +51,7 @@
     --slot-6: #008300;
     --slot-7: #9085e9;
     --slot-8: #2ab3c4;
+    --slot-9: #b8895c;
     --chart-ink: #3987e5;
   }
 }
@@ -73,6 +75,7 @@
   --slot-6: #008300;
   --slot-7: #9085e9;
   --slot-8: #2ab3c4;
+  --slot-9: #b8895c;
   --chart-ink: #3987e5;
 }
 
@@ -414,7 +417,7 @@ document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
     return (d.getMonth() + 1) + "월 " + d.getDate() + "일";
   }
 
-  function slotColor(slot) { return "var(--slot-" + (((slot - 1) % 8) + 1) + ")"; }
+  function slotColor(slot) { return "var(--slot-" + (((slot - 1) % 9) + 1) + ")"; }
 
   /* ── 데이터 없을 때 안내 ── */
   if (!DATA) {
