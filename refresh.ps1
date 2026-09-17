@@ -600,7 +600,7 @@ $NEWS_CLASSES = @(
        '"hyperscale data center" OR "data center capex" OR "AI infrastructure investment"',
        '"data center power" OR "AI compute buildout" OR "Nvidia investment"'
      )
-     filterEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|nvidia|gpu|ai') },
+     filterEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|nvidia|\bgpu\b|\bai\b') },
 
   # 국내 기사와 섞이지 않도록 "부동산 낱말"과 "해외 낱말"을 둘 다 요구한다.
   @{ key="re_intl";   slot=4; label="해외 부동산";      sublabel="글로벌 상업용·오피스"
@@ -644,16 +644,19 @@ $NEWS_CLASSES = @(
      queriesEn = @(
        # "infrastructure investment" 은 미국 법률명(IIJA)에 걸려 엉뚱한 기사를 부른다
        '"infrastructure fund" OR "infrastructure investor" OR "infrastructure deal"',
-       '"Brookfield" OR "Macquarie Asset Management" OR "toll road concession"',
+       '"Brookfield Asset Management" OR "Macquarie Asset Management" OR "toll road concession"',
        '"renewable energy project finance" OR "airport privatisation" OR "port terminal acquisition"',
        '"offshore wind investment" OR "energy transition fund" OR "utility acquisition"'
      )
      # brookfield·macquarie 를 대안에 그냥 두면 미국 지명 Brookfield 의 동네 기사
      # (고교 미식축구·경찰)가 통과한다. 쿼리에는 남기되 필터는 인프라 낱말을 요구한다.
-     filterEn = @('(?i)infrastructure|renewable|offshore wind|power plant|utility|grid|airport|port terminal|seaport|toll road|pipeline|concession|water treatment|energy asset|energy transition')
-     excludeEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|ai',
-                   # 지역 매체의 생활 기사. "infrastructure fund" 가 시(市) 예산을 뜻하기도 한다
-                   '(?i)police|football|basketball|baseball|high school|obituary|city council|township|village of') },
+     # 인프라 낱말 하나로는 "S&P 500 futures … Brookfield Infrastructure leads" 같은
+     # 시황 요약이 통과한다. 거래·투자 낱말을 함께 요구해 원리적으로 막는다.
+     filterEn = @(
+       '(?i)infrastructure|renewable|offshore wind|power plant|utility|grid|airport|port terminal|seaport|toll road|pipeline|concession|water treatment|energy asset|energy transition',
+       '(?i)acquir|acquisition|takeover|stake|invest|fund|deal|bid|buyout|financ|privatis|privatiz|\bm&a\b|divest|portfolio|billion|consortium'
+     )
+     excludeEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|\bai\b') },
 
   # "리츠" 만 쓰면 미국 리츠 기사가 섞여 들어온다.
   @{ key="re_kr";     slot=6; label="국내 부동산";      sublabel="상업용·리츠·개발"
@@ -688,7 +691,7 @@ $NEWS_CLASSES = @(
      filterEn = @('(?i)korea|korean|seoul', '(?i)infrastructure|ppp|power plant|rail|highway|port|grid')
      # 해외 인프라와 같은 이유로 데이터센터·AI 는 AI 인프라 칸에 넘긴다
      exclude   = @('데이터센터|인공지능|하이퍼스케일|(?-i)(^|[^A-Za-z])AI([^A-Za-z]|$)')
-     excludeEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|ai') }
+     excludeEn = @('(?i)data cent|datacenter|hyperscal|artificial intelligence|\bai\b') }
 )
 
 # 쿼리에 쓴 낱말은 그 자산군 기사 대부분에 나타나므로 중복 판정에서 제외한다.
@@ -747,6 +750,26 @@ function Test-TitleFilter([string]$title, $patterns, $exclude) {
 # 한국어 → 영어 → 한국어 왕복이 되어 고유명사가 망가진다
 # (실제로 "한국부동산원"이 "한국부동산위원회"로 돌아왔다). 아예 제외한다.
 $KOREAN_OUTLETS = '(?i)chosun|korea herald|joongang|korea times|yonhap|pulse|maeil|헤럴드|매일경제|조선|중앙|한국경제|서울경제|아시아경제|asiae|seoul economic|ked global|businesskorea|business korea|aju|thelec|koreabizwire|kbs|mbc|sbs|newsis|hankyung|donga|edaily|mk\.co\.kr|korea economic'
+
+# 영어판 구글 뉴스는 자리가 모자라면 두 종류의 잡음을 채워 넣는다.
+#  1) 미국 개인투자자용 종목 기사 — "Is Brookfield Renewable a Better Buy Now?",
+#     "Implied Volatility Surging for Brookfield Infrastructure Stock Options" 같은 것.
+#     운용사 이름(Brookfield·Blackstone·KKR)이 쿼리에 있어 어느 자산군에나 들어온다.
+#  2) 미국 지역 매체의 생활 기사 — Brookfield 는 위스콘신·일리노이의 지명이기도 해서
+#     고교 미식축구·경찰 기사가 딸려온다.
+# 자산군을 가리지 않는 잡음이라 클래스별 excludeEn 과 별개로 여기서 한 번에 막는다.
+$EN_NOISE = '(?i)' + (@(
+  'better buy|should you (buy|sell)|is it time to buy|buy the dip|undervalued stock',
+  'price target|analyst (rating|estimate)|implied volatility|stock options|options trading',
+  'dividend (yield|stock|king|aristocrat)|stock split|earnings call transcript|52-week',
+  'zacks|motley fool|stocks? to (buy|watch)|best .{0,20}stocks',
+  'set you up for life|make you a millionaire|retire (a )?millionaire',
+  'pre-?market|s&p 500|nasdaq|dow jones|futures (rise|fall|slip|climb|gain)',
+  'stocks? (rise|fall|slip|climb|close|gain|drop)|\bcolumn\b',
+  '\bpolice\b|sheriff|arrested|charged with|obituary|fire department',
+  'football|basketball|baseball|high school|school district',
+  'city council|village (of|board)|township|county board'
+) -join '|')
 
 # 기계번역이 업계 용어를 어색하게 옮기는 것만 몇 개 바로잡는다.
 $GLOSSARY = @(
@@ -821,6 +844,7 @@ function Get-IntlNews([hashtable]$cls, [datetime]$cutoff, $seenTitles, $accepted
       $title = $title.Trim()
       if (-not $title) { continue }
       if ($source -match $KOREAN_OUTLETS) { continue }   # 국내 언론 영문판은 제외
+      if ($title -match $EN_NOISE) { continue }          # 종목 기사·지역 생활 기사
       if (-not (Test-TitleFilter $title $cls.filterEn $cls.excludeEn)) { continue }
 
       # 번역은 비싸므로 영어 제목 단계에서 먼저 중복을 걸러낸다
