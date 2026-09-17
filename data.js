@@ -1,7 +1,7 @@
 /* 이 파일은 refresh.ps1 이 자동으로 만듭니다. 직접 고치지 마세요. */
 window.DASHBOARD_DATA = {
-    "generated_at":  "2026-09-17T05:31:00Z",
-    "generated_at_display":  "2026년 9월 17일 14:31 KST",
+    "generated_at":  "2026-09-17T05:35:05Z",
+    "generated_at_display":  "2026년 9월 17일 14:35 KST",
     "news_window_days":  30,
     "market":  [
                    {
@@ -12,26 +12,26 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "코스피",
                                          "code":  "KOSPI",
-                                         "value":  "6,734.14",
+                                         "value":  "6,725.23",
                                          "unit":  "",
-                                         "change":  "16.17",
+                                         "change":  "7.26",
                                          "change_unit":  "",
-                                         "ratio":  0.24,
+                                         "ratio":  0.11,
                                          "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.09.17 14:28"
+                                         "asof":  "2026.09.17 14:31"
                                      },
                                      {
                                          "name":  "코스닥",
                                          "code":  "KOSDAQ",
-                                         "value":  "823.00",
+                                         "value":  "822.35",
                                          "unit":  "",
-                                         "change":  "7.02",
+                                         "change":  "6.37",
                                          "change_unit":  "",
-                                         "ratio":  0.86,
+                                         "ratio":  0.78,
                                          "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.09.17 14:28"
+                                         "asof":  "2026.09.17 14:31"
                                      },
                                      {
                                          "name":  "다우존스",
@@ -84,26 +84,26 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "니케이 225",
                                          "code":  "N225",
-                                         "value":  "64,134.40",
+                                         "value":  "64,110.11",
                                          "unit":  "",
-                                         "change":  "211.40",
+                                         "change":  "187.11",
                                          "change_unit":  "",
-                                         "ratio":  0.33,
+                                         "ratio":  0.29,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.09.17 14:13"
+                                         "asof":  "2026.09.17 14:16"
                                      },
                                      {
                                          "name":  "항셍",
                                          "code":  "HSI",
-                                         "value":  "24,522.05",
+                                         "value":  "24,527.22",
                                          "unit":  "",
-                                         "change":  "-191.73",
+                                         "change":  "-186.56",
                                          "change_unit":  "",
-                                         "ratio":  -0.78,
+                                         "ratio":  -0.75,
                                          "dir":  "down",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.09.17 13:13"
+                                         "asof":  "2026.09.17 13:16"
                                      }
                                  ]
                    },
@@ -115,50 +115,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "미국 USD",
                                          "code":  "USDKRW",
-                                         "value":  "1,382.40",
+                                         "value":  "1,382.90",
                                          "unit":  "원",
-                                         "change":  "4.90",
+                                         "change":  "5.40",
                                          "change_unit":  "",
-                                         "ratio":  0.36,
+                                         "ratio":  0.39,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.17 14:27"
+                                         "asof":  "2026.09.17 14:30"
                                      },
                                      {
                                          "name":  "일본 JPY(100엔)",
                                          "code":  "JPYKRW100",
-                                         "value":  "886.32",
+                                         "value":  "886.70",
                                          "unit":  "원",
-                                         "change":  "4.55",
+                                         "change":  "4.93",
                                          "change_unit":  "",
-                                         "ratio":  0.52,
+                                         "ratio":  0.56,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.17 14:27"
+                                         "asof":  "2026.09.17 14:30"
                                      },
                                      {
                                          "name":  "유럽연합 EUR",
                                          "code":  "EURKRW",
-                                         "value":  "1,584.85",
+                                         "value":  "1,585.49",
                                          "unit":  "원",
-                                         "change":  "5.27",
+                                         "change":  "5.91",
                                          "change_unit":  "",
-                                         "ratio":  0.33,
+                                         "ratio":  0.37,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.17 14:27"
+                                         "asof":  "2026.09.17 14:30"
                                      },
                                      {
                                          "name":  "중국 CNY",
                                          "code":  "CNYKRW",
-                                         "value":  "206.07",
+                                         "value":  "206.13",
                                          "unit":  "원",
-                                         "change":  "0.85",
+                                         "change":  "0.91",
                                          "change_unit":  "",
-                                         "ratio":  0.41,
+                                         "ratio":  0.44,
                                          "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.09.17 14:27"
+                                         "asof":  "2026.09.17 14:30"
                                      }
                                  ]
                    },
@@ -194,38 +194,38 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "국고채 3년",
                                          "code":  "KTB3Y",
-                                         "value":  "4.089",
+                                         "value":  "4.095",
                                          "unit":  "%",
-                                         "change":  "0.051",
+                                         "change":  "0.057",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "체결 기준",
-                                         "asof":  "2026.09.17 14:27"
+                                         "asof":  "2026.09.17 14:31"
                                      },
                                      {
                                          "name":  "국고채 5년",
                                          "code":  "KTB5Y",
-                                         "value":  "4.310",
+                                         "value":  "4.316",
                                          "unit":  "%",
-                                         "change":  "0.020",
+                                         "change":  "0.026",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "체결 기준",
-                                         "asof":  "2026.09.17 14:28"
+                                         "asof":  "2026.09.17 14:31"
                                      },
                                      {
                                          "name":  "국고채 10년",
                                          "code":  "KTB10Y",
-                                         "value":  "4.541",
+                                         "value":  "4.543",
                                          "unit":  "%",
-                                         "change":  "0.012",
+                                         "change":  "0.010",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "down",
                                          "note":  "체결 기준",
-                                         "asof":  "2026.09.17 14:28"
+                                         "asof":  "2026.09.17 14:31"
                                      },
                                      {
                                          "name":  "회사채 AA- (3년)",
@@ -298,38 +298,38 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "미국 국채 2년",
                                          "code":  "UST2Y",
-                                         "value":  "4.722",
+                                         "value":  "4.720",
                                          "unit":  "%",
-                                         "change":  "0.005",
+                                         "change":  "0.007",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "down",
                                          "note":  "체결 기준 · 미국 동부시간",
-                                         "asof":  "2026.09.17 01:19"
+                                         "asof":  "2026.09.17 01:27"
                                      },
                                      {
                                          "name":  "미국 국채 10년",
                                          "code":  "UST10Y",
-                                         "value":  "5.006",
+                                         "value":  "5.004",
+                                         "unit":  "%",
+                                         "change":  "0.000",
+                                         "change_unit":  "%p",
+                                         "ratio":  null,
+                                         "dir":  "up",
+                                         "note":  "체결 기준 · 미국 동부시간",
+                                         "asof":  "2026.09.17 01:29"
+                                     },
+                                     {
+                                         "name":  "미국 국채 30년",
+                                         "code":  "UST30Y",
+                                         "value":  "5.350",
                                          "unit":  "%",
                                          "change":  "0.002",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "체결 기준 · 미국 동부시간",
-                                         "asof":  "2026.09.17 01:14"
-                                     },
-                                     {
-                                         "name":  "미국 국채 30년",
-                                         "code":  "UST30Y",
-                                         "value":  "5.353",
-                                         "unit":  "%",
-                                         "change":  "0.005",
-                                         "change_unit":  "%p",
-                                         "ratio":  null,
-                                         "dir":  "up",
-                                         "note":  "체결 기준 · 미국 동부시간",
-                                         "asof":  "2026.09.17 01:19"
+                                         "asof":  "2026.09.17 01:30"
                                      },
                                      {
                                          "name":  "미국 장단기 금리차",
@@ -341,19 +341,19 @@ window.DASHBOARD_DATA = {
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "국채 10년 − 2년 · 음수면 역전",
-                                         "asof":  "2026.09.17 01:14"
+                                         "asof":  "2026.09.17 01:29"
                                      },
                                      {
                                          "name":  "한미 10년 금리차",
                                          "code":  "KRUS10Y",
-                                         "value":  "-0.465",
+                                         "value":  "-0.461",
                                          "unit":  "%p",
-                                         "change":  "0.014",
+                                         "change":  "0.010",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "down",
                                          "note":  "국고채 10년 − 미국 국채 10년",
-                                         "asof":  "2026.09.17 14:28"
+                                         "asof":  "2026.09.17 14:31"
                                      },
                                      {
                                          "name":  "독일 국채 10년",
@@ -377,14 +377,14 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "WTI",
                                          "code":  "WTI",
-                                         "value":  "102.21",
+                                         "value":  "102.20",
                                          "unit":  "달러",
-                                         "change":  "0.22",
+                                         "change":  "0.23",
                                          "change_unit":  "",
-                                         "ratio":  -0.21,
+                                         "ratio":  -0.22,
                                          "dir":  "down",
                                          "note":  "NYMEX 최근월물 · 배럴당",
-                                         "asof":  "2026.09.17 00:18"
+                                         "asof":  "2026.09.17 00:21"
                                      },
                                      {
                                          "name":  "휘발유",
@@ -401,26 +401,26 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "국제 금",
                                          "code":  "GOLD_INTL",
-                                         "value":  "4,330.70",
+                                         "value":  "4,325.20",
                                          "unit":  "달러",
-                                         "change":  "56.80",
+                                         "change":  "62.30",
                                          "change_unit":  "",
-                                         "ratio":  -1.29,
+                                         "ratio":  -1.42,
                                          "dir":  "down",
                                          "note":  "COMEX 최근월물 · 트로이온스당",
-                                         "asof":  "2026.09.17 00:17"
+                                         "asof":  "2026.09.17 00:21"
                                      },
                                      {
                                          "name":  "국내 금",
                                          "code":  "GOLD_KR",
-                                         "value":  "191,030",
+                                         "value":  "191,100",
                                          "unit":  "원",
-                                         "change":  "120",
+                                         "change":  "50",
                                          "change_unit":  "",
-                                         "ratio":  -0.06,
+                                         "ratio":  -0.03,
                                          "dir":  "down",
                                          "note":  "KRX 금시장 기준 · g당",
-                                         "asof":  "2026.09.17 14:26"
+                                         "asof":  "2026.09.17 14:30"
                                      }
                                  ]
                    },
@@ -432,14 +432,14 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "달러/일본 엔",
                                          "code":  "USDJPY",
-                                         "value":  "155.96",
+                                         "value":  "155.95",
                                          "unit":  "엔",
                                          "change":  "0.69",
                                          "change_unit":  "",
                                          "ratio":  0.44,
                                          "dir":  "up",
                                          "note":  "야후 파이낸스 기준",
-                                         "asof":  "2026.09.17 14:28"
+                                         "asof":  "2026.09.17 14:32"
                                      },
                                      {
                                          "name":  "유로/달러",
@@ -475,7 +475,7 @@ window.DASHBOARD_DATA = {
                                          "ratio":  0.03,
                                          "dir":  "up",
                                          "note":  "미국 ICE선물거래소 기준",
-                                         "asof":  "2026.09.17 01:18"
+                                         "asof":  "2026.09.17 01:21"
                                      }
                                  ]
                    }
@@ -527,7 +527,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "KB금융, BS그룹과 \u0027생산적금융 확대·동반성장\u0027 업무협약 체결 - 머니투데이",
                                        "url":  "https://news.google.com/rss/articles/CBMia0FVX3lxTFBlVU9KWkx0ZURlaTIxekJaMXJ6Y1BnUXJod1lFVm9Wd3oyYWFtSGN6aHJ3eUo2VWdWNlVKS1BSOUc3cU5hMEN5QXJPUVVxanVoUkFWRWpYVTQ0N1pxVERhdjFjcXdpOGZrMGpJ0gFwQVVfeXFMTmtQOUZzZGRpR2VVMC1weGlXd1JwZU9EeDZZRU5GRE1uSjMzWFl2TUdzSHVmZ3pfLVZkVExUdW43bVRwZURqcDlfV3F4aGdRUmR6bjdiSGpPTDVqV0lubmNEOFplSGlQMjBBOTFMc21mcg?oc=5",
-                                       "source":  "머니투데이",
+                                       "source":  "mt.co.kr",
                                        "published":  "2026-09-09T06:30:50Z"
                                    },
                                    {
@@ -557,7 +557,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "키움증권, 서울대기술지주 손 잡고 생산적 금융 확대 - 머니투데이",
                                        "url":  "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5PVDRnOWQzdG9BVmJKUXZKaU53dGM2cV9qQkJNLUVaOVotbG5YUGRZdDFZWVEtZDBSdHpnb0JteWlZQ1dKaXE5RVB0REw1RkMzR1pHb1lKRE9GaEg0RXR0STE4VmFrOHNh0gFuQVVfeXFMTmNGbnN4UWxFNF9obTJLNkpQT1hTLUFteVRGNFZacXBWUmVaTFlldGg0bmF3a0FHOHhBdk4yb3VfLVRzdnNqclFBU0QtdjlPdXJyOU5BTEt5RHJvU096eDBkdmxKWGlwcWpvbXBMZVE?oc=5",
-                                       "source":  "머니투데이",
+                                       "source":  "mt.co.kr",
                                        "published":  "2026-08-28T07:00:00Z"
                                    }
                                ]
@@ -608,24 +608,24 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-09-15T07:16:25Z"
                                    },
                                    {
-                                       "title":  "[커버스토리①] 사모펀드, ‘약탈자’인가 ‘성장의 엔진’인가",
-                                       "url":  "https://news.google.com/rss/articles/CBMibkFVX3lxTE5nUmw2YjduS1A4MmJ4WEJSMndBdWxnWlhSSXQyejJ6LXF2bmNJZWhfZXU1cDBpU3dJRlpmMG9kTFBPa3FQblMwNXNKQjU1V1JtYnRZNXZlQXNWdXNyUEdhNzdtYzdPWXptWGdSWTNB?oc=5",
-                                       "source":  "참여와혁신",
-                                       "published":  "2026-09-14T23:58:17Z"
-                                   },
-                                   {
-                                       "title":  "Dell 패밀리 오피스는 77억 달러 규모의 Baldwin Insurance 상장폐지 인수에 가까워졌습니다.",
+                                       "title":  "Dell 패밀리 오피스, 77억 달러 규모의 Baldwin Insurance 상장폐지 인수에 근접",
                                        "title_en":  "Dell family office nears $7.7B Baldwin Insurance take-private deal",
                                        "url":  "https://news.google.com/rss/articles/CBMisAFBVV95cUxNV1IzRUdFbEVJa002dmZ0dzlOVkxFRXc4MzlXZFRGY291aWtkVFEzVTN0VUhBMng4RkdBVkhvZUJVSldESC1BTzhEU1VZZE50aTFFOEpnUDY5c2NSRVcwNUNWemFibXdhMHZOS05EWEpNNkhRbTR1anVTVTZiSFRwejV3cUJYb01HeVhQeFVsckpLd3VzRXVlQUlYaFd6QmszRmtKWm9YNktBRElsSTlTMw?oc=5",
-                                       "source":  "investmentnews.com",
+                                       "source":  "InvestmentNews",
                                        "published":  "2026-09-14T10:31:37Z",
                                        "intl":  true
                                    },
                                    {
                                        "title":  "MBK파트너스, 日 셰어링테크놀로지 공개매수…3400억원 규모 - 머니투데이",
                                        "url":  "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5LeDh5OEVQZmVGNkRfU1hhckpnd3M5VW9oOTdxZzlLazZzaUx1MnJac1o0WmJKZER1OEh6d0ZTZ1ZwTnF0S2QzQ1dOTk1HU19lTl92NzZNSzZJY204dnZhUWRTYkJKN3Nh0gFuQVVfeXFMTk9oRXVSM0wyODllcEVKNzJyaFplZnA3UW9LTWFENTNuMW9RQmRMSmRNQUt3Zzh0YVhXa2xIc0J1OHB6TzBhUWY3b0NMUnlvX3g4bF9Nc05FUXhsLXM5UlpNb0VTOFR1X2R4cGlPM1E?oc=5",
-                                       "source":  "머니투데이",
+                                       "source":  "mt.co.kr",
                                        "published":  "2026-09-10T09:14:30Z"
+                                   },
+                                   {
+                                       "title":  "우정사업본부, 2450억 PEF 출자…최대 7곳 선정",
+                                       "url":  "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAwWjByUHJCWGh0SjFqQ3FQZ3EwUUs1Mlk3dVlFeTdjMElLRG5ZWjRTaUd3SzlHUElKaExhZXNSZ2ZQRk9qRDlYRElhU3hSdTBs?oc=5",
+                                       "source":  "톱데일리",
+                                       "published":  "2026-09-10T06:30:00Z"
                                    },
                                    {
                                        "title":  "경영권 인수 대신 ‘쩐주’로 남아야 하는 태광산업의 속사정",
@@ -655,7 +655,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "KKR, A1 Garage Door Service를 약 20억 달러에 인수",
                                        "title_en":  "KKR to acquire A1 Garage Door Service for around $2 billion, sources say",
                                        "url":  "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPMzBsYXlGY0dqSEdBMnJCNHNJaHo2YUtSNTRIaEcxTFd6dVIxOHhDWDl2TlVEREVYOE1WcEs3dE5IRHYyVXE3TDE4S0pBeHd4SG9MUjVfdzlaTWNLX3JWODU4VEFWS25IdEtnb1BKeHQ2ejU0NFYzZ3dGdmIwajRwc2lVclEwcXRYZ29OOVlYUTFrbmM2dFMzU2N5aWVwN3JHSVJtUDVqM01JTzBfRWd1amZLc3V0QV9Mdncw?oc=5",
-                                       "source":  "Reuters",
+                                       "source":  "reuters.com",
                                        "published":  "2026-09-02T07:00:00Z",
                                        "intl":  true
                                    },
@@ -674,7 +674,7 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-08-24T06:42:19Z"
                                    },
                                    {
-                                       "title":  "사모펀드는 자신이 지원하는 기업에 AI 인력을 배치하고 있습니다.",
+                                       "title":  "프라이빗 에쿼티는 자신들이 지원하는 기업에 AI 인력을 배치하고 있습니다.",
                                        "title_en":  "Private Equity Is Deploying an Army of AI Wonks to Embed in the Firms They Back",
                                        "url":  "https://news.google.com/rss/articles/CBMitwFBVV95cUxQemJ0SHpLNXJVOGFSRnMwNVdDZUN5VHd0T3FEemJ4dTBvVTN2ZjVXQzN4aW1nM1JiLWFWMmdKbG4tMloyc0NkTXhZbmJWMG5RaGE1WXVZVUh5NFNGSnp5U3VLd19zb0poY2hnVXAyZkxDUGp3WjhubnNZS1pMTUc1SEoxeFVzcDFsZndvYy1Idmw5Wk8xMzh2a1NVV3ZPejhYWXN2Y1FGTlFMUlUxR2VEclJWUkRPdVU?oc=5",
                                        "source":  "WSJ",
@@ -739,7 +739,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "KB증권 해외 인수금융 2000억 늘리더니…손실 부메랑",
                                        "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBnamNJQmc4RFkxSFYzMzMzSDd1RUY2MkpkdDdLSWNjZHFXTl9TRUxLZWE0ZDh5aS12OUtjQzUzMTU1MzV1U3MtWm5ZWTNqc2M?oc=5",
-                                       "source":  "dealsite.co.kr",
+                                       "source":  "딜사이트",
                                        "published":  "2026-09-09T22:37:16Z"
                                    },
                                    {
@@ -754,7 +754,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "KKR 사모신용펀드 환매가 5% 한도에 도달한 후 냉각됨",
                                        "title_en":  "KKR Private Credit Fund Redemptions Cool After Hitting 5% Limit",
                                        "url":  "https://news.google.com/rss/articles/CBMiswFBVV95cUxPQnJGMm10YWNic3V4TUV3TXBIMmpaTFNqeUthZWdzMFBCOGw1cGw3U2V2VnVqNm9fVGlobkstWGdmSmZsN0ROcW01WHU1NlZBT1JxZUhIY3ctaFFQUXc0bU1Nb2M5NXVQYmlER3U0MmpNUTh2MjdLN2hfX3o2V1pMMHI5ZlhxdENXcnJOSUpmcmVkaDVBSWZrd0lWbnp6Q3F4YzNTandvRV9ITDJRd0loTjctcw?oc=5",
-                                       "source":  "bloomberg.com",
+                                       "source":  "Bloomberg.com",
                                        "published":  "2026-09-04T07:00:00Z",
                                        "intl":  true
                                    },
@@ -762,7 +762,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "미국 사모대출회사는 더 많은 대출을 인하했습니다.",
                                        "title_en":  "US private credit firms mark down more loans",
                                        "url":  "https://news.google.com/rss/articles/CBMiogFBVV95cUxNb0t0TWxwcWRwSWVNd05RNjVhdi01cG96VXkwN2dMb3FqY2lvUC1ESEFma3Y1dXR1TU40U0w5VEZxOURNbkZ6MTBSZmdubGJwQ1RDLUdvdmZDV1czaDgtV0ZrOWJYQzQ0eG9lTTRVR2JqRFk5ZlJsSVNjMkRPWE1lNUZPWWxSMHFITnNMUGFqc1c2TWNubFd4Z0l0ZGpXc1RYUnc?oc=5",
-                                       "source":  "Reuters",
+                                       "source":  "reuters.com",
                                        "published":  "2026-09-02T07:00:00Z",
                                        "intl":  true
                                    },
@@ -789,7 +789,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "한신평·무디스 \"사모대출 시스템 위기 제한적…국내 익스포저 55.9조\"",
                                        "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBORVV6WEdmM1R4VDVySVEwTWFEMlpKUXhGNF9taDBKbkw0c0JYUFl4X1FwU0MyZWt6VGR4WlRXenpxVngxaHdkdk9MUlRob0RCTnFXb3h6eGstcU3SAWBBVV95cUxNNmZSWWxqQkhFWC0zTTNhU1BlVW9ENnFTaUtmMWhxcl9JemZmWk5FOWhiS3RyOFEtekRBdWJON2M4cDlDUVlwTUEydGZacVN1dk1lRkowbmF5dzdCWkhMRE4?oc=5",
-                                       "source":  "yna.co.kr",
+                                       "source":  "연합뉴스",
                                        "published":  "2026-08-27T07:00:00Z"
                                    },
                                    {
@@ -807,7 +807,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "앤트로픽 데이터센터, 1.8조원 사모대출까지 추가 확보",
                                        "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1UVFlIQzFaTDZ1ejl0Q3FyaFZZTjkycE9ydTAzRnZGWGFFbWdZcjY2cVE0eTc0SnF2UV9lcVYyd1Y2cVRvQVdiVUcxcGVYUzZfcXV3dXQ3WWFyVFHSAWBBVV95cUxPSWlLSkhjWF83dWdGRHVHSThFZjhXTk04Q2xQQ00tbmZWWGs1akJqLW8yU1RaRXg3NGw2Um5GU0lYbUMxQkFpMnpuS2tnM1RBZTIycDQtMXFHbGJ3bnF1cm0?oc=5",
-                                       "source":  "yna.co.kr",
+                                       "source":  "연합뉴스",
                                        "published":  "2026-08-20T07:00:00Z"
                                    },
                                    {
@@ -859,7 +859,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "Petit Pot, 시리즈 A 자금 조달",
                                        "title_en":  "Petit Pot raises Series A funding",
                                        "url":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQM2tJaU5mbWlQRHlQOHF5cEt5X2JIdktzcU5MVEpOMi1aMlRKSkRCMVlIQ19oNTNOdFdJTUtiQTJaZFlKc3l3OVlHZzVRaTB1aXNvMlc1SDJxNmRkYUVTQjI0U0pEZFBySlFNWjJlZld2cDM4Vl9jSDE2QlJ2eHBwYnhublhDbDgz?oc=5",
-                                       "source":  "foodbusinessnews.net",
+                                       "source":  "Food Business News",
                                        "published":  "2026-09-11T13:00:56Z",
                                        "intl":  true
                                    },
@@ -873,14 +873,14 @@ window.DASHBOARD_DATA = {
                                        "title":  "Andreessen Horowitz가 AI 베팅을 80억 달러의 대박으로 전환한 방법",
                                        "title_en":  "How Andreessen Horowitz Turned Its AI Bets Into an $8 Billion Bonanza",
                                        "url":  "https://news.google.com/rss/articles/CBMilwFBVV95cUxNSTVvUEFGOTNDVDctQmxZTlo1T1BXR01mbk5QM3ZBVVQ3NW1na18wZEUyWmtVU29tY1VKN1R3OTdmSUQzLU1BYTBpYngyMzFkSVVsblZDM0dSMFVmUTVlcEgxMmlBT3BQTC1oVEp6ZXo0eEo2T054S1JRTElXOTVkVTB2YUtIUVE0bEk1aGhTRUVENnVOSDhJ?oc=5",
-                                       "source":  "The Information",
+                                       "source":  "theinformation.com",
                                        "published":  "2026-09-04T16:01:00Z",
                                        "intl":  true
                                    },
                                    {
                                        "title":  "모태펀드 출자 1조 3,000억 원… 중기부 내년 예산 18조 원",
                                        "url":  "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9hZW5YeENnc3JRMTkyVzBLVlBjWnRWRVNZNHktV1FsTXcyczcybFAzTlZLZnpiT1V4cVlkdWVOZnFUSFd2Zmlpbw?oc=5",
-                                       "source":  "platum.kr",
+                                       "source":  "플래텀(Platum)",
                                        "published":  "2026-09-01T07:00:00Z"
                                    },
                                    {
@@ -888,6 +888,12 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMibEFVX3lxTE9JWW9pSlRRYUdPLXA3ZEVtSVFyZkJ5U2VmdVh0QUJqSExuRjdiWTRqRnJoRzZFT3JXdFMteGQ0R21BbWlQTUtoRDFmM3AtNE50eFMtejBMa19ObzEzdmhVVGZ5cjlTTnp2M0xsYg?oc=5",
                                        "source":  "대한민국 정책브리핑",
                                        "published":  "2026-09-01T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "\u0027츄룹\u0027 운영사 벗뷰리풀, 프리시리즈A 투자 유치",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBvTXJxX3dHS2hPTVRLOVdUS0NRRVE0RW1MS0hqZEEtRktweDF6S3BqbHJTUTRQRThxbmFzN3VLZkE0UllPeEo5VWl1NGVjUGllY2NGVm5aY1VUb1FZTEU4YQ?oc=5",
+                                       "source":  "아시아경제",
+                                       "published":  "2026-09-01T02:13:57Z"
                                    },
                                    {
                                        "title":  "모태펀드, 관광·국민안전 GP에 유니스트·현대차증권 등 낙점",
@@ -902,15 +908,9 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-08-27T07:00:00Z"
                                    },
                                    {
-                                       "title":  "베이리스, 55억원 규모 시리즈B 투자유치…2027년 코스닥 상장 목표",
-                                       "url":  "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5OZG5Nb081M0c5bjRFTnNZTzM2bkN1MjBjOTdGY0FTbGExeHVOV3VfZG9EWDFCVmF6UU5Ya2xtUUp0MHEzNHk1bUlteGF2Zw?oc=5",
-                                       "source":  "전자신문",
-                                       "published":  "2026-08-25T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "GP 달래는 모태펀드…공직 오른 목승환도 총력",
                                        "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9FNzZWNi14azFwRFYzZ1FyVU9xcnZKb3hLV2d5VmowNFdSdml3OGVOOUlUeHU3aW9sZnVUVlVGbkdFWWtkVWNySEtrbk9NTjg?oc=5",
-                                       "source":  "dealsite.co.kr",
+                                       "source":  "딜사이트",
                                        "published":  "2026-08-25T07:00:00Z"
                                    },
                                    {
@@ -922,13 +922,13 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "케이비엘러먼트, 140억 원 규모 시리즈 B 투자 유치",
                                        "url":  "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5ycTlRUUtwTktsMTktUGRwNGlEWUR5bnJ2TlltY1JkVklBTFhwbld1cGpCWFlSSEpsQWZBekNtSkRadVlqcnhwXw?oc=5",
-                                       "source":  "platum.kr",
+                                       "source":  "플래텀(Platum)",
                                        "published":  "2026-08-21T07:00:00Z"
                                    },
                                    {
                                        "title":  "[기자수첩] 국민성장펀드 쏠림에 한숨짓는 벤처캐피탈",
                                        "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5wV1hqWlRYR3Y3azE1MEpKblRGekNuVTI0YVYyYlVCN0xMcmhSdTBsbDVvYk5TV1VUYzlEbnVOamppY0lFY2laLWpXZTUta2M?oc=5",
-                                       "source":  "dealsite.co.kr",
+                                       "source":  "딜사이트",
                                        "published":  "2026-08-20T07:00:00Z"
                                    },
                                    {
@@ -970,14 +970,14 @@ window.DASHBOARD_DATA = {
                                    },
                                    {
                                        "title":  "AI 데이터센터 잇단 투자에 포항시 전력·용수 추가 확보 나선다",
-                                       "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBlOFVDVG43LVVXVVBuTDVqbnFnRUlzRFMtRmw3b2lRSVc0UGo3UWxLMXhWMW1RY0RGNzZ6UGdFOUxzTTVTc1dPd2xlcXg3QjNTTjI4QU1YQ2x2ZkHSAWBBVV95cUxNM3hJdUJkcmxybkx2ejlseExTdnA2R2NvN3ZDWVBubTYwdjRsVWowLWQ1MlBhY01kc2kyYVV4Q0g5Z0NaekNUXzNYQmRGa2c5eng4OGxzc0ZuYVl3TFNTRTI?oc=5",
-                                       "source":  "yna.co.kr",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0zeEl1QmRybHJuTHZ6OWx4TFN2cDZHY283dkNZUG5tNjB2NGxVajAtZDUyUGFjTWRzaTJhVXhDSDlnQ1p6Q1RfM1hCZEZrZzl6eDg4bHNzRm5hWXdMU1NFMtIBYEFVX3lxTE0zeEl1QmRybHJuTHZ6OWx4TFN2cDZHY283dkNZUG5tNjB2NGxVajAtZDUyUGFjTWRzaTJhVXhDSDlnQ1p6Q1RfM1hCZEZrZzl6eDg4bHNzRm5hWXdMU1NFMg?oc=5",
+                                       "source":  "연합뉴스",
                                        "published":  "2026-09-15T02:32:53Z"
                                    },
                                    {
                                        "title":  "[AI 리더스] 법무법인 태평양 \"복잡해진 AI 데이터센터, 통합 자문으로 승부\"",
                                        "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTE94eDhPaExOZmlOLW4tZWRpNlRPQy1LbTRQQm1xdG1fcWhQVFZEaG5IbnE1cXJRbmhZMlUxeVdGR3hZMFM3N0NMcFN2TGtldVVMZmkxT2Z3?oc=5",
-                                       "source":  "지디넷코리아",
+                                       "source":  "zdnet.co.kr",
                                        "published":  "2026-09-13T07:00:02Z"
                                    },
                                    {
@@ -1058,7 +1058,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "AI 데이터센터의 분노는 광고부터 선거까지 모든 곳에서 나타나고 있습니다.",
                                        "title_en":  "AI data center outrage is showing up everywhere from ads to elections",
                                        "url":  "https://news.google.com/rss/articles/CBMieEFVX3lxTE5NU1JTVElyd0VoUGxkbExGS0ZtTWQ0TktXaEZaUnN0V1N4bHByb1VCQmplbzEtalFNSTZtT1R4LTkxOXhmRExuZGdfUWtCR18xM1VDemJVaWVnWDU1VWxPS2hSUkw3cXVzOUg2QjJVYXRQT0VhNFYtN9IBfkFVX3lxTE1QWXBpQmVNVG1wYVdEakxudnJwZzAwaDluQ2dXakNreXE2aUx6RGpDclg5eVd6Zlc2Z0NIaWNwaXM1RUlSb3dCSXJNdnQyNl9WdEd4WHpyTmY2SHExd1RNV2NYS2hpWENMMkpMWFBzRVRGYzB5ZXJYTHE3SExsUQ?oc=5",
-                                       "source":  "CNBC",
+                                       "source":  "cnbc.com",
                                        "published":  "2026-08-20T07:00:00Z",
                                        "intl":  true
                                    },
@@ -1094,7 +1094,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "베트남, 부동산 투명성 개선 세계 상위 10개 시장 선정…GRETI 50위 기록",
                                        "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE1ST0tNVms4b29WLVpnT2xPTjk0N24wWHloT09SZzB5czJ4QTRnWTdjNGVhLWY5azgwQkw1ZnNOb3NTOFZUSkNBYkJrcUZQdXRlYi16NXNYaEhvd3F1SEplcnA5bXZ0N2xIb3VlbUM1cW0?oc=5",
-                                       "source":  "굿모닝베트남미디어",
+                                       "source":  "goodmorningvietnam.co.kr",
                                        "published":  "2026-09-15T12:31:09Z"
                                    },
                                    {
@@ -1125,7 +1125,7 @@ window.DASHBOARD_DATA = {
                                    },
                                    {
                                        "title":  "금감원, 해외 부동산펀드 등 고위험 펀드 간담회 개최",
-                                       "url":  "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5aX2tCV3BMR3hnZWl5ZHNIRHRjLU55ejhJaFZhb1dzY2lxSE41bDhmeHV3QzVSbWVRdHlZUzNTRHBUcXBGalVVN1A3dHo2TEU?oc=5",
+                                       "url":  "https://news.google.com/rss/articles/CBMiRkFVX3lxTE8yR2dHVDBsNGJrT3pqaXE0NnJPVndoY1I0UEtTUDJ3TkgySG5kU2hIQWpVaUZ5LU9oRlVjZGlvVjduTENUeFE?oc=5",
                                        "source":  "v.daum.net",
                                        "published":  "2026-09-09T01:00:24Z"
                                    },
@@ -1150,17 +1150,9 @@ window.DASHBOARD_DATA = {
                                        "intl":  true
                                    },
                                    {
-                                       "title":  "주거용 부동산 투자는 2026년까지 차분한 시작을 보입니다",
-                                       "title_en":  "Residential property investment sees a subdued start to 2026",
-                                       "url":  "https://news.google.com/rss/articles/CBMimwFBVV95cUxORHlJOVRZXzdtQ3UwakhHbDBqdHBmM3Qwd181MFZQV0dsOHRGRUZfajVIaWVNRnB3a2N6VS1MVTBmUjJMc0UzZXN1c3lwZTZjZWhmZkQ3R1hmeTBieUVveVFUWEZHRUk2VEw1NGhHMVRBc1ZVWjVjRjBBWmJlaDRmdUtwbkMwcU5IV3JzeGJiQjZRUWNYbHVTR1gxMA?oc=5",
-                                       "source":  "Cushman \u0026 Wakefield",
-                                       "published":  "2026-09-04T07:00:00Z",
-                                       "intl":  true
-                                   },
-                                   {
                                        "title":  "제주대-일본 리츠메이칸아시아태평양대학, ‘제주-벳푸 글로컬 이슈 공동 답사 및 워크숍’ 성료",
                                        "url":  "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1pUDN6TF9saHlxYmlGRkViSUltRzJmZldWUXRiVFkwLW5IcXliM2otLV8xNEFzdFl0YUVOUG5YcGFYVXg2bnZoWXVCcF9RR3U1WmZMUk9tVloyR1NIUzhDaHk0TzJfWkU?oc=5",
-                                       "source":  "뉴스N제주",
+                                       "source":  "newsnjeju.com",
                                        "published":  "2026-09-01T14:21:21Z"
                                    },
                                    {
@@ -1168,6 +1160,14 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBFdVJwVmdJa3ZlYXFNVnhtVENtZ3pybEFVcmJVSmJMNlE5amViVW9OLUJwN2czQmxfUl9Lc0JRZ0pFWmNlMVE?oc=5",
                                        "source":  "v.daum.net",
                                        "published":  "2026-08-30T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "TCW 글로벌 부동산 펀드 2026년 2분기 포트폴리오 업데이트",
+                                       "title_en":  "TCW Global Real Estate Fund Q2 2026 Portfolio Update",
+                                       "url":  "https://news.google.com/rss/articles/CBMimAFBVV95cUxOMV9zeVlyb1p5OGNJNFpzTXQ4dGM1WjBDVGdYZ3kteGg1WjBsRUI0Q2JienVwanA4YnVJUUNxbUdVdldZNVR2VW5xdkw4eVliX3U5elN4TGQ5MERmeDZjTHFjNDhvUHQ4aVJ1eTRySHhFbnNfelFpWjZZT1V0TFJEWFpjUGtNTTUzS2N3TzFVekZzVERfUU9TNg?oc=5",
+                                       "source":  "Seeking Alpha",
+                                       "published":  "2026-08-28T07:00:00Z",
+                                       "intl":  true
                                    },
                                    {
                                        "title":  "2026년 상업용 부동산 회사 조사 진행 중",
@@ -1180,11 +1180,11 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "해외 부동산펀드 악몽 되풀이 막는다, 공모펀드 \u0027손실이력\u0027 공개 - 머니투데이",
                                        "url":  "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpTUZzZlQxOG5ZdUNUUXRub2VWUmJFc1NnNm9IWGhxQnJiQkpoRGJDMjc0YUtzcU11ZnpUUkRpUGgzTTJ3VTV6Ny14aVlXVF91c1hheV81eE9FcVBmZGl4cDhKSW1zdm410gFuQVVfeXFMTmNaQnZGVWdaRWQ5TnYzVUw2ZElMVlN2a0pBV2FZdEhjbk83dU1IVFYtRmxkMmxpSmc1YVVmSy1YNFI0Rlh3TVZCbnYzUDQ5Qk9TOXFtOXVsQjFmdHhzRHdHRlkwZTZZQU9mcV9wbWc?oc=5",
-                                       "source":  "머니투데이",
+                                       "source":  "mt.co.kr",
                                        "published":  "2026-08-25T07:00:00Z"
                                    },
                                    {
-                                       "title":  "들어보세요: 데이터센터 부동산 산업이 어떻게 변화하고 있는지",
+                                       "title":  "듣기: 데이터센터 부동산 산업이 어떻게 변화하고 있는지",
                                        "title_en":  "LISTEN: How the Data Center Real Estate Industry is Changing",
                                        "url":  "https://news.google.com/rss/articles/CBMipwFBVV95cUxPWlhQeEI4Q01BSlh4ZWdEbnhhek5sSUN5bWxlWHV6dnNVVDdiUjVNZGZMVUFkQUx3dGdMdmpJc291a1lOWnR5MjBpeEZLcVotVEh4MnNOYWFybk4wSGU4aW9QQ3d6QmRpTVNDTmxzbndVT1ZnY3hqd1dXQ1E1M3NqaHhQbGd1eVdNQ2RyVWZrMEpQYllaV0RSemlSSWlXSlZFM1lnNi1tWQ?oc=5",
                                        "source":  "The Real Deal",
@@ -1201,7 +1201,7 @@ window.DASHBOARD_DATA = {
                                        "title":  "새로운 데이터에 따르면 상업용 부동산 수요가 가장 높은 곳",
                                        "title_en":  "Where commercial real estate demand is the highest, according to new data",
                                        "url":  "https://news.google.com/rss/articles/CBMigAFBVV95cUxNWThaQWVSS3MwV0ZzcTJobXE3by1oX3JwZ2dTSkpKOFpoTm1KTTg0elNuYThBbmZvMzVBcXZGcEJCLXlTRTVucng4X1BxTlZyS2tCZzZlMkpsLWZFN0dvRnNFM2c4T2Y5WHRZWmo0UmhIVkxSSm5uWnhVOHlaY3dXRNIBhgFBVV95cUxPVlQzZDViZjlsMWpjVGh2WFU3UFMwSkxHWXdFS21qQWFGdVZKTV9xQmdybnZRaTBWSDJsSXlTQTNtUkM1aUM5VWJBRDVSWk1nX0hieWlpbGZfRG1wMTlrZHVkbDN3YmFocjg4RS1lYjM3MVlIdC1mLS0ydTVnLWJkeGNKZ3R6UQ?oc=5",
-                                       "source":  "CNBC",
+                                       "source":  "cnbc.com",
                                        "published":  "2026-08-20T07:00:00Z",
                                        "intl":  true
                                    }
@@ -1269,7 +1269,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "안살도 에네르지아, 글로벌 에너지 인프라의 미래를 뒷받침하기 위해 키넥시스 선택",
                                        "url":  "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBuTHlZUEZLMm8wSVhiOXNXSTd6SjNMX3pGWkhjRC12dS10XzdDQzNLVEVfWjdidGxkTElxc0x3ckxLWmFiNEJ1Z0VSWjVIbHV6UFEwOVF4ekhZRzFZMjU3bVFQZkw?oc=5",
-                                       "source":  "esnews.kr",
+                                       "source":  "에너지안전신문",
                                        "published":  "2026-08-27T23:52:54Z"
                                    },
                                    {
@@ -1316,7 +1316,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "43% 넘는 지식산업센터 공실, 청년·신혼부부 공공임대로…오피스텔도 허용",
                                        "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1SZVhlTEZXNGpIRmo5aVFKOGVWN01aVVJIaEcxeEJ6X2dyT0NsR2xhcENIc2ZtdXFTQ2l3T0owNnFZOWlUTkJsdXpMQ2dkLTIzeDhzY3JTM2xBMU0?oc=5",
-                                       "source":  "ekn.kr",
+                                       "source":  "에너지경제신문",
                                        "published":  "2026-09-10T01:46:49Z"
                                    },
                                    {
@@ -1326,16 +1326,16 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-09-09T22:40:00Z"
                                    },
                                    {
-                                       "title":  "부동산PF 규제 유예했지만, 고금리·연체율 부담 \u0027여전\u0027…사업성 높은 서울 수도권 \u0027쏠림 우려\u0027",
-                                       "url":  "https://news.google.com/rss/articles/CBMic0FVX3lxTE9fTjBnWWFoOU1TNU94SFlYQVpHV3JYOUQ2cnFNLWNGTE1GMHVuQUlqOXBXMnhGdEZUb2loWWRNYzlNZXdhUUNDQWJJRmtKWEhyZlMxWFJDMksyc3BYRDFYN0doRWN0SHg1R25wVmFSZDVfWWc?oc=5",
-                                       "source":  "대한경제",
-                                       "published":  "2026-09-09T06:04:15Z"
+                                       "title":  "부동산PF 지고, 데이터센터PF 뜬다… 금투업계 돈 몰려",
+                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE9FWE1YWC15dVZHRWF1cW5Xb0c3LWlVVC0tdVlfeFhNaTVNMEptRTRUZnBPNXY3RUdIQkZQYWVEOUd5TVV1TEtSQnVFbkNWYjBXaGgyamJkOEtUQ19rZUw5UjBzaG9LbExyWjFZQnVQTlPSAXRBVV95cUxPa0FKUzd0cnhsU1RRM0wtQVRuc05IcEhBUUtQSTRpYS1UX1JZSHVia0lISGFKcHoyRU1BWXQ1bzdFemtSTE1vODRRa1pPc0VIZDdnUnhodjJmRk1VN2ZBRU1YVWc0UUtXOEE5T2s4RE96ZTRKMw?oc=5",
+                                       "source":  "IT조선",
+                                       "published":  "2026-09-09T21:30:00Z"
                                    },
                                    {
                                        "title":  "한국 부동산 \u0027완성 부동산 매매\u0027 모델에서 본 중국에 대한 통찰",
                                        "title_en":  "Insights for China from South Korea\u0027s Real Estate \"Completed Property Sales\" Model",
                                        "url":  "https://news.google.com/rss/articles/CBMiU0FVX3lxTE44OEpKclhFeHRvUWRyM0JjYnIzQklqZXZfV3Z6VVAwU2lISmZJMmtHQnY4YWRhd21jMzY4bnVSb25IN05fcGwyT2ZuMmdkVk1EYjBv?oc=5",
-                                       "source":  "36Kr",
+                                       "source":  "eu.36kr.com",
                                        "published":  "2026-09-06T07:00:00Z",
                                        "intl":  true
                                    },
@@ -1352,6 +1352,12 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-08-31T07:52:06Z"
                                    },
                                    {
+                                       "title":  "마스턴투자운용 \"하반기 상업용 부동산, 호텔·데이터센터 주목\"",
+                                       "url":  "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBQcGtoVmNnS1ZLR05RMGdLaTRMVk0zRHd6Z2xLQ1RueGdoS1dzM0w1dTFjUVJicmlUWkRRTWZ2aE9IS3o0NHdpX1VaTXE3NldUeVVyVE5qcElwM05w?oc=5",
+                                       "source":  "뉴스핌",
+                                       "published":  "2026-08-31T07:00:00Z"
+                                   },
+                                   {
                                        "title":  "“올해 상업용 부동산 거래액 27~33조…오피스 공실률 개선 전망”",
                                        "url":  "https://news.google.com/rss/articles/CBMiS0FVX3lxTE03b2FiSnh2ZHk1UG5INHpFcUFVd3dRQVVhY1VVeEhwM1ZNMjF2Z01kN1V3emhlcEFjZFVNaS1kYkVWblZnN2syRnVKUQ?oc=5",
                                        "source":  "v.daum.net",
@@ -1360,13 +1366,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "코람코자산신탁 \"코람코더원리츠 28일 배당락…주가 변동 유의\"",
                                        "url":  "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBJVVdRLXdUclQ4djFpQVJtY25takdoemJrMTl0eHZldHk0VHpTSng0cHFoVEJ2TzAxVi1sMEpJMGk4LWhRcHR2dW5WQXlIM2JOaUEwUnp0UW9zMXPSAWBBVV95cUxPYWhnc3ZMdUo0RTFtaFh1V2FIaXJnUzZFa0MzZGxQN0xTQkZRQnlpNGh2T1p0R0xRLURkNFAyTERKXzlLYnRqcXdVdlFxQVJxcVE1ZXRleTlxeUxWY3J2RFE?oc=5",
-                                       "source":  "yna.co.kr",
-                                       "published":  "2026-08-26T07:00:00Z"
-                                   },
-                                   {
-                                       "title":  "마스턴투자운용, 한양대 부동산학회 SHARE 초청 재능기부 세미나 진행",
-                                       "url":  "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB0M285V0p2NFRfd0dMWmtnaFgzbDlWLVJjU0dDRUNybk1LbFF1UGFUMUVwTjFQR1J4MHJuNll6bWNDaGd1NzM1QXRMMVdET3NiQUl6cXY3bnl4OTcz?oc=5",
-                                       "source":  "뉴스핌",
+                                       "source":  "연합뉴스",
                                        "published":  "2026-08-26T07:00:00Z"
                                    },
                                    {
@@ -1447,7 +1447,7 @@ window.DASHBOARD_DATA = {
                                    {
                                        "title":  "GTX-C·부전~마산선 등 4개 민자사업, 민투심 통과…\"개통 지연 해소\" - 머니투데이",
                                        "url":  "https://news.google.com/rss/articles/CBMia0FVX3lxTE15WjNYcWp2dXVHSzNWN2VqcUp3UEROeDdYMU5DRnUzczl0ZjZzTlZGRUFjTjJhOHVyNmtqdjd6WkdRVUxPamV4Z1E0MVF5VXJFOU5qUDM4d29qQTFjUjNZRmpFbjZxY3RUQTRj0gFwQVVfeXFMT0NKdEZZczJLVlJCYklReV8xMDRhN0ZqQnpMOEp3WUpxLXBGM3hxVFRlMXV6VjRFblJka1BiZ09nR25TZU96NzNjTUVGZDByMk85QjVtSmloay1ncUw2UnN4MzlTSV8tZVpRcElIQi1mZw?oc=5",
-                                       "source":  "머니투데이",
+                                       "source":  "mt.co.kr",
                                        "published":  "2026-08-25T07:00:00Z"
                                    },
                                    {
