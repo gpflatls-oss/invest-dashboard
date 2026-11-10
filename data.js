@@ -1,7 +1,7 @@
 /* 이 파일은 refresh.ps1 이 자동으로 만듭니다. 직접 고치지 마세요. */
 window.DASHBOARD_DATA = {
-    "generated_at":  "2026-11-09T16:55:50Z",
-    "generated_at_display":  "2026년 11월 10일 01:55 KST",
+    "generated_at":  "2026-11-10T00:14:21Z",
+    "generated_at_display":  "2026년 11월 10일 09:14 KST",
     "news_window_days":  30,
     "market":  [
                    {
@@ -12,86 +12,86 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "코스피",
                                          "code":  "KOSPI",
-                                         "value":  "5,018.85",
+                                         "value":  "5,276.81",
                                          "unit":  "",
-                                         "change":  "-40.84",
+                                         "change":  "257.96",
                                          "change_unit":  "",
-                                         "ratio":  -0.81,
-                                         "dir":  "down",
+                                         "ratio":  5.14,
+                                         "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.11.09 20:15"
+                                         "asof":  "2026.11.10 09:11"
                                      },
                                      {
                                          "name":  "코스닥",
                                          "code":  "KOSDAQ",
-                                         "value":  "638.97",
+                                         "value":  "667.13",
                                          "unit":  "",
-                                         "change":  "-5.30",
+                                         "change":  "28.16",
                                          "change_unit":  "",
-                                         "ratio":  -0.82,
-                                         "dir":  "down",
+                                         "ratio":  4.41,
+                                         "dir":  "up",
                                          "note":  "한국거래소",
-                                         "asof":  "2026.11.09 20:15"
+                                         "asof":  "2026.11.10 09:11"
                                      },
                                      {
                                          "name":  "다우존스",
                                          "code":  "DJI",
-                                         "value":  "52,237.39",
+                                         "value":  "52,389.75",
                                          "unit":  "",
-                                         "change":  "951.66",
+                                         "change":  "1,104.02",
                                          "change_unit":  "",
-                                         "ratio":  1.86,
+                                         "ratio":  2.15,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.11.09 11:52"
+                                         "asof":  "2026.11.09 17:12"
                                      },
                                      {
                                          "name":  "나스닥 종합",
                                          "code":  "IXIC",
-                                         "value":  "25,187.46",
+                                         "value":  "25,253.14",
                                          "unit":  "",
-                                         "change":  "608.03",
+                                         "change":  "673.71",
                                          "change_unit":  "",
-                                         "ratio":  2.47,
+                                         "ratio":  2.74,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.11.09 11:52"
+                                         "asof":  "2026.11.09 17:15"
                                      },
                                      {
                                          "name":  "S\u0026P 500",
                                          "code":  "SPX",
-                                         "value":  "7,533.80",
+                                         "value":  "7,549.94",
                                          "unit":  "",
-                                         "change":  "156.94",
+                                         "change":  "173.08",
                                          "change_unit":  "",
-                                         "ratio":  2.13,
+                                         "ratio":  2.35,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.11.09 11:52"
+                                         "asof":  "2026.11.09 17:12"
                                      },
                                      {
                                          "name":  "필라델피아 반도체",
                                          "code":  "SOX",
-                                         "value":  "9,998.73",
+                                         "value":  "10,033.93",
                                          "unit":  "",
-                                         "change":  "608.48",
+                                         "change":  "643.68",
                                          "change_unit":  "",
-                                         "ratio":  6.48,
+                                         "ratio":  6.86,
                                          "dir":  "up",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.11.09 11:52"
+                                         "asof":  "2026.11.09 17:15"
                                      },
                                      {
                                          "name":  "니케이 225",
                                          "code":  "N225",
                                          "value":  "58,775.50",
                                          "unit":  "",
-                                         "change":  "1,340.73",
+                                         "change":  "0.00",
                                          "change_unit":  "",
-                                         "ratio":  2.33,
-                                         "dir":  "up",
+                                         "ratio":  0,
+                                         "dir":  "flat",
                                          "note":  "해외 지수 · 종가 기준",
-                                         "asof":  "2026.11.09 15:45"
+                                         "asof":  "2026.11.10 08:56"
                                      },
                                      {
                                          "name":  "항셍",
@@ -115,50 +115,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "미국 USD",
                                          "code":  "USDKRW",
-                                         "value":  "1,345.70",
+                                         "value":  "1,345.30",
                                          "unit":  "원",
-                                         "change":  "17.80",
+                                         "change":  "3.30",
                                          "change_unit":  "",
-                                         "ratio":  -1.31,
-                                         "dir":  "down",
+                                         "ratio":  0.25,
+                                         "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.11.10 01:49"
+                                         "asof":  "2026.11.10 09:10"
                                      },
                                      {
                                          "name":  "일본 JPY(100엔)",
                                          "code":  "JPYKRW100",
-                                         "value":  "851.60",
+                                         "value":  "851.24",
                                          "unit":  "원",
-                                         "change":  "9.06",
+                                         "change":  "1.58",
                                          "change_unit":  "",
-                                         "ratio":  -1.05,
-                                         "dir":  "down",
+                                         "ratio":  0.19,
+                                         "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.11.10 01:49"
+                                         "asof":  "2026.11.10 09:10"
                                      },
                                      {
                                          "name":  "유럽연합 EUR",
                                          "code":  "EURKRW",
-                                         "value":  "1,507.45",
+                                         "value":  "1,509.43",
                                          "unit":  "원",
-                                         "change":  "11.56",
+                                         "change":  "3.44",
                                          "change_unit":  "",
-                                         "ratio":  -0.76,
-                                         "dir":  "down",
+                                         "ratio":  0.23,
+                                         "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.11.10 01:49"
+                                         "asof":  "2026.11.10 09:10"
                                      },
                                      {
                                          "name":  "중국 CNY",
                                          "code":  "CNYKRW",
-                                         "value":  "201.71",
+                                         "value":  "201.72",
                                          "unit":  "원",
-                                         "change":  "2.69",
+                                         "change":  "0.50",
                                          "change_unit":  "",
-                                         "ratio":  -1.32,
-                                         "dir":  "down",
+                                         "ratio":  0.25,
+                                         "dir":  "up",
                                          "note":  "하나은행 기준",
-                                         "asof":  "2026.11.10 01:49"
+                                         "asof":  "2026.11.10 09:10"
                                      }
                                  ]
                    },
@@ -298,57 +298,57 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "미국 국채 2년",
                                          "code":  "UST2Y",
-                                         "value":  "4.568",
+                                         "value":  "4.561",
                                          "unit":  "%",
-                                         "change":  "0.046",
+                                         "change":  "0.015",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "체결 기준 · 미국 동부시간",
-                                         "asof":  "2026.11.09 11:49"
+                                         "asof":  "2026.11.09 19:04"
                                      },
                                      {
                                          "name":  "미국 국채 10년",
                                          "code":  "UST10Y",
-                                         "value":  "4.884",
+                                         "value":  "4.878",
                                          "unit":  "%",
-                                         "change":  "0.025",
+                                         "change":  "0.016",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "체결 기준 · 미국 동부시간",
-                                         "asof":  "2026.11.09 11:49"
+                                         "asof":  "2026.11.09 19:09"
                                      },
                                      {
                                          "name":  "미국 국채 30년",
                                          "code":  "UST30Y",
-                                         "value":  "5.272",
+                                         "value":  "5.274",
                                          "unit":  "%",
-                                         "change":  "0.012",
+                                         "change":  "0.018",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "up",
                                          "note":  "체결 기준 · 미국 동부시간",
-                                         "asof":  "2026.11.09 11:50"
+                                         "asof":  "2026.11.09 19:09"
                                      },
                                      {
                                          "name":  "미국 장단기 금리차",
                                          "code":  "UST10Y2Y",
-                                         "value":  "0.316",
+                                         "value":  "0.317",
                                          "unit":  "%p",
-                                         "change":  "0.021",
+                                         "change":  "0.001",
                                          "change_unit":  "%p",
                                          "ratio":  null,
-                                         "dir":  "down",
+                                         "dir":  "up",
                                          "note":  "국채 10년 − 2년 · 음수면 역전",
-                                         "asof":  "2026.11.09 11:49"
+                                         "asof":  "2026.11.09 19:09"
                                      },
                                      {
                                          "name":  "한미 10년 금리차",
                                          "code":  "KRUS10Y",
-                                         "value":  "-1.026",
+                                         "value":  "-1.020",
                                          "unit":  "%p",
-                                         "change":  "0.019",
+                                         "change":  "0.010",
                                          "change_unit":  "%p",
                                          "ratio":  null,
                                          "dir":  "down",
@@ -358,14 +358,14 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "독일 국채 10년",
                                          "code":  "DE10Y",
-                                         "value":  "3.271",
+                                         "value":  "3.253",
                                          "unit":  "%",
-                                         "change":  "0.003",
+                                         "change":  "0.015",
                                          "change_unit":  "%p",
                                          "ratio":  null,
-                                         "dir":  "up",
+                                         "dir":  "down",
                                          "note":  "체결 기준 · 유럽 현지시간",
-                                         "asof":  "2026.11.09 17:52"
+                                         "asof":  "2026.11.09 22:00"
                                      }
                                  ]
                    },
@@ -377,50 +377,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "WTI",
                                          "code":  "WTI",
-                                         "value":  "87.76",
+                                         "value":  "86.43",
                                          "unit":  "달러",
-                                         "change":  "3.07",
+                                         "change":  "0.42",
                                          "change_unit":  "",
-                                         "ratio":  -3.38,
+                                         "ratio":  -0.48,
                                          "dir":  "down",
                                          "note":  "NYMEX 최근월물 · 배럴당",
-                                         "asof":  "2026.11.09 10:42"
+                                         "asof":  "2026.11.09 18:00"
                                      },
                                      {
                                          "name":  "휘발유",
                                          "code":  "GASOLINE_KR",
-                                         "value":  "1,855.26",
+                                         "value":  "1,855.11",
                                          "unit":  "원",
-                                         "change":  "0.03",
+                                         "change":  "0.16",
                                          "change_unit":  "",
-                                         "ratio":  0,
-                                         "dir":  "up",
+                                         "ratio":  -0.01,
+                                         "dir":  "down",
                                          "note":  "한국석유공사 Opinet 기준 · 리터당",
-                                         "asof":  "2026.11.09 20:05"
+                                         "asof":  "2026.11.10 03:05"
                                      },
                                      {
                                          "name":  "국제 금",
                                          "code":  "GOLD_INTL",
-                                         "value":  "4,124.20",
+                                         "value":  "4,146.20",
                                          "unit":  "달러",
-                                         "change":  "49.30",
+                                         "change":  "31.70",
                                          "change_unit":  "",
-                                         "ratio":  1.21,
+                                         "ratio":  0.77,
                                          "dir":  "up",
                                          "note":  "COMEX 최근월물 · 트로이온스당",
-                                         "asof":  "2026.11.09 10:42"
+                                         "asof":  "2026.11.09 18:00"
                                      },
                                      {
                                          "name":  "국내 금",
                                          "code":  "GOLD_KR",
-                                         "value":  "178,770",
+                                         "value":  "179,120",
                                          "unit":  "원",
-                                         "change":  "2,080",
+                                         "change":  "350",
                                          "change_unit":  "",
-                                         "ratio":  1.18,
+                                         "ratio":  0.2,
                                          "dir":  "up",
                                          "note":  "KRX 금시장 기준 · g당",
-                                         "asof":  "2026.11.09 15:19"
+                                         "asof":  "2026.11.10 09:09"
                                      }
                                  ]
                    },
@@ -432,50 +432,50 @@ window.DASHBOARD_DATA = {
                                      {
                                          "name":  "달러/일본 엔",
                                          "code":  "USDJPY",
-                                         "value":  "158.04",
+                                         "value":  "158.02",
                                          "unit":  "엔",
-                                         "change":  "0.54",
+                                         "change":  "0.27",
                                          "change_unit":  "",
-                                         "ratio":  0.34,
-                                         "dir":  "up",
+                                         "ratio":  -0.17,
+                                         "dir":  "down",
                                          "note":  "야후 파이낸스 기준",
-                                         "asof":  "2026.11.10 01:50"
+                                         "asof":  "2026.11.10 09:11"
                                      },
                                      {
                                          "name":  "유로/달러",
                                          "code":  "EURUSD",
-                                         "value":  "1.1143",
+                                         "value":  "1.1220",
                                          "unit":  "달러",
-                                         "change":  "0.0076",
+                                         "change":  "0.0077",
                                          "change_unit":  "",
-                                         "ratio":  -0.68,
-                                         "dir":  "down",
+                                         "ratio":  0.69,
+                                         "dir":  "up",
                                          "note":  "전일 종가 기준",
-                                         "asof":  "2026.11.06"
+                                         "asof":  "2026.11.09"
                                      },
                                      {
                                          "name":  "영국 파운드/달러",
                                          "code":  "GBPUSD",
-                                         "value":  "1.3349",
+                                         "value":  "1.3436",
                                          "unit":  "달러",
-                                         "change":  "0.0112",
+                                         "change":  "0.0087",
                                          "change_unit":  "",
-                                         "ratio":  -0.83,
-                                         "dir":  "down",
+                                         "ratio":  0.65,
+                                         "dir":  "up",
                                          "note":  "전일 종가 기준",
-                                         "asof":  "2026.11.06"
+                                         "asof":  "2026.11.09"
                                      },
                                      {
                                          "name":  "달러인덱스",
                                          "code":  "DXY",
-                                         "value":  "101.84",
+                                         "value":  "101.65",
                                          "unit":  "",
-                                         "change":  "0.46",
+                                         "change":  "0.00",
                                          "change_unit":  "",
-                                         "ratio":  -0.45,
-                                         "dir":  "down",
+                                         "ratio":  0,
+                                         "dir":  "flat",
                                          "note":  "미국 ICE선물거래소 기준",
-                                         "asof":  "2026.11.09 11:41"
+                                         "asof":  "2026.11.09 19:00"
                                      }
                                  ]
                    }
@@ -570,12 +570,10 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "KKR 이익은 수수료 관련 수익 성장으로 증가",
-                                       "title_en":  "KKR Profit Rises on Fee-Related Earnings Growth",
-                                       "url":  "https://news.google.com/rss/articles/CBMimgFBVV95cUxNYU00ZGRRaTQwbktPUk1KZlU1bDhpU2NYZUpEMmh5djh3bkVBWWd1Uk45UW1uU2ZnNDY0emVmOTlVTy1rT3RpVGdKQjg2cWk1cnVHWklYZXlXQkFUYmQyazcwT1Nsb1NDdmNFeUtWb2x0ZmJ6WWNTQVJPamFZZk9fck9UV2hqZ1FxN3o5a3YxVV9CTEJCZjdjRGpn?oc=5",
-                                       "source":  "WSJ",
-                                       "published":  "2026-11-09T12:49:14Z",
-                                       "intl":  true
+                                       "title":  "삼성화재, 英 캐노피우스 경영권 인수…지분 80.6% 확보",
+                                       "url":  "https://news.google.com/rss/articles/CBMigwFBVV95cUxObXR4WDJnQjFxbm1lQms5Wm50aVdubkZyUWEtZzlieW4wOWdfRGg0SUJZMHdxZjZwWnQ0UzBobTM3REhvOFJtYTJlTmtoUUdvTGxCMFhma0l3RmpzajRIREFleUhSenRMUEJSdTZaVWpwdzFSby1kaGQzQVRaQU9xNnM0TQ?oc=5",
+                                       "source":  "인베스트조선",
+                                       "published":  "2026-11-09T23:06:00Z"
                                    },
                                    {
                                        "title":  "Penske Automotive Group, 상장폐지 인수를 앞두고 3분기 보고",
@@ -598,16 +596,18 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-29T07:00:00Z"
                                    },
                                    {
-                                       "title":  "아리바이오홀딩스, 그린플러스 경영권 인수…스마트팜·태양광 사업 확대",
-                                       "url":  "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1tcFZ3VzMwcXBaTUw4cDFRRUdsWUZya25pZUV3WW1wVkJvZzEtMlVtc1hqajdUbm5HcUlxN0lkMkVobm8waVR4b1RsdjlMZDRi?oc=5",
-                                       "source":  "톱데일리",
-                                       "published":  "2026-10-28T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "MBK파트너스 “오스템임플란트 차입금 1조원…인수 후 고용 444명 증가”",
                                        "url":  "https://news.google.com/rss/articles/CBMiX0FVX3lxTE10UFVOcmt0YnMxaVA0QWtKc3dLN0VUSjVHTEdxQVRaVHZjNUdqaWZRd1B2QnVBUGFmT2kzLU1pSDdLR0xnVWd2bUk4emJTak9Wd1dSQU80VHZGWXozVVdB?oc=5",
                                        "source":  "헬로티",
                                        "published":  "2026-10-27T08:37:45Z"
+                                   },
+                                   {
+                                       "title":  "뉴스 | 캐나다 브룩필드 연금, 올해 최대 규모의 REIT 상장폐지 인수 종료",
+                                       "title_en":  "News | Brookfield, Canada Pension close year\u0027s largest REIT take-private deal",
+                                       "url":  "https://news.google.com/rss/articles/CBMirgFBVV95cUxNdUh5aEFVQ2l3NEdVWXdsVUU1T3Z1NDFISkowNk5fYi04cFRQanpMNHNMTHE5OTgyWmxWdVZIZno1OEpXcEJWOE5iNjhWaHJFSXhqYy1mckJ1VmRNQ0Q3SF9OTXh0TWdLMkx3V3ZxWEI1OVloaC04OWJGV2pZOGFjX3R4cllpYTBTQ0ZsczBFQzV1TTRXME95ZWJZRDhTMVpUaGMxNTlOdndSYXpURGc?oc=5",
+                                       "source":  "CoStar",
+                                       "published":  "2026-10-27T07:00:00Z",
+                                       "intl":  true
                                    },
                                    {
                                        "title":  "지놈앤컴퍼니, K-뷰티 유통사 올블룸 경영권 인수…\u0027유이크\u0027 美 진출 확대",
@@ -628,6 +628,14 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-22T07:00:00Z"
                                    },
                                    {
+                                       "title":  "Apollo, Blackstone은 NFL에 대한 열망을 갖고 팀에서 지분을 구매하기 위해 승인을 구합니다.",
+                                       "title_en":  "Apollo, Blackstone Have NFL Aspirations, Seek Approval to Buy Stakes in Teams",
+                                       "url":  "https://news.google.com/rss/articles/CBMixAFBVV95cUxNVUU2NnN3TndOdy1rS2pvaU5vSVVSZXREU2dCUDRHU3MyMUdoN1dMNVBRMzlsODlqY04zRDMyM0tfTmQ1OTZkdHU5QlBUNjM5M2twWWVLWEJkN0praTZMdFZ0Q0NQUVVWYkExbkpfZ0hWQ3htMEFlWEFqVTFVWjllaWtaN00yT2NicG9hY1VHMmpCdnRpQzRfcnFkTklfeEd1QjZGUFI1RlN2WW81VzNjaDJ2WlgyLTIyVl83UGlEQmJ0aFls?oc=5",
+                                       "source":  "Bloomberg.com",
+                                       "published":  "2026-10-21T07:00:00Z",
+                                       "intl":  true
+                                   },
+                                   {
                                        "title":  "Blackstone의 Jas Khaira는 AI 구축 부채에 대한 두려움이 과장되었다고 말했습니다.",
                                        "title_en":  "Blackstone’s Jas Khaira says fears over AI-buildout debt are overblown",
                                        "url":  "https://news.google.com/rss/articles/CBMipwFBVV95cUxNUENNRjRhdEZsYzJDWFNYRlBmc1M4a29JUUM5ZHEzOGFUWnF6T1RocHhxMGRqTlJqenF6TGVtNE81b2tucDhHSlhpVnlYcVY5ZnVXYWlhWkRZOEVJN0hTUUtWYThZMHhRTHdOeVE2OE12SVhpNS1vR3h4RkR0MGRsZ0Z3V24tbjFxU184YllkbWVyRXJXbHZHdnhGVmZ3SGJtQkF6dE1EVQ?oc=5",
@@ -640,14 +648,6 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMihwFBVV95cUxPb0lKNWxGYjNzRUdUc1doMnJGS2lYV0lPb0lxaWRYMWNUVlpNSy1vNGY1TmNBc08ycjBsWWxhU3FqcUZuNUdvczlFeXdHa01uRjg0Q0cwUmg0S0F6MlNUbG1LVUtUT2VqNU1EeTVFR1o5ckJBdjlHTFAwRkZTaWdjNERLejlaaWvSAZsBQVVfeXFMT0Q5TzRNR1dZVGFzTjdvRVRHc2dsNFhpM0d4b2tSTXQwNG95N3ljUnFqajQtbkE0anMxYW96bUhaa244MTBNWWprQWk1TnhNczNFQW1DMktUZnBhS1pGcmE5YWpUeUlOOUdRdGxuTnFQX3IwMTh2S19kMVJ0OG5Gb05SZnV5X0RJSFg3WndYV01OdjRwcGxYZEcyZlk?oc=5",
                                        "source":  "Chosunbiz",
                                        "published":  "2026-10-18T07:00:00Z"
-                                   },
-                                   {
-                                       "title":  "CCC Intelligent Solutions는 GTCR, Elliott와 61억 달러 규모의 상장폐지 인수에 합의했습니다.",
-                                       "title_en":  "CCC Intelligent Solutions agrees to $6.1 billion take-private deal with GTCR, Elliott",
-                                       "url":  "https://news.google.com/rss/articles/CBMitAFBVV95cUxQQUdNcjdZbmllaVAyMXh0ejFIWWl0NEE4WTlUVWxPT1l6ckw2T01aT0VZLUZfMHJHV0E1cF9jandEV1p4djJWa0t6cHJaVnhqUGNHRTNvZE1kQk9vZ2xWaG4tZDZOaVMxOXlkLWxxU3dhZDViTmltNXp2UldwdF9sX3U0NFNDR3pIMDd5M3RUc05OVk1VRnY0MlJ0bXVBNUZQMDZkWGR5bURMOTZkaDNocHZTdHk?oc=5",
-                                       "source":  "Reuters",
-                                       "published":  "2026-10-15T07:00:00Z",
-                                       "intl":  true
                                    },
                                    {
                                        "title":  "출구를 보여주세요: 사모펀드 성과를 평가하는 실제 방법",
@@ -664,18 +664,18 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-14T07:00:00Z"
                                    },
                                    {
-                                       "title":  "사모펀드에 대한 금리가 높아지고 있으며 소규모 기업은 이미 피해를 입고 있습니다.",
-                                       "title_en":  "Higher Rates Are Coming for Private Equity—and Smaller Firms Are Already Hurting",
-                                       "url":  "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMlNRUnppVHd6bHpld1hMWGJXaUFvVVFpMDg5YllzVmJQZ2owMGVnaDVjWW82UnNhY29EZ2dzZVZaQnFhb0N4V1daOVczbExsR3l1ZEt6UUxZX1pGRnF6SVI5akQ3NzRqSndsSnRnekhiTkxTV1hBRS1TdkI4ZVJkYTgwcHFCWUtfR0hFU2RXNlQ0cmhUY1JSOW5kOHFvMTZ5bE81NU45aHlVeF9jcjM3dm9pYzdQcDlvQXNyTEJFcWRSTGJ0?oc=5",
-                                       "source":  "WSJ",
-                                       "published":  "2026-10-14T07:00:00Z",
-                                       "intl":  true
-                                   },
-                                   {
                                        "title":  "[공시 Pick] 스틱인베스트먼트, 41억원 자사주 취득에 강세…장중 4%↑",
                                        "url":  "https://news.google.com/rss/articles/CBMiXkFVX3lxTE41b0xlNUs4c2FxVTNMaENRVHJFM1prZDE0dWw0dy1CY1VYOVN3LVV4REtOUDJhTTFhU2lCS1RMcDlQeU8tVG8xSXVSbURwRW9oOHNaelhKdktwRjhmSWc?oc=5",
                                        "source":  "뉴스투데이",
                                        "published":  "2026-10-13T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "사모펀드에 대한 금리가 높아지고 있으며 소규모 기업은 이미 피해를 입고 있습니다.",
+                                       "title_en":  "Higher Rates Are Coming for Private Equity—and Smaller Firms Are Already Hurting",
+                                       "url":  "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMlNRUnppVHd6bHpld1hMWGJXaUFvVVFpMDg5YllzVmJQZ2owMGVnaDVjWW82UnNhY29EZ2dzZVZaQnFhb0N4V1daOVczbExsR3l1ZEt6UUxZX1pGRnF6SVI5akQ3NzRqSndsSnRnekhiTkxTV1hBRS1TdkI4ZVJkYTgwcHFCWUtfR0hFU2RXNlQ0cmhUY1JSOW5kOHFvMTZ5bE81NU45aHlVeF9jcjM3dm9pYzdQcDlvQXNyTEJFcWRSTGJ0?oc=5",
+                                       "source":  "WSJ",
+                                       "published":  "2026-10-13T07:00:00Z",
+                                       "intl":  true
                                    },
                                    {
                                        "title":  "금감원, PEF운용사 30곳 내부통제 점검…\"사회적물의 사건 예방\"",
@@ -699,19 +699,11 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "Morten Astrup의 신용 기금은 International Seaways 및 Golar LNG 채권을 매입합니다.",
-                                       "title_en":  "Morten Astrup’s credit fund buys International Seaways and Golar LNG bonds",
-                                       "url":  "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPUW5FZTN6YU5nakV1dGhINnJJRkJLYm5NLTY0Q0ZQS1N0Q2pES2p6OHJUUFM2eVZod2VsVjdhbUVDQldMVUhZYklEZ045eUJ4SWpxV2RZV3pjTFBLMFdXcUZkMDZHNXNnbFJMWFZJYVVETXZTZTNadmwzUXNQRVI5TEtSY2N0c1p6bWpnQWtvQlRnZ3Q3ZWpmd29GYmZVYlY2NTdjNVcyM1FfSjMtX1FzSlBleGRscTNsa1FCVmo4a2J5akE?oc=5",
-                                       "source":  "TradeWinds News",
-                                       "published":  "2026-11-09T06:36:42Z",
-                                       "intl":  true
-                                   },
-                                   {
-                                       "title":  "Morgan Stanley Direct Lending Fund, 2026년 9월 30일 발표...",
-                                       "title_en":  "Morgan Stanley Direct Lending Fund Announces September 30, 2026...",
-                                       "url":  "https://news.google.com/rss/articles/CBMitgFBVV95cUxPVWhPbkpZSThSekZVci1TU3htdjRvcnFDM19EY1F3cUlUOGtEb2Y3VDFCeWpYOXBONkM5NFA5ak1NcXdlR3I2V0dfVmlYVGFzVWlRbmV3Wkg2X3dlZm41Y2s5eURXQlA1NXhhcXA5NmwwSkxLOFBaVk9oMFRtcVJGQzJwSVVGd20tLUVaeGxMR1ZvMTdyUUtIaXROZG9jWldlallGLTlLaFZWZk0yc1JhZU9mRGhDUQ?oc=5",
-                                       "source":  "Quantisnow",
-                                       "published":  "2026-11-05T21:25:21Z",
+                                       "title":  "Deutsche AM, 두 번째 부동산 신용 펀드 첫 마감",
+                                       "title_en":  "Deutsche AM holds first close of second real estate credit fund",
+                                       "url":  "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZzRscTJuYTNWZXB4ZnFlSkk3TEYybzdrckZLazRod2V5Y2FjMnJNTzJmUEVZTE1zT0dQY3dlZjIyaFBHNzY3T0NNWHZwZmxYamE4U3ItN1VVLUFLNXZZNDR5eE1JZXo5UXM2Uk5MWnc5YWNGeElkYzNYbmVNaHRydEdvSURQSk1uaWFfdUNyNUR2LV9FbzY4bmdySnlXRDIxTkFYMVJBbkxsWWZkT1E?oc=5",
+                                       "source":  "PERE",
+                                       "published":  "2026-11-09T19:02:07Z",
                                        "intl":  true
                                    },
                                    {
@@ -720,6 +712,14 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMinwFBVV95cUxNY1BKaHhxRFZWWVZwdDJFSXlhLXVpV2VkWDc4ejVxNFcwV1VFNFRyMXZRbGR0Z2U0b1ZDZFJzQ0NEZUsxRlhzUGI3UjNhdFA2TE5adUxHM0xfa0x2cG04elN2WnB3TVpwMW9WN3VkVnpIYlNjVVkwWWI3YXZHX2tGbURJdDRMNDJPNWduWE5LNm1XTTRqWHRodUFmREtHdjjSAVZBVV95cUxNMjc3NXl5dEJ0cGdTTGxUWTJVZmFWTGpJWU0tMUgxUmtkRFV2TkppakhyV09YZlRwbVd4UWVTdGZrMzhVT1N5c3hmRVhNOW1VSURCUzdUUQ?oc=5",
                                        "source":  "Law360",
                                        "published":  "2026-11-03T20:11:31Z",
+                                       "intl":  true
+                                   },
+                                   {
+                                       "title":  "Ares Management, 2026년 3분기 미국 직접대출 개시 활동 발표",
+                                       "title_en":  "Ares Management Announces Third Quarter 2026 U.S. Direct Lending Origination Activity",
+                                       "url":  "https://news.google.com/rss/articles/CBMipwFBVV95cUxQcDkwUmdqMXN5UWxYQ2J4SGZsSThmUFh5anpJREllNkVaaEJwSjI3dzNCbHdROC1CN3Q4Q2ZfM2lodXpaNlB6Z1hBQWhtblR6RkVwZWtXakFUY3JYTG5WTGJ4aDVPeGl2WVlJaGlfX0pZQVplRHBqMG5MenRJV09odE9yd0JMN1IyZUdIaU1RT2hZZGtxVEVOazU3SjlwaE1qWjkwOGpVbw?oc=5",
+                                       "source":  "Yahoo Finance",
+                                       "published":  "2026-10-29T07:00:00Z",
                                        "intl":  true
                                    },
                                    {
@@ -753,15 +753,15 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-23T07:00:00Z"
                                    },
                                    {
-                                       "title":  "금리냐 유연성이냐…美 기업들 사모대출·신디케이트론 저울질",
-                                       "url":  "https://news.google.com/rss/articles/CBMickFVX3lxTE9YcHl3ZnB0aWY2NG1YdXZfWERyTkJJNFBmc0tvYXNpMnhPM25INlJPU0lQakxWSV9KWGNpYm0wNHZLRmFubnIwb0JadG1PRDlrakNHZzNLVUJMX3ROV0dCS0VkTzJBU1h1bzBqOGZRTTh4QQ?oc=5",
-                                       "source":  "마켓인",
-                                       "published":  "2026-10-22T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "이억원 \"증권사, 해외 사모대출 확대 리스크 지속 점검\"",
                                        "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE8xVHlvamxpUXJGOERrU3BjcWd3bXNTOHZVRjhFUHczRXlUVHlJM2hIWm03YnNpR1VqVXB6ODBCT0pGV2NWc3htTjdadnRscGFhNWZVSUtxYWNET29Wb0szNjg5WFF0cERZSkQ2dDEtcmQ?oc=5",
                                        "source":  "연합인포맥스",
+                                       "published":  "2026-10-22T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "금리냐 유연성이냐…美 기업들 사모대출·신디케이트론 저울질",
+                                       "url":  "https://news.google.com/rss/articles/CBMickFVX3lxTE9YcHl3ZnB0aWY2NG1YdXZfWERyTkJJNFBmc0tvYXNpMnhPM25INlJPU0lQakxWSV9KWGNpYm0wNHZLRmFubnIwb0JadG1PRDlrakNHZzNLVUJMX3ROV0dCS0VkTzJBU1h1bzBqOGZRTTh4QQ?oc=5",
+                                       "source":  "마켓인",
                                        "published":  "2026-10-22T07:00:00Z"
                                    },
                                    {
@@ -1086,24 +1086,24 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "양식 4 기금 수입 부동산 기금: Bjorn Hall (비서 및 CCO) 대상: 11월 6일",
-                                       "title_en":  "Form 4 Fundrise Income Real Estate Fund: Bjorn Hall (Secretary and CCO) For: 6 November",
-                                       "url":  "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORnlWc2lqQWUzMHVValJnZWhJbWFvSkp4emUtMmxYbnFrQnR4MXhRNUJiQ1pCUEZuRURRRjl4TGFxc1RFMDB0emw5enRoaWx4eS1jcGs3LTBEV1Q4T0kxRy1HX25oVEtrVHhPazdnN0dCQ1RRZ2Z5SGhRam1ObVowRkdIbXZyTHhKaG9SSmVsQU96UDlLWjZWWGNxWWpEenRaVHp2b3U2R0ZwUmRTelZxdWRBcVNhQnJDM2lBVl9ZcnFBNEFwaUxJSndPcWhYbzZCTEN4ZkhQVTNPUlNr?oc=5",
-                                       "source":  "Investing.com UK",
-                                       "published":  "2026-11-09T14:32:00Z",
+                                       "title":  "Brookfield, 아시아태평양 부동산 펀드 슬리브로 18억 달러 조달",
+                                       "title_en":  "Brookfield raises $1.8bn for Asia-Pacific real estate fund sleeve",
+                                       "url":  "https://news.google.com/rss/articles/CBMinwFBVV95cUxQXzdBZWhFMVZHajV3TDl1T3NGUU5wUmlEX3BtR283TGxqZjJrdE1LUThuVEJjYzdQSlBLR0NwOEdKOF9jVDllZmZNRXc3WG1oV3RZUEJ1bUo5aEdOZVlhcWJVTDh1WFFMa29zUGV6eVd4NWNSMWhhcW9rcFdCV0VmUUhvM0VGemJRc2V0dVZBbVZLLTZISHJxbVJGeGdUU28?oc=5",
+                                       "source":  "PERE",
+                                       "published":  "2026-11-09T12:31:28Z",
                                        "intl":  true
+                                   },
+                                   {
+                                       "title":  "\"美 오피스 빌딩 시장, 고금리에 부실 확대 전망\"",
+                                       "url":  "https://news.google.com/rss/articles/CBMickFVX3lxTE5QMXpYa1JxRHJxU3ptVkVJWmFidkFxNHIzNEQ5cFZtZE5veFprODRwNTFIUExQOGxfcHllc0NkWUNOM1VaRHI5NERuYWVZUzRFWVNqT3l3NUtEdXRXalNKdmtGQWpTVGVGSFV5a2hQN2hXUQ?oc=5",
+                                       "source":  "KB Think",
+                                       "published":  "2026-11-08T23:54:13Z"
                                    },
                                    {
                                        "title":  "\"화장품 넘어 호텔 메뉴까지\"…달바글로벌, 日 특급호텔 이색 공략",
                                        "url":  "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ubkJLVTVEcTNiY2JDUXlqaXNPdkdEaVdMV25fb3JVRFR3QkFZaW5SNWY0dXNFTDl2MEExaGluYUNNVEZYU0JBVEJOeUVZaFNPRzltNjhDTjk0bWUwNXpWREstWVg?oc=5",
                                        "source":  "뉴스1",
                                        "published":  "2026-11-07T21:35:00Z"
-                                   },
-                                   {
-                                       "title":  "청도고, 일본 리츠메이칸 모리야마 고교와 국제교류",
-                                       "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1TTF9BNVlYX0p6Y1VrVGl4d1NwdXU3X2E4MXNBWGZfSHFueGFONE5sOEtTRDVRa1BsdlpDd3ZWSzVZY3cxUHdVeUpfc0twajM1Nkc0WlBTQ0t4QQ?oc=5",
-                                       "source":  "경북매일",
-                                       "published":  "2026-11-03T01:55:00Z"
                                    },
                                    {
                                        "title":  "딜로이트의 2027년 상업용 부동산 전망은 강화된 전략적 규율을 강조한다",
@@ -1124,12 +1124,6 @@ window.DASHBOARD_DATA = {
                                        "url":  "https://news.google.com/rss/articles/CBMid0FVX3lxTFB6UWM5QzBnQ2tILWx3cEg5VjRGODJQS0Z0N2tfSjM2THFlcW90cDhob3FGcER2Ym5kU19VZDJOYWp0UGZCdkZyUkVCOFVuQVpobWFkbXFwdE1ISkN3Y1NNU1FGdVlnREtzX0p2X0s4U3hjSmVfc09z?oc=5",
                                        "source":  "TradingView",
                                        "published":  "2026-10-29T07:00:00Z"
-                                   },
-                                   {
-                                       "title":  "\"美 부동산 대출 2.1조弗 만기…10년에 한 번 올 투자 기회\"[ASK 2026]",
-                                       "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5PNndFSFk4WWNtTURwbjNaSE9vZ1hLLVJSQmxUNTRwVk5yY1hWY3ZhU295OHBsdzMwbUhrdGhXWlJza2YtRG9TbHlWakZQR2c5Nk9qMzAyOG56QQ?oc=5",
-                                       "source":  "한국경제",
-                                       "published":  "2026-10-28T07:00:00Z"
                                    },
                                    {
                                        "title":  "하나증권, 코리니와 미국 부동산 투자 서비스 협력",
@@ -1156,30 +1150,28 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-20T07:00:00Z"
                                    },
                                    {
-                                       "title":  "해외 부동산펀드 수익률 수년째 부진…지난해 말에도 0.2% 그쳐",
-                                       "url":  "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQRHZqcW4yMDlBc3YydHBsakQyMkdVTXlfcXhDRnVtTllhZ25jX1hReXBLU3RIc1dFOFRabE9xWU1JeENLUkpRZmt0dmFoZnpaanN1ZTdSTXZmdzVJdUxQX0tMVFJjelVVQ1Bsb1BpTEN5SVZFUktZQ1ZmOXZIMWQ2a0xuTVMxS0Z1OVow?oc=5",
-                                       "source":  "조선일보",
-                                       "published":  "2026-10-19T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "프린시펄 에셋 매니지먼트, 아시아태평양 부동산 공략 강화 신호",
                                        "url":  "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZXdVd0p2QlVCWi1vaXhoQ0xBM3h2ZjVHcmtYRGx1Y0VCNTVWUVZkMzA1ZG94YXJfcllsaTgwUGE3RXpZVjN5YUhvYXl5WGVHaUQwaVNFSUN6VVFkR0dmbnF3XzJEaWJNVWpnVGlyVmROa3ZwcXJ6eVVURTRQWXVVcjhKNndoSjU3Zmt5VEZjS0RZeTBJQ3BrWVZsdWVHd0JQTVVxYnYwcFJVb2xj?oc=5",
                                        "source":  "IndexBox",
                                        "published":  "2026-10-19T07:00:00Z"
                                    },
                                    {
+                                       "title":  "해외 부동산펀드 수익률 수년째 부진…지난해 말에도 0.2% 그쳐",
+                                       "url":  "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQRHZqcW4yMDlBc3YydHBsakQyMkdVTXlfcXhDRnVtTllhZ25jX1hReXBLU3RIc1dFOFRabE9xWU1JeENLUkpRZmt0dmFoZnpaanN1ZTdSTXZmdzVJdUxQX0tMVFJjelVVQ1Bsb1BpTEN5SVZFUktZQ1ZmOXZIMWQ2a0xuTVMxS0Z1OVow?oc=5",
+                                       "source":  "조선일보",
+                                       "published":  "2026-10-19T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "일본 부동산 매입자 국적 신고 의무화, 금리 상승과 겹쳐 투자자 우려 - 뉴스 및 통계",
+                                       "url":  "https://news.google.com/rss/articles/CBMiswFBVV95cUxNX0ZmTnV3R2JzSDRmTC0tcVhSdXROcnY5aVZPUWl6MHVlY3NaMWZIc0kzOXlrdnlFcjJYMFdMQ1J6NUltbXNKQXNmUWREa2c0bDNrRnFmQ2dtMm5xXzZnOHZYMFRGSlRNdXUwUGZKRUMwMS1PWUg5S1JnclZ6MTBBbkRwaGJaMG12SzhQOWdWckxvczNXYjh1Yzc2OVhtdUZFalZ5RVVlNVpKdkhoNkJHMDk5Yw?oc=5",
+                                       "source":  "IndexBox",
+                                       "published":  "2026-10-17T07:00:00Z"
+                                   },
+                                   {
                                        "title":  "[해외부동산 리스크] [이지스운용] 골칫덩이 트리아논, 매각될까?",
                                        "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1kX3hGd3Y3NzRzUFVsZEU2aTFEbFc1SWptX1Y4cnRNaEVneDJ3ZGdmVEdRYVBvRllVMXhfUzBUem9aanVZaVA4NXVVdFZLOVl6c2NIODRn?oc=5",
                                        "source":  "DealSite경제TV",
                                        "published":  "2026-10-17T07:00:00Z"
-                                   },
-                                   {
-                                       "title":  "2026년 3분기 미국 오피스 시장 역학",
-                                       "title_en":  "U.S. Office Market Dynamics, Q3 2026",
-                                       "url":  "https://news.google.com/rss/articles/CBMibEFVX3lxTE4tbUl0d1Zsdk5BYjhTY09KbFk5T2hVOWJHMGduUUo4SDVpWmhuMldqUV9qSDBUZ0szUndsaGJlcEctZjV4cGtEUk1KQVNHSVk0WjI3c2VXMVY4bTh0UWwycXRUck14WmF5emxlUQ?oc=5",
-                                       "source":  "JLL",
-                                       "published":  "2026-10-13T07:00:00Z",
-                                       "intl":  true
                                    },
                                    {
                                        "title":  "SWBC, 다가구 투자를 위해 2억 달러를 목표로 하는 두 번째 민간 부동산 펀드 출시",
@@ -1190,7 +1182,15 @@ window.DASHBOARD_DATA = {
                                        "intl":  true
                                    },
                                    {
-                                       "title":  "오래된 건물이 사라지면서 교외 사무실 공석이 마침내 증가하지 않습니다.",
+                                       "title":  "2026년 3분기 미국 오피스 시장 역학",
+                                       "title_en":  "U.S. Office Market Dynamics, Q3 2026",
+                                       "url":  "https://news.google.com/rss/articles/CBMibEFVX3lxTE4tbUl0d1Zsdk5BYjhTY09KbFk5T2hVOWJHMGduUUo4SDVpWmhuMldqUV9qSDBUZ0szUndsaGJlcEctZjV4cGtEUk1KQVNHSVk0WjI3c2VXMVY4bTh0UWwycXRUck14WmF5emxlUQ?oc=5",
+                                       "source":  "JLL",
+                                       "published":  "2026-10-13T07:00:00Z",
+                                       "intl":  true
+                                   },
+                                   {
+                                       "title":  "오래된 건물이 사라지면서 교외 사무실 공석은 마침내 증가하지 않습니다.",
                                        "title_en":  "Suburban office vacancy finally stops climbing as old buildings disappear",
                                        "url":  "https://news.google.com/rss/articles/CBMimwFBVV95cUxPaF9nbjg3akc3WGVqeUlFUzNDdzFFWnhQSzhCWGRYbEdtMmF1Zy04VHU4aThwb0hiTlJEa2xGS1hvLWZYOUtjaldIaUlXNFBULTZvaDcxaTRqeExvMFVNRGFzX2ZYdE5nVVRVeGxEQ0g0M240d3NzRG1PWEZWYXhpMzRBdmlsT3lrVUpqQmNrRXNpeVRBN29aTXVlTQ?oc=5",
                                        "source":  "Crain\u0027s Chicago Business",
@@ -1314,7 +1314,7 @@ window.DASHBOARD_DATA = {
                      "stale":  false,
                      "items":  [
                                    {
-                                       "title":  "한국부동산위원회, 공공건물 설계공모 공지 및 결과를 Architecture HUB에 중앙 집중화",
+                                       "title":  "한국부동산위원회, 공공건물 설계공모 공고 및 결과를 Architecture HUB에 중앙 집중화",
                                        "title_en":  "Korea Real Estate Board to centralize public building design competition notices and results on Architecture HUB",
                                        "url":  "https://news.google.com/rss/articles/CBMiWEFVX3lxTE92UFluZkU1M3h2TG9tcWZjbU5pRTkzRzNnLTVUZjlISGVsMjhzYU1MR3lGMUZmVVJBZWNtcU1DTnplb01pVVpjeGNpbXVHTWdpYS1RcjUwNko?oc=5",
                                        "source":  "파이낸셜뉴스",
@@ -1342,35 +1342,35 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-23T07:00:00Z"
                                    },
                                    {
-                                       "title":  "마스턴투자운용, 오피스·물류 운용자산 GRESB 최고 등급",
-                                       "url":  "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5HampJMGs5cmYwSDFwaS1WeVJ4M2wyWHNzRTNzTWM5QklOQXl5eTVYYVplcUNPN01wT1RwZE9SQkNnN3c0d25WMzdDRHphOHNDQmRQR2o3S2d4M3VBand1XzY3bV8zS003?oc=5",
-                                       "source":  "FETV",
-                                       "published":  "2026-10-20T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "마스턴투자운용, 오피스·물류 \u00275스타\u0027 획득",
                                        "url":  "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9YZk00Ul9sMXQ2T3ZWZGNraU45OWRBMTRQMGg0V1JKeFloVTlvUHVkNVZTR1RfWENnMWs5TVlwR3ZMaTZhYnBkbnpGQWI1N0hLTWdsWHQ1dlFVWWxX?oc=5",
                                        "source":  "뉴스핌",
                                        "published":  "2026-10-20T07:00:00Z"
                                    },
                                    {
-                                       "title":  "뉴마크, 2026년 3분기 서울 오피스 시장 보고서 발표",
-                                       "title_en":  "Newmark Releases Q3 2026 Seoul Office Market Report",
-                                       "url":  "https://news.google.com/rss/articles/CBMihAFBVV95cUxNM0FZWUNRN1plemM0TS15UXNFT01xdTBrNnUwT2stV016THZKSWxsYl9UdjRtOTFyMUdKVElLbVZodDAtc19HY3RIclhTWnl1aExNVlB1cG1lVkR0WlJFRFJvdGtIV0RJWk5sVnA2QWFHOUZUd0VXdlhHWXRualBZZTVCaVg?oc=5",
-                                       "source":  "Macau Business",
-                                       "published":  "2026-10-19T07:00:00Z",
-                                       "intl":  true
+                                       "title":  "마스턴투자운용, 오피스·물류 운용자산 GRESB 최고 등급",
+                                       "url":  "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5HampJMGs5cmYwSDFwaS1WeVJ4M2wyWHNzRTNzTWM5QklOQXl5eTVYYVplcUNPN01wT1RwZE9SQkNnN3c0d25WMzdDRHphOHNDQmRQR2o3S2d4M3VBand1XzY3bV8zS003?oc=5",
+                                       "source":  "FETV",
+                                       "published":  "2026-10-20T07:00:00Z"
                                    },
                                    {
-                                       "title":  "한층은 오피스, 한층은 집… 지식산업센터 ‘주택 실험’ 성공할까",
-                                       "url":  "https://news.google.com/rss/articles/CBMibkFVX3lxTE5idmhrUjh1OUxKX3FTOTNFVm16WmkwMkRIaXJkdm1RUUx0djdvZ0JoX0tLdWljN2s2VTBCdktFZTAyaXg3bUY2dXhFczV1X2Y4dGRTLUVpbHF5U1hLalJva1MtOUVfR2tTazVaZHhB?oc=5",
-                                       "source":  "더스쿠프",
-                                       "published":  "2026-10-16T07:00:00Z"
+                                       "title":  "뉴마크, 2026년 3분기 서울 오피스 시장 보고서 발표",
+                                       "title_en":  "Newmark Releases Q3 2026 Seoul Office Market Report",
+                                       "url":  "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPYzBVSEY3OTczcFJ3ZFlCSDlIVTgwNDhUaGJESDdXa0YyNEZmQl8yeFN4VHJNeEE3YjJ5SGtReXFnU3Nrbk42VTJ6azR5cEZPODl2RWJZWjhjOWdMOEhqWkR1NEpVR1c0Nlk4YnpjaDllMHlXZDdXWVZyQ3FMU0tmM2YxdE8yODlWcXBieXhBcVFrTm02VC1Jdm1tVm9SbjhuUEhaRTVHMmdGcUxxTkEwLXNwbnlBRzI4QlVCeWNPajfSAcYBQVVfeXFMTU5jcS1ZM3ZGbTIyZHcyTlA4WFdQMk0xZDhjLVA0c1FDbE1aZ0toR0lvaUNDa0xiX1Bxc1JiUVo5dW9NbnppNms1b0ZYSC15Zi1icXFRVk5wR0lFWGVZY2t3TmlYNVNFMnZCbHdLVWdmbTdlcE55M0ZwcnNHNjlPLW9kR05wbXhFX0V1c2M1TDdDcDNuXy1xcENUNnZScWc5eU5vbTNsYXBPVHFiZldQMk1kM2NYdVF6a0NYbFNYWVNDMlc0SENn?oc=5",
+                                       "source":  "The Manila Times",
+                                       "published":  "2026-10-19T07:00:00Z",
+                                       "intl":  true
                                    },
                                    {
                                        "title":  "상장리츠 7곳 \u0027선배당 후투자\u0027 도입…\"결산일 아닌 배당기준일 확인\"",
                                        "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTE1tak5aNEhyUGpydmhZenBXblV6OEowMV9SLS04b0p0eW5kaFhNS2ctMERVUWY3R0d5ZDdRcE9GeTUwLXJtMUZIN0xtY0pXNnVnNXpuSnpXejZucmsyOVBTMUhQc3VmWm5WTzVyUkV2TVU?oc=5",
                                        "source":  "코리아리포트",
+                                       "published":  "2026-10-16T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "한층은 오피스, 한층은 집… 지식산업센터 ‘주택 실험’ 성공할까",
+                                       "url":  "https://news.google.com/rss/articles/CBMibkFVX3lxTE5idmhrUjh1OUxKX3FTOTNFVm16WmkwMkRIaXJkdm1RUUx0djdvZ0JoX0tLdWljN2s2VTBCdktFZTAyaXg3bUY2dXhFczV1X2Y4dGRTLUVpbHF5U1hLalJva1MtOUVfR2tTazVaZHhB?oc=5",
+                                       "source":  "더스쿠프",
                                        "published":  "2026-10-16T07:00:00Z"
                                    },
                                    {
@@ -1380,15 +1380,15 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-10-15T07:00:00Z"
                                    },
                                    {
-                                       "title":  "한신평 \"금융권, 부동산PF 질적 부담 지속\"",
-                                       "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBNdFB6RWlibC1OXzRKRGQ4VE9fSnlhSWNPalp1bC1qOFJiWlVrbm9HdkNxWS11N0U1NTVBYXFCQ0dHVnBTNGhObHhlN2NFS29RNW43d1FR?oc=5",
-                                       "source":  "DealSite경제TV",
-                                       "published":  "2026-10-15T07:00:00Z"
-                                   },
-                                   {
                                        "title":  "[韓경제 아킬레스건](22) 부동산 PF 부실 : 금융권 전반으로 전이되는 위기",
                                        "url":  "https://news.google.com/rss/articles/CBMiakFVX3lxTFB1emVib2x5OFNlRG4yRjdrZ1ZiVjUxenBsVGhUQUV1bXh4dEVTcC1hU0VlczktaTdVYzlsa0FsbWVPS2NzVWR2NjJwUDdtWTJzTGpjdVZzUVdpZ2NlbXFZOFFpZWRackQ0TEE?oc=5",
                                        "source":  "금융소비자뉴스",
+                                       "published":  "2026-10-15T07:00:00Z"
+                                   },
+                                   {
+                                       "title":  "한신평 \"금융권, 부동산PF 질적 부담 지속\"",
+                                       "url":  "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBNdFB6RWlibC1OXzRKRGQ4VE9fSnlhSWNPalp1bC1qOFJiWlVrbm9HdkNxWS11N0U1NTVBYXFCQ0dHVnBTNGhObHhlN2NFS29RNW43d1FR?oc=5",
+                                       "source":  "DealSite경제TV",
                                        "published":  "2026-10-15T07:00:00Z"
                                    },
                                    {
@@ -1437,16 +1437,16 @@ window.DASHBOARD_DATA = {
                                        "published":  "2026-11-03T14:20:21Z"
                                    },
                                    {
-                                       "title":  "남양주 하수처리·자원순환시설 등 3개 민자사업 심의 통과",
-                                       "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE01MDd6STdKenI4UTVGcWsxaWVUMVU1N19SQkFnT1cwel9OaGpMZ1Jkd0JyTjViY1RlZHllR3pfUkFVUHVDX1QxMUliUm9oa3M0WUxJQ1ktcUpIUdIBWEFVX3lxTE1EdUhPTlAtZl82Yms3Ri1OeGV5ZDg4UFNzT25DZXR1cjloaW1xM1NianFCQmhBa3NYLTZ3U2VMVzJzZ1ltM09ibEFYRDhzZGIwTXU0Y1pob0M?oc=5",
-                                       "source":  "아주경제",
-                                       "published":  "2026-10-29T07:00:00Z"
+                                       "title":  "남양주시, 자원순환시설 민자사업 심의 통과…왕숙신도시 기반시설 조성 탄력",
+                                       "url":  "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1QeFN2d0tKNVRCcWc4bEY4ekJqenRFOU1QNHlXemw1WGRrMlN6S19aTkxmY2hJbS1vU0UxM3VtbkthU3ZyMGJiOWE0bXMxd19rMDU1UzhJbkRRUWhsdy1BQw?oc=5",
+                                       "source":  "아시아경제",
+                                       "published":  "2026-11-02T05:27:34Z"
                                    },
                                    {
-                                       "title":  "신보, 잠실MICE 1조 차입금 보증…역대 최대 민자사업 뒷받침 : 네이버 블로그",
-                                       "url":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTFAzcndZY3laRWJ6dWkydm1wRV9GcGdVdThwR2tFQjNMQnFWaTdvTlVOOXdnaURfakFMNTE0dXd4V1ZpcllzUHRSNjVMSHRrclp3Z3NEdEU0d0p5QQ?oc=5",
-                                       "source":  "블로그",
-                                       "published":  "2026-10-29T04:50:31Z"
+                                       "title":  "신용보증기금, \u0027역대 최대 민자사업\u0027... 잠실MICE에 1조 원 보증 공급",
+                                       "url":  "https://news.google.com/rss/articles/CBMicEFVX3lxTFBLeVBLMXJSWjVyc05CU210czJEUVhTMFRwVzlnUVBRRmpSS3JrVW9ZanBPbTUtTWtENnBfRnBXdFFmU0VPSjByUWFFbWhOMzhmclNvTTdwQVlyMnVPZnowTUctZTc1eTdRSC1zdGRENUPSAXRBVV95cUxQUVN3cWdxTGpjbm9Pek1MWU1tRnVPUHJTTG5BanZJc1NDdXBtOHFPakxUVUZFSk5ITTNsaDlkT0hWamE0X05COVJxbjJXT1NGaExKUVZZa2R0aS1SaGlGMFlPUHBLVG1fRW9DSnVOZ2JsTk1zVg?oc=5",
+                                       "source":  "뉴스워커",
+                                       "published":  "2026-10-28T07:00:00Z"
                                    },
                                    {
                                        "title":  "포항시의회 건설위, 민자사업 끌려다니다 끝나나…환호·영일대 특급호텔 \u0027안전장치\u0027 촉구",
